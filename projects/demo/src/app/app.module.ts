@@ -18,7 +18,7 @@ import { LcuChartsModule } from '@lowcodeunit/lcu-charts-common';
     FathymSharedModule,
     MaterialModule,
     FlexLayoutModule,
-    LcuChartsModule.forRoot()
+    LcuChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
