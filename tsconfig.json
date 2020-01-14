@@ -25,7 +25,8 @@
 			"@lowcodeunit/lcu-charts-common/*": [
 				"dist/common/*"
 			]
-		}
+		},
+    "resolveJsonModule": true
 	},
 	"angularCompilerOptions": {
 		"fullTemplateTypeCheck": true,
