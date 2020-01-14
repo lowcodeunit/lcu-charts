@@ -1,6 +1,10 @@
-<div [className]="ThemeClass | async" style="height: 100%">
-    <mat-toolbar color="primary" class="lcu-toolbar">
-      <h1>{{Title}}</h1>
+<div [className]="ThemeClass | async" style="height: 100%" fxLayout="column" fxLayoutAlign="start stretch">
+  <div class="lcu-header" fxFlexAlign="stretch" fxLayout="row">
+    <mat-toolbar color="primary">
+      <h1 class="toolbar-title">
+        LCU-<strong>Charts</strong>
+        <small class="subtitle">{{ APP_DESCRIPTION }}</small>
+      </h1>
       <span fxFlex="nogrow">
         <button mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon>format_color_fill</mat-icon>
@@ -16,11 +20,50 @@
         </mat-menu>
       </span>
     </mat-toolbar>
-  
-    <div class="lcu-content">
-      <div class="lcu-card-container" fxLayout="row" fxLayout.lt-md="column">
-        <lcu-lcu *ngFor="let card of Cards" [card]="card" (cardSelected)="DisplayDetails()"></lcu-lcu>
-      </div>
-    </div>
   </div>
-  
+  <div class="lcu-body dark" fxLayout="row" fxLayout.fxLayout.lt-md="column">
+    <lcu-charts-line-chart
+      [view]="view"
+      class="chart-container"
+      [scheme]="colorScheme"
+      [schemeType]="schemeType"
+      [results]="weatherData"
+      [animations]="animations"
+      [legend]="showLegend"
+      [legendTitle]="legendTitle"
+      [legendPosition]="legendPosition"
+      (legendLabelClick)="onLegendLabelClick($event)"
+      [gradient]="gradient"
+      [xAxis]="showXAxis"
+      [yAxis]="showYAxis"
+      [showXAxisLabel]="showXAxisLabel"
+      [showYAxisLabel]="showYAxisLabel"
+      [xAxisLabel]="xAxisLabel"
+      [yAxisLabel]="yAxisLabel"
+      [autoScale]="autoScale"
+      [timeline]="timeline"
+      [showGridLines]="showGridLines"
+      [curve]="curve"
+      [rangeFillOpacity]="rangeFillOpacity"
+      [roundDomains]="roundDomains"
+      [tooltipDisabled]="tooltipDisabled"
+      [showRefLines]="showRefLines"
+      [showRefLabels]="showRefLabels"
+      [referenceLines]="refLines"
+      [trimXAxisTicks]="trimXAxisTicks"
+      [trimYAxisTicks]="trimYAxisTicks"
+      [maxXAxisTickLength]="maxXAxisTickLength"
+      [maxYAxisTickLength]="maxYAxisTickLength"
+      (select)="select($event)"
+      (activate)="activate($event)"
+      (deactivate)="deactivate($event)"
+    >
+    </lcu-charts-line-chart>
+  </div>
+  <div class="lcu-footer" fxFlexAlign="stretch" fxLayout="row">
+    <mat-toolbar color="accent">
+      <small>VERSION: {{ APP_VERSION }}</small>
+      <small>2020 &copy; Fathym</small>
+    </mat-toolbar>
+  </div>
+</div>
