@@ -1,3 +1,5 @@
+<!-- [xAxisTickFormatting]="xAxisTickFormatting" -->
+
 <lcu-charts-line-chart
   class="chart-container"
   [animations]="animations"
@@ -28,6 +30,12 @@
   [xScaleMax]="xScaleMax"
   [xScaleMin]="xScaleMin"
   [yAxisLabel]="yAxisLabel"
+
+  [yAxisTickFormatting]="yAxisTickFormatting"
+  [yAxisTicks]="yAxisTicks"
+  [xAxisIsDate]="xAxisIsDate"
+  [xAxisDateFormat]="xAxisDateFormat"
+
   [yAxis]="showYAxis"
   [yScaleMax]="yScaleMax"
   [yScaleMin]="yScaleMin"
@@ -35,4 +43,18 @@
   (deactivate)="deactivate($event)"
   (legendLabelClick)="onLegendLabelClick($event)"
   (select)="select($event)">
+<!-- tooltip with single value-->
+  <ng-template #tooltipTemplate let-model="model">
+    <div class="tooltip-item">
+      {{model.series}}: {{model.value}}{{yUnits}}
+    </div> 
+  </ng-template>
+<!-- tooltip with multiple value-->
+  <ng-template #seriesTooltipTemplate let-model="model">
+    <div *ngFor="let item of model" class="tooltip-item">
+      <span class="tooltip-item-color" [style.background-color]="item.color"></span>
+      {{item.series}}: {{item.value}}{{yUnits}}
+    </div>     
+  </ng-template>
+
 </lcu-charts-line-chart>

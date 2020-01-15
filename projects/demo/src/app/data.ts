@@ -315,7 +315,7 @@ export const weatherData: any = [
     series: [
       {
         value: 33,
-        name: new Date('2020-01-13T12:05:00.000Z')
+        name: new Date('2020-01-13T12:05:00.000Z'),
       },
       {
         value: 35,
