@@ -210,6 +210,17 @@ export class LineChartComponent extends BaseChartComponent {
   @Input() yScaleMin: number;
   @Input() yScaleMax: number;
 
+  @Input() xAxisIsDate: boolean;
+  /**
+   * example {DayOfWeek: true,
+   *          Month: false,
+   *          DayOfMonth: true,
+   *          Year: false,
+   *          Time: true,
+   *          TimeZone: false}
+   */
+  @Input() xAxisDateFormat: object;
+
   @Output() activate: EventEmitter<any> = new EventEmitter();
   @Output() deactivate: EventEmitter<any> = new EventEmitter();
 
@@ -262,6 +273,12 @@ export class LineChartComponent extends BaseChartComponent {
       legendType: this.schemeType,
       legendPosition: this.legendPosition
     });
+/**\
+ * if the X axis is a date and they passed in a format
+ */
+    // if(this.xAxisIsDate && this.xAxisDateFormat){
+    //   this.xAxisTickFormatting = this.formatXAxisDate.bind(this);
+    // }
 
     if (this.timeline) {
       this.dims.height -= this.timelineHeight + this.margin[2] + this.timelinePadding;
@@ -287,6 +304,15 @@ export class LineChartComponent extends BaseChartComponent {
 
     this.clipPathId = 'clip' + id().toString();
     this.clipPath = `url(#${this.clipPathId})`;
+  }
+
+  formatXAxisDate(value: Date){
+    console.log("value... = ", value);
+    // let newDate;
+    // if(this.xAxisDateFormat.DayOfWeek)
+    // this.xAxisDateFormat
+  let dateTime = value.toString();
+    return dateTime;
   }
 
   updateTimeline(): void {
