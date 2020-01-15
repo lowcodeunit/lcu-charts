@@ -94,6 +94,7 @@ import { getUniqueXDomainValues, getScaleType } from '../../common/domain.helper
           <svg:g *ngIf="!tooltipDisabled" (mouseleave)="hideCircles()">
             <svg:g
               lcu-charts-tooltip-area
+              [backgroundGradientConfigs]="backgroundGradientConfigs"
               [dims]="dims"
               [xSet]="xSet"
               [xScale]="xScale"
@@ -209,6 +210,7 @@ export class LineChartComponent extends BaseChartComponent {
   @Input() xScaleMax: any;
   @Input() yScaleMin: number;
   @Input() yScaleMax: number;
+  @Input() backgroundGradientConfigs: any[];
 
   @Input() xAxisIsDate: boolean;
   /**

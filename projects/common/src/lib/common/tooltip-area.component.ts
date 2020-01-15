@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, ViewChild, ChangeDetectionStrategy, TemplateRef } from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { createMouseEvent } from '../events';
+import select from 'd3-selection';
 
 @Component({
   selector: 'g[lcu-charts-tooltip-area]',
@@ -12,10 +13,23 @@ import { createMouseEvent } from '../events';
         y="0"
         [attr.width]="dims.width"
         [attr.height]="dims.height"
-        style="opacity: 0; cursor: 'auto';"
+        [attr.fill]="'url(#lin-grad)'"
+        [attr.opacity]="'0.5'"
         (mousemove)="mouseMove($event)"
         (mouseleave)="hideTooltip()"
       />
+
+      <svg:linearGradient
+        [attr.width]="dims.width"
+        [attr.height]="dims.height" [id]="'lin-grad'" [attr.x1]="'0%'" [attr.y1]="'0%'" [attr.x2]="'100%'" [attr.y2]="'0%'">
+          <svg:stop
+            *ngFor="let stop of backgroundGradientConfigs"
+            [attr.offset]="stop.offset + '%'"
+            [style.stop-color]="stop.color"
+            [style.stop-opacity]="'0.5'"
+          />
+      </svg:linearGradient>
+
       <ng-template #defaultTooltipTemplate let-model="model">
         <xhtml:div class="area-tooltip-container">
           <xhtml:div *ngFor="let tooltipItem of model" class="tooltip-item">
@@ -78,6 +92,7 @@ export class TooltipArea {
   @Input() showPercentage: boolean = false;
   @Input() tooltipDisabled: boolean = false;
   @Input() tooltipTemplate: TemplateRef<any>;
+  @Input() backgroundGradientConfigs: any[];
 
   @Output() hover = new EventEmitter();
 
