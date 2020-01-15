@@ -12,14 +12,27 @@
       .toolbar-title {
         display: block;
         margin: 0;
-        padding: 15px;
 
-        small {
-          font-size: 0.5em;
-          line-height: 1.3em;
+        .title-menu {
+          cursor: pointer;
+          margin-right: 15px;
 
-          &.subtitle {
-            display: block;
+          .mat-icon {
+            font-size: 32px;
+            height: 32px;
+            width: 32px;
+          }
+        }
+
+        .title-text {
+
+          small {
+            font-size: 0.5em;
+            line-height: 1.3em;
+
+            &.subtitle {
+              display: block;
+            }
           }
         }
       }
@@ -30,6 +43,24 @@
     align-items: center;
     justify-content: center;
     height: 100%;
+
+    .body-sidenav-container {
+      background-color: transparent;
+      height: 100%;
+      width: 100%;
+
+      .mat-sidenav {
+        background-color: map-get($accent, 500);
+      }
+    }
+
+    .body-sidenav-content {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      overflow-x: hidden;
+    }
   }
 
   .lcu-footer {
