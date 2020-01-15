@@ -2,10 +2,10 @@ import { TestBed, async } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { multi } from '../../../../../../projects/demo/src/app/data';
+import { multi } from '../../../../../../demo/src/app/data';
 import { APP_BASE_HREF } from '@angular/common';
 
-import { AreaChartModule } from './area-chart.module';
+import { AreaChartModule } from '../area-chart.module';
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000;
 
@@ -22,7 +22,7 @@ class TestComponent {
   };
 }
 
-describe('<lcu-charts-area-chart>', () => {
+describe('<lcu-charts-area-chart-simple>', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TestComponent],
@@ -36,11 +36,11 @@ describe('<lcu-charts-area-chart>', () => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `
-               <lcu-charts-area-chart
+               <lcu-charts-area-chart-simple
                 [view]="[400,800]"
                 [scheme]="colorScheme"
                 [results]="data">
-              </lcu-charts-area-chart>`
+              </lcu-charts-area-chart-simple>`
         }
       }).compileComponents();
     }));

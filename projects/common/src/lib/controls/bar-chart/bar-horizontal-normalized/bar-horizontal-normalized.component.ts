@@ -2,8 +2,8 @@ import {
   Component,
   Input,
   Output,
-  EventEmitter,
   ViewEncapsulation,
+  EventEmitter,
   ChangeDetectionStrategy,
   ContentChild,
   TemplateRef
@@ -12,86 +12,15 @@ import { trigger, style, animate, transition } from '@angular/animations';
 
 import { scaleBand, scaleLinear } from 'd3-scale';
 
-import { calculateViewDimensions, ViewDimensions } from '../../common/view-dimensions.helper';
-import { ColorHelper } from '../../common/color.helper';
-import { BaseChartComponent } from '../../common/base-chart.component';
+import { calculateViewDimensions, ViewDimensions } from '../../../common/view-dimensions.helper';
+import { ColorHelper } from '../../../common/color.helper';
+import { BaseChartComponent } from '../../../common/base-chart.component';
 
 @Component({
-  selector: 'lcu-charts-bar-horizontal-stacked',
-  template: `
-    <lcu-charts-chart
-      [view]="[width, height]"
-      [showLegend]="legend"
-      [legendOptions]="legendOptions"
-      [activeEntries]="activeEntries"
-      [animations]="animations"
-      (legendLabelActivate)="onActivate($event, undefined, true)"
-      (legendLabelDeactivate)="onDeactivate($event, undefined, true)"
-      (legendLabelClick)="onClick($event)"
-    >
-      <svg:g [attr.transform]="transform" class="bar-chart chart">
-        <svg:g
-          lcu-charts-x-axis
-          *ngIf="xAxis"
-          [xScale]="xScale"
-          [dims]="dims"
-          [showGridLines]="showGridLines"
-          [showLabel]="showXAxisLabel"
-          [labelText]="xAxisLabel"
-          [trimTicks]="trimXAxisTicks"
-          [rotateTicks]="rotateXAxisTicks"
-          [maxTickLength]="maxXAxisTickLength"
-          [tickFormatting]="xAxisTickFormatting"
-          [ticks]="xAxisTicks"
-          (dimensionsChanged)="updateXAxisHeight($event)"
-        ></svg:g>
-        <svg:g
-          lcu-charts-y-axis
-          *ngIf="yAxis"
-          [yScale]="yScale"
-          [dims]="dims"
-          [showLabel]="showYAxisLabel"
-          [labelText]="yAxisLabel"
-          [trimTicks]="trimYAxisTicks"
-          [maxTickLength]="maxYAxisTickLength"
-          [tickFormatting]="yAxisTickFormatting"
-          [ticks]="yAxisTicks"
-          [yAxisOffset]="dataLabelMaxWidth.negative"
-          (dimensionsChanged)="updateYAxisWidth($event)"
-        ></svg:g>
-        <svg:g
-          *ngFor="let group of results; let index = index; trackBy: trackBy"
-          [@animationState]="'active'"
-          [attr.transform]="groupTransform(group)"
-        >
-          <svg:g
-            lcu-charts-series-horizontal
-            type="stacked"
-            [xScale]="xScale"
-            [yScale]="yScale"
-            [colors]="colors"
-            [series]="group.series"
-            [activeEntries]="activeEntries"
-            [dims]="dims"
-            [gradient]="gradient"
-            [tooltipDisabled]="tooltipDisabled"
-            [tooltipTemplate]="tooltipTemplate"
-            [seriesName]="group.name"
-            [animations]="animations"
-            [showDataLabel]="showDataLabel"
-            [dataLabelFormatting]="dataLabelFormatting"
-            [noBarWhenZero]="noBarWhenZero"
-            (select)="onClick($event, group)"
-            (activate)="onActivate($event, group)"
-            (deactivate)="onDeactivate($event, group)"
-            (dataLabelWidthChanged)="onDataLabelMaxWidthChanged($event, index)"
-          />
-        </svg:g>
-      </svg:g>
-    </lcu-charts-chart>
-  `,
+  selector: 'lcu-charts-bar-horizontal-normalized',
+  templateUrl: 'bar-horizontal-normalized.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrls: ['../../common/base-chart.component.scss'],
+  styleUrls: ['../../../common/base-chart.component.scss'],
   encapsulation: ViewEncapsulation.None,
   animations: [
     trigger('animationState', [
@@ -105,7 +34,7 @@ import { BaseChartComponent } from '../../common/base-chart.component';
     ])
   ]
 })
-export class BarHorizontalStackedComponent extends BaseChartComponent {
+export class BarHorizontalNormalizedComponent extends BaseChartComponent {
   @Input() legend = false;
   @Input() legendTitle: string = 'Legend';
   @Input() legendPosition: string = 'right';
@@ -131,9 +60,6 @@ export class BarHorizontalStackedComponent extends BaseChartComponent {
   @Input() yAxisTicks: any[];
   @Input() barPadding = 8;
   @Input() roundDomains: boolean = false;
-  @Input() xScaleMax: number;
-  @Input() showDataLabel: boolean = false;
-  @Input() dataLabelFormatting: any;
   @Input() noBarWhenZero: boolean = true;
 
   @Output() activate: EventEmitter<any> = new EventEmitter();
@@ -153,16 +79,9 @@ export class BarHorizontalStackedComponent extends BaseChartComponent {
   xAxisHeight: number = 0;
   yAxisWidth: number = 0;
   legendOptions: any;
-  dataLabelMaxWidth: any = { negative: 0, positive: 0 };
 
   update(): void {
     super.update();
-
-    if (!this.showDataLabel) {
-      this.dataLabelMaxWidth = { negative: 0, positive: 0 };
-    }
-
-    this.margin = [10, 20 + this.dataLabelMaxWidth.positive, 10, 20 + this.dataLabelMaxWidth.negative];
 
     this.dims = calculateViewDimensions({
       width: this.width,
@@ -221,30 +140,7 @@ export class BarHorizontalStackedComponent extends BaseChartComponent {
   }
 
   getValueDomain(): any[] {
-    const domain = [];
-    let smallest = 0;
-    let biggest = 0;
-    for (const group of this.results) {
-      let smallestSum = 0;
-      let biggestSum = 0;
-      for (const d of group.series) {
-        if (d.value < 0) {
-          smallestSum += d.value;
-        } else {
-          biggestSum += d.value;
-        }
-        smallest = d.value < smallest ? d.value : smallest;
-        biggest = d.value > biggest ? d.value : biggest;
-      }
-      domain.push(smallestSum);
-      domain.push(biggestSum);
-    }
-    domain.push(smallest);
-    domain.push(biggest);
-
-    const min = Math.min(0, ...domain);
-    const max = this.xScaleMax ? Math.max(this.xScaleMax, ...domain) : Math.max(...domain);
-    return [min, max];
+    return [0, 100];
   }
 
   getYScale(): any {
@@ -318,17 +214,6 @@ export class BarHorizontalStackedComponent extends BaseChartComponent {
   updateXAxisHeight({ height }): void {
     this.xAxisHeight = height;
     this.update();
-  }
-
-  onDataLabelMaxWidthChanged(event, groupIndex) {
-    if (event.size.negative) {
-      this.dataLabelMaxWidth.negative = Math.max(this.dataLabelMaxWidth.negative, event.size.width);
-    } else {
-      this.dataLabelMaxWidth.positive = Math.max(this.dataLabelMaxWidth.positive, event.size.width);
-    }
-    if (groupIndex === this.results.length - 1) {
-      setTimeout(() => this.update());
-    }
   }
 
   onActivate(event, group, fromLegend = false) {

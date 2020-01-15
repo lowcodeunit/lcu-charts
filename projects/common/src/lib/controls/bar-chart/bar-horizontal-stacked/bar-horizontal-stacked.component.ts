@@ -1,9 +1,9 @@
 import {
   Component,
   Input,
-  ViewEncapsulation,
   Output,
   EventEmitter,
+  ViewEncapsulation,
   ChangeDetectionStrategy,
   ContentChild,
   TemplateRef
@@ -12,94 +12,15 @@ import { trigger, style, animate, transition } from '@angular/animations';
 
 import { scaleBand, scaleLinear } from 'd3-scale';
 
-import { calculateViewDimensions, ViewDimensions } from '../../common/view-dimensions.helper';
-import { ColorHelper } from '../../common/color.helper';
-import { BaseChartComponent } from '../../common/base-chart.component';
+import { calculateViewDimensions, ViewDimensions } from '../../../common/view-dimensions.helper';
+import { ColorHelper } from '../../../common/color.helper';
+import { BaseChartComponent } from '../../../common/base-chart.component';
 
 @Component({
-  selector: 'lcu-charts-bar-horizontal-2d',
-  template: `
-    <lcu-charts-chart
-      [view]="[width, height]"
-      [showLegend]="legend"
-      [legendOptions]="legendOptions"
-      [activeEntries]="activeEntries"
-      [animations]="animations"
-      (legendLabelActivate)="onActivate($event, undefined, true)"
-      (legendLabelDeactivate)="onDeactivate($event, undefined, true)"
-      (legendLabelClick)="onClick($event)"
-    >
-      <svg:g [attr.transform]="transform" class="bar-chart chart">
-        <svg:g
-          lcu-charts-grid-panel-series
-          [xScale]="valueScale"
-          [yScale]="groupScale"
-          [data]="results"
-          [dims]="dims"
-          orient="horizontal"
-        ></svg:g>
-        <svg:g
-          lcu-charts-x-axis
-          *ngIf="xAxis"
-          [xScale]="valueScale"
-          [dims]="dims"
-          [showGridLines]="showGridLines"
-          [showLabel]="showXAxisLabel"
-          [labelText]="xAxisLabel"
-          [trimTicks]="trimXAxisTicks"
-          [rotateTicks]="rotateXAxisTicks"
-          [maxTickLength]="maxXAxisTickLength"
-          [tickFormatting]="xAxisTickFormatting"
-          [ticks]="xAxisTicks"
-          (dimensionsChanged)="updateXAxisHeight($event)"
-        ></svg:g>
-        <svg:g
-          lcu-charts-y-axis
-          *ngIf="yAxis"
-          [yScale]="groupScale"
-          [dims]="dims"
-          [showLabel]="showYAxisLabel"
-          [labelText]="yAxisLabel"
-          [trimTicks]="trimYAxisTicks"
-          [maxTickLength]="maxYAxisTickLength"
-          [tickFormatting]="yAxisTickFormatting"
-          [ticks]="yAxisTicks"
-          [yAxisOffset]="dataLabelMaxWidth.negative"
-          (dimensionsChanged)="updateYAxisWidth($event)"
-        ></svg:g>
-        <svg:g
-          *ngFor="let group of results; let index = index; trackBy: trackBy"
-          [@animationState]="'active'"
-          [attr.transform]="groupTransform(group)"
-        >
-          <svg:g
-            lcu-charts-series-horizontal
-            [xScale]="valueScale"
-            [activeEntries]="activeEntries"
-            [yScale]="innerScale"
-            [colors]="colors"
-            [series]="group.series"
-            [dims]="dims"
-            [gradient]="gradient"
-            [tooltipDisabled]="tooltipDisabled"
-            [tooltipTemplate]="tooltipTemplate"
-            [seriesName]="group.name"
-            [roundEdges]="roundEdges"
-            [animations]="animations"
-            [showDataLabel]="showDataLabel"
-            [dataLabelFormatting]="dataLabelFormatting"
-            [noBarWhenZero]="noBarWhenZero"
-            (select)="onClick($event, group)"
-            (activate)="onActivate($event, group)"
-            (deactivate)="onDeactivate($event, group)"
-            (dataLabelWidthChanged)="onDataLabelMaxWidthChanged($event, index)"
-          />
-        </svg:g>
-      </svg:g>
-    </lcu-charts-chart>
-  `,
+  selector: 'lcu-charts-bar-horizontal-stacked',
+  templateUrl: './bar-horizontal-stacked.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrls: ['../../common/base-chart.component.scss'],
+  styleUrls: ['../../../common/base-chart.component.scss'],
   encapsulation: ViewEncapsulation.None,
   animations: [
     trigger('animationState', [
@@ -113,7 +34,7 @@ import { BaseChartComponent } from '../../common/base-chart.component';
     ])
   ]
 })
-export class BarHorizontal2DComponent extends BaseChartComponent {
+export class BarHorizontalStackedComponent extends BaseChartComponent {
   @Input() legend = false;
   @Input() legendTitle: string = 'Legend';
   @Input() legendPosition: string = 'right';
@@ -137,10 +58,8 @@ export class BarHorizontal2DComponent extends BaseChartComponent {
   @Input() yAxisTickFormatting: any;
   @Input() xAxisTicks: any[];
   @Input() yAxisTicks: any[];
-  @Input() groupPadding = 16;
   @Input() barPadding = 8;
   @Input() roundDomains: boolean = false;
-  @Input() roundEdges: boolean = true;
   @Input() xScaleMax: number;
   @Input() showDataLabel: boolean = false;
   @Input() dataLabelFormatting: any;
@@ -154,10 +73,9 @@ export class BarHorizontal2DComponent extends BaseChartComponent {
   dims: ViewDimensions;
   groupDomain: any[];
   innerDomain: any[];
-  valuesDomain: any[];
-  groupScale: any;
-  innerScale: any;
-  valueScale: any;
+  valueDomain: any[];
+  xScale: any;
+  yScale: any;
   transform: string;
   colors: ColorHelper;
   margin = [10, 20, 10, 20];
@@ -194,44 +112,15 @@ export class BarHorizontal2DComponent extends BaseChartComponent {
 
     this.groupDomain = this.getGroupDomain();
     this.innerDomain = this.getInnerDomain();
-    this.valuesDomain = this.getValueDomain();
+    this.valueDomain = this.getValueDomain();
 
-    this.groupScale = this.getGroupScale();
-    this.innerScale = this.getInnerScale();
-    this.valueScale = this.getValueScale();
+    this.xScale = this.getXScale();
+    this.yScale = this.getYScale();
 
     this.setColors();
     this.legendOptions = this.getLegendOptions();
 
     this.transform = `translate(${this.dims.xOffset} , ${this.margin[0]})`;
-  }
-
-  getGroupScale(): any {
-    const spacing = this.groupDomain.length / (this.dims.height / this.groupPadding + 1);
-
-    return scaleBand()
-      .rangeRound([0, this.dims.height])
-      .paddingInner(spacing)
-      .paddingOuter(spacing / 2)
-      .domain(this.groupDomain);
-  }
-
-  getInnerScale(): any {
-    const height = this.groupScale.bandwidth();
-    const spacing = this.innerDomain.length / (height / this.barPadding + 1);
-
-    return scaleBand()
-      .rangeRound([0, height])
-      .paddingInner(spacing)
-      .domain(this.innerDomain);
-  }
-
-  getValueScale(): any {
-    const scale = scaleLinear()
-      .range([0, this.dims.width])
-      .domain(this.valuesDomain);
-
-    return this.roundDomains ? scale.nice() : scale;
   }
 
   getGroupDomain(): any[] {
@@ -262,22 +151,49 @@ export class BarHorizontal2DComponent extends BaseChartComponent {
 
   getValueDomain(): any[] {
     const domain = [];
-
+    let smallest = 0;
+    let biggest = 0;
     for (const group of this.results) {
+      let smallestSum = 0;
+      let biggestSum = 0;
       for (const d of group.series) {
-        if (!domain.includes(d.value)) {
-          domain.push(d.value);
+        if (d.value < 0) {
+          smallestSum += d.value;
+        } else {
+          biggestSum += d.value;
         }
+        smallest = d.value < smallest ? d.value : smallest;
+        biggest = d.value > biggest ? d.value : biggest;
       }
+      domain.push(smallestSum);
+      domain.push(biggestSum);
     }
+    domain.push(smallest);
+    domain.push(biggest);
 
     const min = Math.min(0, ...domain);
-    const max = this.xScaleMax ? Math.max(this.xScaleMax, ...domain) : Math.max(0, ...domain);
+    const max = this.xScaleMax ? Math.max(this.xScaleMax, ...domain) : Math.max(...domain);
     return [min, max];
   }
 
-  groupTransform(group) {
-    return `translate(0, ${this.groupScale(group.label)})`;
+  getYScale(): any {
+    const spacing = this.groupDomain.length / (this.dims.height / this.barPadding + 1);
+
+    return scaleBand()
+      .rangeRound([0, this.dims.height])
+      .paddingInner(spacing)
+      .domain(this.groupDomain);
+  }
+
+  getXScale(): any {
+    const scale = scaleLinear()
+      .range([0, this.dims.width])
+      .domain(this.valueDomain);
+    return this.roundDomains ? scale.nice() : scale;
+  }
+
+  groupTransform(group): string {
+    return `translate(0, ${this.yScale(group.name)})`;
   }
 
   onClick(data, group?): void {
@@ -297,7 +213,7 @@ export class BarHorizontal2DComponent extends BaseChartComponent {
     if (this.schemeType === 'ordinal') {
       domain = this.innerDomain;
     } else {
-      domain = this.valuesDomain;
+      domain = this.valueDomain;
     }
 
     this.colors = new ColorHelper(this.scheme, this.schemeType, domain, this.customColors);
@@ -316,7 +232,7 @@ export class BarHorizontal2DComponent extends BaseChartComponent {
       opts.colors = this.colors;
       opts.title = this.legendTitle;
     } else {
-      opts.domain = this.valuesDomain;
+      opts.domain = this.valueDomain;
       opts.colors = this.colors.scale;
     }
 
