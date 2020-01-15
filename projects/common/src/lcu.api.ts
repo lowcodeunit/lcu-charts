@@ -43,29 +43,29 @@ export * from './lib/common/domain.helper';
 
 /** AREA CHART */
 export * from './lib/controls/area-chart/area-chart.module';
-export * from './lib/controls/area-chart/area-chart.component';
-export * from './lib/controls/area-chart/area-chart-normalized.component';
-export * from './lib/controls/area-chart/area-chart-stacked.component';
+export * from './lib/controls/area-chart/area-simple/area-chart-simple.component';
+export * from './lib/controls/area-chart/area-normalized/area-chart-normalized.component';
+export * from './lib/controls/area-chart/area-stacked/area-chart-stacked.component';
 export * from './lib/controls/area-chart/area-series.component';
 
 /** BAR CHART */
 export * from './lib/controls/bar-chart/bar-chart.module';
 export * from './lib/controls/bar-chart/bar.component';
-export * from './lib/controls/bar-chart/bar-horizontal.component';
-export * from './lib/controls/bar-chart/bar-horizontal-2d.component';
-export * from './lib/controls/bar-chart/bar-horizontal-normalized.component';
-export * from './lib/controls/bar-chart/bar-horizontal-stacked.component';
+export * from './lib/controls/bar-chart/bar-horizontal-simple/bar-horizontal-simple.component';
+export * from './lib/controls/bar-chart/bar-horizontal-grouped/bar-horizontal-grouped.component';
+export * from './lib/controls/bar-chart/bar-horizontal-normalized/bar-horizontal-normalized.component';
+export * from './lib/controls/bar-chart/bar-horizontal-stacked/bar-horizontal-stacked.component';
 export * from './lib/controls/bar-chart/series-horizontal.component';
 export * from './lib/controls/bar-chart/bar-label.component';
-export * from './lib/controls/bar-chart/bar-vertical.component';
-export * from './lib/controls/bar-chart/bar-vertical-2d.component';
-export * from './lib/controls/bar-chart/bar-vertical-normalized.component';
-export * from './lib/controls/bar-chart/bar-vertical-stacked.component';
+export * from './lib/controls/bar-chart/bar-vertical-simple/bar-vertical-simple.component';
+export * from './lib/controls/bar-chart/bar-vertical-grouped/bar-vertical-grouped.component';
+export * from './lib/controls/bar-chart/bar-vertical-normalized/bar-vertical-normalized.component';
+export * from './lib/controls/bar-chart/bar-vertical-stacked/bar-vertical-stacked.component';
 export * from './lib/controls/bar-chart/series-vertical.component';
 
 /** LINE CHART */
 export * from './lib/controls/line-chart/line-chart.module';
-export * from './lib/controls/line-chart/line-chart.component';
+export * from './lib/controls/line-chart/line-simple/line-chart-simple.component';
 export * from './lib/controls/line-chart/line.component';
 export * from './lib/controls/line-chart/line-series.component';
 
