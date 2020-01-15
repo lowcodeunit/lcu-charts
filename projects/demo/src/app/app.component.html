@@ -1,10 +1,15 @@
 <div [className]="ThemeClass | async" style="height: 100%" fxLayout="column" fxLayoutAlign="start stretch">
   <div class="lcu-header" fxFlexAlign="stretch" fxLayout="row">
     <mat-toolbar color="primary">
-      <h1 class="toolbar-title">
-        LCU-<strong>Charts</strong>
-        <small class="subtitle">{{ APP_DESCRIPTION }}</small>
-      </h1>
+      <div class="toolbar-title" fxLayout="row">
+        <a fxFlex class="title-menu" (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </a>
+        <a fxFlex class="title-text">
+          LCU-<strong>Charts</strong>
+          <small class="subtitle">{{ APP_DESCRIPTION }}</small>
+        </a>
+      </div>
       <span fxFlex="nogrow">
         <button mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon>format_color_fill</mat-icon>
@@ -21,44 +26,21 @@
       </span>
     </mat-toolbar>
   </div>
-  <div class="lcu-body dark" fxLayout="row" fxLayout.fxLayout.lt-md="column">
-    <lcu-charts-line-chart
-      [view]="view"
-      class="chart-container"
-      [scheme]="colorScheme"
-      [schemeType]="schemeType"
-      [results]="weatherData"
-      [animations]="animations"
-      [legend]="showLegend"
-      [legendTitle]="legendTitle"
-      [legendPosition]="legendPosition"
-      (legendLabelClick)="onLegendLabelClick($event)"
-      [gradient]="gradient"
-      [xAxis]="showXAxis"
-      [yAxis]="showYAxis"
-      [showXAxisLabel]="showXAxisLabel"
-      [showYAxisLabel]="showYAxisLabel"
-      [xAxisLabel]="xAxisLabel"
-      [yAxisLabel]="yAxisLabel"
-      [autoScale]="autoScale"
-      [timeline]="timeline"
-      [showGridLines]="showGridLines"
-      [curve]="curve"
-      [rangeFillOpacity]="rangeFillOpacity"
-      [roundDomains]="roundDomains"
-      [tooltipDisabled]="tooltipDisabled"
-      [showRefLines]="showRefLines"
-      [showRefLabels]="showRefLabels"
-      [referenceLines]="refLines"
-      [trimXAxisTicks]="trimXAxisTicks"
-      [trimYAxisTicks]="trimYAxisTicks"
-      [maxXAxisTickLength]="maxXAxisTickLength"
-      [maxYAxisTickLength]="maxYAxisTickLength"
-      (select)="select($event)"
-      (activate)="activate($event)"
-      (deactivate)="deactivate($event)"
-    >
-    </lcu-charts-line-chart>
+  <div class="lcu-body dark" fxLayout="row" fxLayout.lt-md="column">
+    <mat-sidenav-container class="body-sidenav-container">
+      <mat-sidenav #sidenav mode="side" [(opened)]="Opened">
+        <mat-nav-list>
+          <a mat-list-item [routerLink]="item.route" *ngFor="let item of ChartNavItems">
+            <mat-icon>{{ item.icon }}</mat-icon>
+            <span>{{ item.title }}</span>
+          </a>
+        </mat-nav-list>
+      </mat-sidenav>
+
+      <mat-sidenav-content class="body-sidenav-content">
+        <router-outlet></router-outlet>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
   </div>
   <div class="lcu-footer" fxFlexAlign="stretch" fxLayout="row">
     <mat-toolbar color="accent">
