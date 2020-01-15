@@ -97,7 +97,22 @@ export class AppComponent implements OnInit {
   xScaleMin: any;
   xScaleMax: any;
   yScaleMin: number;
-  yScaleMax: number;
+
+  yScaleMax: number = 100;
+  yAxisTickFormatting = this.FormatYAxisTicks.bind(this);
+  xAxisTickFormatting = this.FormatXAxisTicks.bind(this);
+  yAxisTicks: Array<any> = [0,30,70,100];
+  autoScale = false;
+  xAxisIsDate: boolean = true;
+  xAxisDateFormat = {DayOfWeek: true, 
+                    Month: false, 
+                    DayOfMonth:false, 
+                    Year:false, 
+                    Time: true, 
+                    TimeZone: false
+                  };
+
+
   showDataLabel = false;
   noBarWhenZero = true;
   trimXAxisTicks = true;
@@ -167,7 +182,6 @@ export class AppComponent implements OnInit {
   arcWidth = 0.25;
 
   // line, area
-  autoScale = true;
   timeline = false;
 
   // margin
@@ -295,6 +309,53 @@ export class AppComponent implements OnInit {
     this.setThemes();
   }
 
+  public FormatYAxisTicks(value: any){
+    if(value <=0 ){
+      return "Freezing";
+    }
+    if(value >0 && value<=32){
+      return "Cold";
+    }
+    if(value >32 && value <=70){
+      return "Warm";
+    }
+    if(value>70){
+      return "Hot";
+    }
+  }
+
+  public FormatXAxisTicks(value: Date){
+    console.log("value: ", value)
+    let datestr: string = value.toString();
+    let dateArr = datestr.split(" ");
+    let dateTime: string = ""
+    if(this.xAxisDateFormat.DayOfWeek){
+      dateTime+=dateArr[0] +" ";
+    }
+    if(this.xAxisDateFormat.Month){
+     dateTime+=dateArr[1]+" ";
+    }
+    if(this.xAxisDateFormat.DayOfMonth){
+      dateTime+=dateArr[2]+" ";
+    }
+    if(this.xAxisDateFormat.Year){
+     dateTime+=dateArr[3]+" ";
+    }
+    if(this.xAxisDateFormat.Time){
+      let time = dateArr[4];
+      
+     dateTime+=time.substr(0, time.length-3)+" ";
+    }
+    if(this.xAxisDateFormat.TimeZone){
+     dateTime+=dateArr[5]+" ";
+    }
+    dateTime.trimRight();
+
+console.log("new date format: ", dateTime)
+    // console.log("datestr= ", value.toString());
+    return dateTime;
+  }
+
   updateData() {
     if (!this.realTimeData) {
       return;
@@ -305,7 +366,6 @@ export class AppComponent implements OnInit {
     const country = this.countries[Math.floor(Math.random() * this.countries.length)];
     const add = Math.random() < 0.7;
     const remove = Math.random() < 0.5;
-
     if (remove) {
       if (this.single.length > 1) {
         const index = Math.floor(Math.random() * this.single.length);
