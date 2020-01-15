@@ -3,11 +3,11 @@ import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { single } from '../../../../../../projects/demo/src/app/data';
+import { single } from '../../../../../../demo/src/app/data';
 import { APP_BASE_HREF } from '@angular/common';
 
-import { BarChartModule } from './bar-chart.module';
-import { BarComponent } from './bar.component';
+import { BarChartModule } from '../bar-chart.module';
+import { BarComponent } from '../bar.component';
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000;
 
@@ -22,7 +22,7 @@ class TestComponent {
   };
 }
 
-describe('<lcu-charts-bar-vertical>', () => {
+describe('<lcu-charts-bar-horizontal-simple>', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TestComponent],
@@ -36,13 +36,13 @@ describe('<lcu-charts-bar-vertical>', () => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `
-               <lcu-charts-bar-vertical
+               <lcu-charts-bar-horizontal-simple
                 [view]="[400,800]"
                 [scheme]="colorScheme"
                 [results]="single">
-              </lcu-charts-bar-vertical>`
+              </lcu-charts-bar-horizontal-simple>`
         }
-      });
+      }).compileComponents();
     }));
 
     it('should set the svg width and height', async(() => {
@@ -70,7 +70,7 @@ describe('<lcu-charts-bar-vertical>', () => {
 
       const bar = fixture.debugElement.query(By.directive(BarComponent));
 
-      expect(bar.componentInstance.width).toEqual(53); // ~(360 - 5 * barPadding) / 6
+      expect(bar.componentInstance.height).toEqual(123); // ~(780 - 5 * barPadding) / 6
     }));
   });
 
@@ -79,12 +79,12 @@ describe('<lcu-charts-bar-vertical>', () => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `
-               <lcu-charts-bar-vertical
+               <lcu-charts-bar-horizontal-simple
                 [view]="[400,800]"
                 [scheme]="colorScheme"
                 [results]="single"
                 [barPadding]="0">
-              </lcu-charts-bar-vertical>`
+              </lcu-charts-bar-horizontal-simple>`
         }
       });
 
@@ -94,7 +94,7 @@ describe('<lcu-charts-bar-vertical>', () => {
 
         const bar = fixture.debugElement.query(By.directive(BarComponent));
 
-        expect(bar.componentInstance.width).toEqual(60); // ~(360 - 5 * barPadding) / 6
+        expect(bar.componentInstance.height).toEqual(130); // ~(780 - 5 * barPadding) / 6
       });
     }));
 
@@ -102,12 +102,12 @@ describe('<lcu-charts-bar-vertical>', () => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `
-               <lcu-charts-bar-vertical
+               <lcu-charts-bar-horizontal-simple
                 [view]="[400,800]"
                 [scheme]="colorScheme"
                 [results]="single"
                 [barPadding]="20">
-              </lcu-charts-bar-vertical>`
+              </lcu-charts-bar-horizontal-simple>`
         }
       });
 
@@ -117,7 +117,7 @@ describe('<lcu-charts-bar-vertical>', () => {
 
         const bar = fixture.debugElement.query(By.directive(BarComponent));
 
-        expect(bar.componentInstance.width).toEqual(43); // ~(360 - 5 * barPadding) / 6
+        expect(bar.componentInstance.height).toEqual(113); // ~(780 - 5 * barPadding) / 6
       });
     }));
   });
