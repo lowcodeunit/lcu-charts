@@ -11,7 +11,7 @@ import { LcuChartsModule } from '@lowcodeunit/lcu-charts-common';
     BrowserModule,
     BrowserAnimationsModule,
     FathymSharedModule,
-    LcuChartsModule.forRoot()
+    LcuChartsModule
   ],
   providers: [
     {
