@@ -71,6 +71,7 @@ export * from './lib/controls/line-chart/line-series.component';
 
 /** MODELS */
 export * from './lib/models/chart-data.model';
+export * from './lib/models/date-format.model';
 
 /** UTILS */
 export * from './lib/utils/id';

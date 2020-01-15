@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { colorSets } from '@lowcodeunit/lcu-charts-common';
+import { colorSets, DateFormatModel } from '@lowcodeunit/lcu-charts-common';
 import * as shape from 'd3-shape';
 import { weatherData } from '../../data';
 
@@ -40,13 +40,14 @@ export class DemoLineChartComponent implements OnInit {
   public yAxisLabel: string = 'Temperature (F)';
   public yScaleMax: number = 100;
   public yScaleMin: number;
+  public yUnits: string = "\u00B0";
 
-  public yAxisTickFormatting = this.FormatYAxisTicks.bind(this);
-  public xAxisTickFormatting = this.FormatXAxisTicks.bind(this);
+  public yAxisTickFormatting = this.FormatYAxisTicksDegree.bind(this);
+  // public xAxisTickFormatting = this.FormatXAxisTicks.bind(this);
   public yAxisTicks: Array<any> = [0,30,70,100];
   public xAxisIsDate: boolean = true;
-  public xAxisDateFormat = {DayOfWeek: true, 
-                    Month: true, 
+  public xAxisDateFormat: DateFormatModel = {DayOfWeek: true, 
+                    Month: false, 
                     DayOfMonth:true, 
                     Year:false, 
                     Time: true, 
@@ -108,37 +109,46 @@ export class DemoLineChartComponent implements OnInit {
     }
   }
 
-  public FormatXAxisTicks(value: Date){
-    console.log("value: ", value)
-    let datestr: string = value.toString();
-    let dateArr = datestr.split(" ");
-    let dateTime: string = ""
-    if(this.xAxisDateFormat.DayOfWeek){
-      dateTime+=dateArr[0] +" ";
-    }
-    if(this.xAxisDateFormat.Month){
-     dateTime+=dateArr[1]+" ";
-    }
-    if(this.xAxisDateFormat.DayOfMonth){
-      dateTime+=dateArr[2]+" ";
-    }
-    if(this.xAxisDateFormat.Year){
-     dateTime+=dateArr[3]+" ";
-    }
-    if(this.xAxisDateFormat.Time){
-      let time = dateArr[4];
-
-     dateTime+=time.substr(0, time.length-3)+" ";
-    }
-    if(this.xAxisDateFormat.TimeZone){
-     dateTime+=dateArr[5]+" ";
-    }
-    dateTime.trimRight();
-
-console.log("new date format: ", dateTime)
-    // console.log("datestr= ", value.toString());
-    return dateTime;
+  public FormatYAxisTicksDegree(value: any){
+    return value + this.yUnits;
   }
+
+  public BuildSeriesTooltip(model: any){
+    console.log("model=", model);
+    console.log("type=", model.type())
+  }
+
+//   public FormatXAxisTicks(value: Date){
+//     console.log("value: ", value)
+//     let datestr: string = value.toString();
+//     let dateArr = datestr.split(" ");
+//     let dateTime: string = ""
+//     if(this.xAxisDateFormat.DayOfWeek){
+//       dateTime+=dateArr[0] +" ";
+//     }
+//     if(this.xAxisDateFormat.Month){
+//      dateTime+=dateArr[1]+" ";
+//     }
+//     if(this.xAxisDateFormat.DayOfMonth){
+//       dateTime+=dateArr[2]+" ";
+//     }
+//     if(this.xAxisDateFormat.Year){
+//      dateTime+=dateArr[3]+" ";
+//     }
+//     if(this.xAxisDateFormat.Time){
+//       let time = dateArr[4];
+
+//      dateTime+=time.substr(0, time.length-3)+" ";
+//     }
+//     if(this.xAxisDateFormat.TimeZone){
+//      dateTime+=dateArr[5]+" ";
+//     }
+//     dateTime.trimRight();
+
+// console.log("new date format: ", dateTime)
+//     // console.log("datestr= ", value.toString());
+//     return dateTime;
+//   }
 
 
   public activate(data: any): void {
