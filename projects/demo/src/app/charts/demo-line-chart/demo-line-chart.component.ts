@@ -10,7 +10,7 @@ import { weatherData } from '../../data';
 })
 export class DemoLineChartComponent implements OnInit {
   public animations: boolean = true;
-  public autoScale: boolean = true;
+  public autoScale: boolean = false;
   public colorScheme: any;
   public curve: any;
   public gradient: boolean = false;
@@ -38,8 +38,20 @@ export class DemoLineChartComponent implements OnInit {
   public xScaleMax: any;
   public xScaleMin: any;
   public yAxisLabel: string = 'Temperature (F)';
-  public yScaleMax: number;
+  public yScaleMax: number = 100;
   public yScaleMin: number;
+
+  public yAxisTickFormatting = this.FormatYAxisTicks.bind(this);
+  public xAxisTickFormatting = this.FormatXAxisTicks.bind(this);
+  public yAxisTicks: Array<any> = [0,30,70,100];
+  public xAxisIsDate: boolean = true;
+  public xAxisDateFormat = {DayOfWeek: true, 
+                    Month: true, 
+                    DayOfMonth:true, 
+                    Year:false, 
+                    Time: true, 
+                    TimeZone: false
+                  };
 
   private colorSets: any;
   private curveType: string = 'Linear';
@@ -80,6 +92,54 @@ export class DemoLineChartComponent implements OnInit {
     };
     this.curve = this.curves[this.curveType];
   }
+
+  public FormatYAxisTicks(value: any){
+    if(value <=0 ){
+      return "Freezing";
+    }
+    if(value >0 && value<=32){
+      return "Cold";
+    }
+    if(value >32 && value <=70){
+      return "Warm";
+    }
+    if(value>70){
+      return "Hot";
+    }
+  }
+
+  public FormatXAxisTicks(value: Date){
+    console.log("value: ", value)
+    let datestr: string = value.toString();
+    let dateArr = datestr.split(" ");
+    let dateTime: string = ""
+    if(this.xAxisDateFormat.DayOfWeek){
+      dateTime+=dateArr[0] +" ";
+    }
+    if(this.xAxisDateFormat.Month){
+     dateTime+=dateArr[1]+" ";
+    }
+    if(this.xAxisDateFormat.DayOfMonth){
+      dateTime+=dateArr[2]+" ";
+    }
+    if(this.xAxisDateFormat.Year){
+     dateTime+=dateArr[3]+" ";
+    }
+    if(this.xAxisDateFormat.Time){
+      let time = dateArr[4];
+
+     dateTime+=time.substr(0, time.length-3)+" ";
+    }
+    if(this.xAxisDateFormat.TimeZone){
+     dateTime+=dateArr[5]+" ";
+    }
+    dateTime.trimRight();
+
+console.log("new date format: ", dateTime)
+    // console.log("datestr= ", value.toString());
+    return dateTime;
+  }
+
 
   public activate(data: any): void {
     console.log('Activate', JSON.parse(JSON.stringify(data)));
