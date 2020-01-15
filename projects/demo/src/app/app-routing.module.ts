@@ -7,7 +7,8 @@ import { DemoVerticalBarChartComponent } from './charts/demo-vertical-bar-chart/
 const routes: Routes = [
   { path: 'area-chart', component: DemoAreaChartComponent },
   { path: 'line-chart', component: DemoLineChartComponent },
-  { path: 'vertical-bar-chart', component: DemoVerticalBarChartComponent }
+  { path: 'vertical-bar-chart', component: DemoVerticalBarChartComponent },
+  { path: '**', component: DemoLineChartComponent }
 ];
 
 @NgModule({

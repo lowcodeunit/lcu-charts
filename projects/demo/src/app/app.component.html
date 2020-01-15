@@ -5,7 +5,7 @@
         <a fxFlex class="title-menu" (click)="sidenav.toggle()">
           <mat-icon>menu</mat-icon>
         </a>
-        <a fxFlex class="title-text">
+        <a fxFlex class="title-text" [routerLink]="'/'">
           LCU-<strong>Charts</strong>
           <small class="subtitle">{{ APP_DESCRIPTION }}</small>
         </a>
@@ -30,7 +30,28 @@
     <mat-sidenav-container class="body-sidenav-container">
       <mat-sidenav #sidenav mode="side" [(opened)]="Opened">
         <mat-nav-list>
-          <a mat-list-item [routerLink]="item.route" *ngFor="let item of ChartNavItems">
+          <h3 mat-subheader>Line Charts</h3>
+          <a mat-list-item [routerLink]="item.route" *ngFor="let item of LineChartNavItems">
+            <mat-icon>{{ item.icon }}</mat-icon>
+            <span>{{ item.title }}</span>
+          </a>
+          <h3 mat-subheader>Bar Charts</h3>
+          <a mat-list-item [routerLink]="item.route" *ngFor="let item of BarChartNavItems">
+            <mat-icon>{{ item.icon }}</mat-icon>
+            <span>{{ item.title }}</span>
+          </a>
+          <h3 mat-subheader>Pie Charts</h3>
+          <a mat-list-item [routerLink]="item.route" *ngFor="let item of PieChartNavItems">
+            <mat-icon>{{ item.icon }}</mat-icon>
+            <span>{{ item.title }}</span>
+          </a>
+          <h3 mat-subheader>Other Charts</h3>
+          <a mat-list-item [routerLink]="item.route" *ngFor="let item of OtherChartNavItems">
+            <mat-icon>{{ item.icon }}</mat-icon>
+            <span>{{ item.title }}</span>
+          </a>
+          <h3 mat-subheader>Examples</h3>
+          <a mat-list-item [routerLink]="item.route" *ngFor="let item of ExampleChartNavItems">
             <mat-icon>{{ item.icon }}</mat-icon>
             <span>{{ item.title }}</span>
           </a>
