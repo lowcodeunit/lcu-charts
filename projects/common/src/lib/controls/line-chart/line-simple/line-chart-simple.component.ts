@@ -199,9 +199,9 @@ export class LineChartSimpleComponent extends BaseChartComponent {
       if(this.xAxisDateFormat.TimeZone){
        dateTime+=dateArr[5]+" ";
       }
-      // dateTime.trimRight();
-  
-      // console.log("datestr= ", value.toString());
+
+      dateTime = dateTime.substr(0,dateTime.length-1);
+
       return dateTime;
     }
   
