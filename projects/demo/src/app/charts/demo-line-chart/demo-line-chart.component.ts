@@ -40,6 +40,7 @@ export class DemoLineChartComponent implements OnInit {
   public yAxisLabel: string = 'Temperature (F)';
   public yScaleMax: number = 100;
   public yScaleMin: number;
+  public backgroundGradientConfigs: BackgroundGradientConfigurationNode[] = [];
 
   public yAxisTickFormatting = this.FormatYAxisTicks.bind(this);
   public xAxisTickFormatting = this.FormatXAxisTicks.bind(this);
@@ -66,6 +67,7 @@ export class DemoLineChartComponent implements OnInit {
       weatherData
     });
     this.setColorScheme('cool');
+    this.setBackgroundGradientConfigs();
   }
 
   public ngOnInit(): void {
@@ -165,4 +167,38 @@ console.log("new date format: ", dateTime)
     this.colorScheme = this.colorSets.find(s => s.name === name);
   }
 
+  protected setBackgroundGradientConfigs() {
+    const backgroundMarker = this.weatherData[0].series;
+
+    backgroundMarker.forEach((ser, idx) => {
+      const idxPercentage = idx * 100 / backgroundMarker.length;
+      if (ser.value > 38) {
+        this.backgroundGradientConfigs.push({
+          offset: idxPercentage,
+          color: 'red'
+        });
+      } else if (ser.value > 33) {
+        this.backgroundGradientConfigs.push({
+          offset: idxPercentage,
+          color: 'orange'
+        });
+      } else {
+        this.backgroundGradientConfigs.push({
+          offset: idxPercentage,
+          color: 'blue'
+        });
+      }
+    });
+  }
+
+}
+
+export class BackgroundGradientConfigurationNode {
+  offset: number;
+  color: string;
+
+  constructor(node: BackgroundGradientConfigurationNode) {
+    this.offset = node.offset;
+    this.color = node.color;
+  }
 }
