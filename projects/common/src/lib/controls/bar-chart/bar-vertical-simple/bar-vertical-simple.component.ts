@@ -1,91 +1,28 @@
 import {
   Component,
   Input,
+  ViewEncapsulation,
   Output,
   EventEmitter,
-  ViewEncapsulation,
   ChangeDetectionStrategy,
   ContentChild,
   TemplateRef
 } from '@angular/core';
 import { scaleBand, scaleLinear } from 'd3-scale';
 
-import { calculateViewDimensions, ViewDimensions } from '../../common/view-dimensions.helper';
-import { ColorHelper } from '../../common/color.helper';
-import { BaseChartComponent } from '../../common/base-chart.component';
+import { calculateViewDimensions, ViewDimensions } from '../../../common/view-dimensions.helper';
+import { ColorHelper } from '../../../common/color.helper';
+import { BaseChartComponent } from '../../../common/base-chart.component';
+import { DataItem } from '../../../models/chart-data.model';
 
 @Component({
-  selector: 'lcu-charts-bar-horizontal',
-  template: `
-    <lcu-charts-chart
-      [view]="[width, height]"
-      [showLegend]="legend"
-      [legendOptions]="legendOptions"
-      [activeEntries]="activeEntries"
-      [animations]="animations"
-      (legendLabelClick)="onClick($event)"
-      (legendLabelActivate)="onActivate($event, true)"
-      (legendLabelDeactivate)="onDeactivate($event, true)"
-    >
-      <svg:g [attr.transform]="transform" class="bar-chart chart">
-        <svg:g
-          lcu-charts-x-axis
-          *ngIf="xAxis"
-          [xScale]="xScale"
-          [dims]="dims"
-          [showGridLines]="showGridLines"
-          [showLabel]="showXAxisLabel"
-          [labelText]="xAxisLabel"
-          [trimTicks]="trimXAxisTicks"
-          [rotateTicks]="rotateXAxisTicks"
-          [maxTickLength]="maxXAxisTickLength"
-          [tickFormatting]="xAxisTickFormatting"
-          [ticks]="xAxisTicks"
-          (dimensionsChanged)="updateXAxisHeight($event)"
-        ></svg:g>
-        <svg:g
-          lcu-charts-y-axis
-          *ngIf="yAxis"
-          [yScale]="yScale"
-          [dims]="dims"
-          [showLabel]="showYAxisLabel"
-          [labelText]="yAxisLabel"
-          [trimTicks]="trimYAxisTicks"
-          [maxTickLength]="maxYAxisTickLength"
-          [tickFormatting]="yAxisTickFormatting"
-          [ticks]="yAxisTicks"
-          [yAxisOffset]="dataLabelMaxWidth.negative"
-          (dimensionsChanged)="updateYAxisWidth($event)"
-        ></svg:g>
-        <svg:g
-          lcu-charts-series-horizontal
-          [xScale]="xScale"
-          [yScale]="yScale"
-          [colors]="colors"
-          [series]="results"
-          [dims]="dims"
-          [gradient]="gradient"
-          [tooltipDisabled]="tooltipDisabled"
-          [tooltipTemplate]="tooltipTemplate"
-          [activeEntries]="activeEntries"
-          [roundEdges]="roundEdges"
-          [animations]="animations"
-          [showDataLabel]="showDataLabel"
-          [dataLabelFormatting]="dataLabelFormatting"
-          [noBarWhenZero]="noBarWhenZero"
-          (select)="onClick($event)"
-          (activate)="onActivate($event)"
-          (deactivate)="onDeactivate($event)"
-          (dataLabelWidthChanged)="onDataLabelMaxWidthChanged($event)"
-        ></svg:g>
-      </svg:g>
-    </lcu-charts-chart>
-  `,
+  selector: 'lcu-charts-bar-vertical-simple',
+  templateUrl: './bar-vertical-simple.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrls: ['../../common/base-chart.component.scss'],
+  styleUrls: ['../../../common/base-chart.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class BarHorizontalComponent extends BaseChartComponent {
+export class BarVerticalSimpleComponent extends BaseChartComponent {
   @Input() legend = false;
   @Input() legendTitle: string = 'Legend';
   @Input() legendPosition: string = 'right';
@@ -112,8 +49,8 @@ export class BarHorizontalComponent extends BaseChartComponent {
   @Input() barPadding = 8;
   @Input() roundDomains: boolean = false;
   @Input() roundEdges: boolean = true;
-  @Input() xScaleMax: number;
-  @Input() xScaleMin: number;
+  @Input() yScaleMax: number;
+  @Input() yScaleMin: number;
   @Input() showDataLabel: boolean = false;
   @Input() dataLabelFormatting: any;
   @Input() noBarWhenZero: boolean = true;
@@ -124,26 +61,25 @@ export class BarHorizontalComponent extends BaseChartComponent {
   @ContentChild('tooltipTemplate', { static: false }) tooltipTemplate: TemplateRef<any>;
 
   dims: ViewDimensions;
-  yScale: any;
   xScale: any;
+  yScale: any;
   xDomain: any;
   yDomain: any;
   transform: string;
   colors: ColorHelper;
-  margin = [10, 20, 10, 20];
+  margin: any[] = [10, 20, 10, 20];
   xAxisHeight: number = 0;
   yAxisWidth: number = 0;
   legendOptions: any;
-  dataLabelMaxWidth: any = { negative: 0, positive: 0 };
+  dataLabelMaxHeight: any = { negative: 0, positive: 0 };
 
   update(): void {
     super.update();
 
     if (!this.showDataLabel) {
-      this.dataLabelMaxWidth = { negative: 0, positive: 0 };
+      this.dataLabelMaxHeight = { negative: 0, positive: 0 };
     }
-
-    this.margin = [10, 20 + this.dataLabelMaxWidth.positive, 10, 20 + this.dataLabelMaxWidth.negative];
+    this.margin = [10 + this.dataLabelMaxHeight.positive, 20, 10 + this.dataLabelMaxHeight.negative, 20];
 
     this.dims = calculateViewDimensions({
       width: this.width,
@@ -162,57 +98,64 @@ export class BarHorizontalComponent extends BaseChartComponent {
 
     this.formatDates();
 
+    if (this.showDataLabel) {
+      this.dims.height -= this.dataLabelMaxHeight.negative;
+    }
     this.xScale = this.getXScale();
     this.yScale = this.getYScale();
 
     this.setColors();
     this.legendOptions = this.getLegendOptions();
 
-    this.transform = `translate(${this.dims.xOffset} , ${this.margin[0]})`;
+    this.transform = `translate(${this.dims.xOffset} , ${this.margin[0] + this.dataLabelMaxHeight.negative})`;
   }
 
   getXScale(): any {
     this.xDomain = this.getXDomain();
-
-    const scale = scaleLinear()
+    const spacing = this.xDomain.length / (this.dims.width / this.barPadding + 1);
+    return scaleBand()
       .range([0, this.dims.width])
+      .paddingInner(spacing)
       .domain(this.xDomain);
-
-    return this.roundDomains ? scale.nice() : scale;
   }
 
   getYScale(): any {
     this.yDomain = this.getYDomain();
-    const spacing = this.yDomain.length / (this.dims.height / this.barPadding + 1);
-
-    return scaleBand()
-      .rangeRound([0, this.dims.height])
-      .paddingInner(spacing)
+    const scale = scaleLinear()
+      .range([this.dims.height, 0])
       .domain(this.yDomain);
+    return this.roundDomains ? scale.nice() : scale;
   }
 
   getXDomain(): any[] {
-    const values = this.results.map(d => d.value);
-    const min = this.xScaleMin ? Math.min(this.xScaleMin, ...values) : Math.min(0, ...values);
-
-    const max = this.xScaleMax ? Math.max(this.xScaleMax, ...values) : Math.max(0, ...values);
-    return [min, max];
-  }
-
-  getYDomain(): any[] {
     return this.results.map(d => d.label);
   }
 
-  onClick(data): void {
+  getYDomain(): [number, number] {
+    const values = this.results.map(d => d.value);
+
+    let min = this.yScaleMin ? Math.min(this.yScaleMin, ...values) : Math.min(0, ...values);
+    if (this.yAxisTicks && !this.yAxisTicks.some(isNaN)) {
+      min = Math.min(min, ...this.yAxisTicks);
+    }
+
+    let max = this.yScaleMax ? Math.max(this.yScaleMax, ...values) : Math.max(0, ...values);
+    if (this.yAxisTicks && !this.yAxisTicks.some(isNaN)) {
+      max = Math.max(max, ...this.yAxisTicks);
+    }
+    return [min, max];
+  }
+
+  onClick(data: DataItem) {
     this.select.emit(data);
   }
 
   setColors(): void {
     let domain;
     if (this.schemeType === 'ordinal') {
-      domain = this.yDomain;
-    } else {
       domain = this.xDomain;
+    } else {
+      domain = this.yDomain;
     }
 
     this.colors = new ColorHelper(this.scheme, this.schemeType, domain, this.customColors);
@@ -227,14 +170,13 @@ export class BarHorizontalComponent extends BaseChartComponent {
       position: this.legendPosition
     };
     if (opts.scaleType === 'ordinal') {
-      opts.domain = this.yDomain;
+      opts.domain = this.xDomain;
       opts.colors = this.colors;
       opts.title = this.legendTitle;
     } else {
-      opts.domain = this.xDomain;
+      opts.domain = this.yDomain;
       opts.colors = this.colors.scale;
     }
-
     return opts;
   }
 
@@ -248,11 +190,11 @@ export class BarHorizontalComponent extends BaseChartComponent {
     this.update();
   }
 
-  onDataLabelMaxWidthChanged(event) {
+  onDataLabelMaxHeightChanged(event) {
     if (event.size.negative) {
-      this.dataLabelMaxWidth.negative = Math.max(this.dataLabelMaxWidth.negative, event.size.width);
+      this.dataLabelMaxHeight.negative = Math.max(this.dataLabelMaxHeight.negative, event.size.height);
     } else {
-      this.dataLabelMaxWidth.positive = Math.max(this.dataLabelMaxWidth.positive, event.size.width);
+      this.dataLabelMaxHeight.positive = Math.max(this.dataLabelMaxHeight.positive, event.size.height);
     }
     if (event.index === this.results.length - 1) {
       setTimeout(() => this.update());

@@ -1,9 +1,8 @@
-<!-- [xAxisTickFormatting]="xAxisTickFormatting" -->
-
-<lcu-charts-line-chart
+<lcu-charts-line-chart-simple
   class="chart-container"
   [animations]="animations"
   [autoScale]="autoScale"
+  [backgroundGradientConfigs]="backgroundGradientConfigs"
   [curve]="curve"
   [gradient]="gradient"
   [legendPosition]="legendPosition"
@@ -25,17 +24,16 @@
   [trimXAxisTicks]="trimXAxisTicks"
   [trimYAxisTicks]="trimYAxisTicks"
   [view]="view"
+  [xAxisDateFormat]="xAxisDateFormat"
+  [xAxisIsDate]="xAxisIsDate"
   [xAxisLabel]="xAxisLabel"
+  [xAxisTickFormatting]="xAxisTickFormatting"
   [xAxis]="showXAxis"
   [xScaleMax]="xScaleMax"
   [xScaleMin]="xScaleMin"
   [yAxisLabel]="yAxisLabel"
-
   [yAxisTickFormatting]="yAxisTickFormatting"
   [yAxisTicks]="yAxisTicks"
-  [xAxisIsDate]="xAxisIsDate"
-  [xAxisDateFormat]="xAxisDateFormat"
-
   [yAxis]="showYAxis"
   [yScaleMax]="yScaleMax"
   [yScaleMin]="yScaleMin"
@@ -57,4 +55,4 @@
     </div>     
   </ng-template>
 
-</lcu-charts-line-chart>
+</lcu-charts-line-chart-simple>

@@ -41,9 +41,9 @@ export class DemoLineChartComponent implements OnInit {
   public yScaleMax: number = 100;
   public yScaleMin: number;
   public yUnits: string = "\u00B0";
+  public backgroundGradientConfigs: BackgroundGradientConfigurationNode[] = [];
 
   public yAxisTickFormatting = this.FormatYAxisTicksDegree.bind(this);
-  // public xAxisTickFormatting = this.FormatXAxisTicks.bind(this);
   public yAxisTicks: Array<any> = [0,30,70,100];
   public xAxisIsDate: boolean = true;
   public xAxisDateFormat: DateFormatModel = {DayOfWeek: true, 
@@ -67,6 +67,7 @@ export class DemoLineChartComponent implements OnInit {
       weatherData
     });
     this.setColorScheme('cool');
+    this.setBackgroundGradientConfigs();
   }
 
   public ngOnInit(): void {
@@ -118,38 +119,6 @@ export class DemoLineChartComponent implements OnInit {
     console.log("type=", model.type())
   }
 
-//   public FormatXAxisTicks(value: Date){
-//     console.log("value: ", value)
-//     let datestr: string = value.toString();
-//     let dateArr = datestr.split(" ");
-//     let dateTime: string = ""
-//     if(this.xAxisDateFormat.DayOfWeek){
-//       dateTime+=dateArr[0] +" ";
-//     }
-//     if(this.xAxisDateFormat.Month){
-//      dateTime+=dateArr[1]+" ";
-//     }
-//     if(this.xAxisDateFormat.DayOfMonth){
-//       dateTime+=dateArr[2]+" ";
-//     }
-//     if(this.xAxisDateFormat.Year){
-//      dateTime+=dateArr[3]+" ";
-//     }
-//     if(this.xAxisDateFormat.Time){
-//       let time = dateArr[4];
-
-//      dateTime+=time.substr(0, time.length-3)+" ";
-//     }
-//     if(this.xAxisDateFormat.TimeZone){
-//      dateTime+=dateArr[5]+" ";
-//     }
-//     dateTime.trimRight();
-
-// console.log("new date format: ", dateTime)
-//     // console.log("datestr= ", value.toString());
-//     return dateTime;
-//   }
-
 
   public activate(data: any): void {
     console.log('Activate', JSON.parse(JSON.stringify(data)));
@@ -175,4 +144,38 @@ export class DemoLineChartComponent implements OnInit {
     this.colorScheme = this.colorSets.find(s => s.name === name);
   }
 
+  protected setBackgroundGradientConfigs() {
+    const backgroundMarker = this.weatherData[0].series;
+
+    backgroundMarker.forEach((ser, idx) => {
+      const idxPercentage = idx * 100 / backgroundMarker.length;
+      if (ser.value > 38) {
+        this.backgroundGradientConfigs.push({
+          offset: idxPercentage,
+          color: 'red'
+        });
+      } else if (ser.value > 33) {
+        this.backgroundGradientConfigs.push({
+          offset: idxPercentage,
+          color: 'orange'
+        });
+      } else {
+        this.backgroundGradientConfigs.push({
+          offset: idxPercentage,
+          color: 'blue'
+        });
+      }
+    });
+  }
+
+}
+
+export class BackgroundGradientConfigurationNode {
+  offset: number;
+  color: string;
+
+  constructor(node: BackgroundGradientConfigurationNode) {
+    this.offset = node.offset;
+    this.color = node.color;
+  }
 }
