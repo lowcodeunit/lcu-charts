@@ -9,36 +9,35 @@ import { weatherData } from '../../data';
   styleUrls: ['./demo-line-chart.component.scss']
 })
 export class DemoLineChartComponent implements OnInit {
-
   public animations: boolean = true;
-  public autoScale = true;
+  public autoScale: boolean = true;
   public colorScheme: any;
   public curve: any;
-  public gradient = false;
-  public legendPosition = 'right';
-  public legendTitle = '';
-  public maxXAxisTickLength = 16;
-  public maxYAxisTickLength = 16;
+  public gradient: boolean = false;
+  public legendPosition: string = 'right';
+  public legendTitle: string = '';
+  public maxXAxisTickLength: number = 16;
+  public maxYAxisTickLength: number = 16;
   public rangeFillOpacity: number = 0.15;
-  public rotateXAxisTicks = true;
-  public roundDomains = false;
+  public rotateXAxisTicks: boolean = true;
+  public roundDomains: boolean = false;
   public schemeType: string = 'ordinal';
-  public showGridLines = true;
-  public showLegend = true;
-  public showXAxis = true;
-  public showXAxisLabel = true;
-  public showYAxis = true;
-  public showYAxisLabel = true;
-  public timeline = false;
-  public tooltipDisabled = false;
-  public trimXAxisTicks = true;
-  public trimYAxisTicks = true;
+  public showGridLines: boolean = true;
+  public showLegend: boolean = true;
+  public showXAxis: boolean = true;
+  public showXAxisLabel: boolean = true;
+  public showYAxis: boolean = true;
+  public showYAxisLabel: boolean = true;
+  public timeline: boolean = false;
+  public tooltipDisabled: boolean = false;
+  public trimXAxisTicks: boolean = true;
+  public trimYAxisTicks: boolean = true;
   public view: any[];
   public weatherData: any[];
-  public xAxisLabel = 'Time';
+  public xAxisLabel: string = 'Time';
   public xScaleMax: any;
   public xScaleMin: any;
-  public yAxisLabel = 'Temperature (F)';
+  public yAxisLabel: string = 'Temperature (F)';
   public yScaleMax: number;
   public yScaleMin: number;
 
