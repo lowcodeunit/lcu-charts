@@ -30,7 +30,7 @@
     <mat-sidenav-container class="body-sidenav-container">
       <mat-sidenav #sidenav mode="side" [(opened)]="Opened">
         <mat-nav-list>
-          <h3 mat-subheader>Line Charts</h3>
+          <h3 mat-subheader>Line & Area Charts</h3>
           <a mat-list-item [routerLink]="item.route" *ngFor="let item of LineChartNavItems">
             <mat-icon>{{ item.icon }}</mat-icon>
             <span>{{ item.title }}</span>

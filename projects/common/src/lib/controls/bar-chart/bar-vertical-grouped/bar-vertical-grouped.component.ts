@@ -10,91 +10,14 @@ import {
 } from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { scaleBand, scaleLinear } from 'd3-scale';
-
-import { calculateViewDimensions, ViewDimensions } from '../../common/view-dimensions.helper';
-import { ColorHelper } from '../../common/color.helper';
-import { BaseChartComponent } from '../../common/base-chart.component';
+import { calculateViewDimensions, ViewDimensions } from '../../../common/view-dimensions.helper';
+import { ColorHelper } from '../../../common/color.helper';
+import { BaseChartComponent } from '../../../common/base-chart.component';
 
 @Component({
-  selector: 'lcu-charts-bar-vertical-2d',
-  template: `
-    <lcu-charts-chart
-      [view]="[width, height]"
-      [showLegend]="legend"
-      [legendOptions]="legendOptions"
-      [activeEntries]="activeEntries"
-      [animations]="animations"
-      (legendLabelActivate)="onActivate($event, undefined, true)"
-      (legendLabelDeactivate)="onDeactivate($event, undefined, true)"
-      (legendLabelClick)="onClick($event)"
-    >
-      <svg:g [attr.transform]="transform" class="bar-chart chart">
-        <svg:g
-          lcu-charts-grid-panel-series
-          [xScale]="groupScale"
-          [yScale]="valueScale"
-          [data]="results"
-          [dims]="dims"
-          orient="vertical"
-        ></svg:g>
-        <svg:g
-          lcu-charts-x-axis
-          *ngIf="xAxis"
-          [xScale]="groupScale"
-          [dims]="dims"
-          [showLabel]="showXAxisLabel"
-          [labelText]="xAxisLabel"
-          [trimTicks]="trimXAxisTicks"
-          [rotateTicks]="rotateXAxisTicks"
-          [maxTickLength]="maxXAxisTickLength"
-          [tickFormatting]="xAxisTickFormatting"
-          [ticks]="xAxisTicks"
-          [xAxisOffset]="dataLabelMaxHeight.negative"
-          (dimensionsChanged)="updateXAxisHeight($event)"
-        ></svg:g>
-        <svg:g
-          lcu-charts-y-axis
-          *ngIf="yAxis"
-          [yScale]="valueScale"
-          [dims]="dims"
-          [showGridLines]="showGridLines"
-          [showLabel]="showYAxisLabel"
-          [labelText]="yAxisLabel"
-          [trimTicks]="trimYAxisTicks"
-          [maxTickLength]="maxYAxisTickLength"
-          [tickFormatting]="yAxisTickFormatting"
-          [ticks]="yAxisTicks"
-          (dimensionsChanged)="updateYAxisWidth($event)"
-        ></svg:g>
-        <svg:g
-          lcu-charts-series-vertical
-          *ngFor="let group of results; let index = index; trackBy: trackBy"
-          [@animationState]="'active'"
-          [attr.transform]="groupTransform(group)"
-          [activeEntries]="activeEntries"
-          [xScale]="innerScale"
-          [yScale]="valueScale"
-          [colors]="colors"
-          [series]="group.series"
-          [dims]="dims"
-          [gradient]="gradient"
-          [tooltipDisabled]="tooltipDisabled"
-          [tooltipTemplate]="tooltipTemplate"
-          [showDataLabel]="showDataLabel"
-          [dataLabelFormatting]="dataLabelFormatting"
-          [seriesName]="group.name"
-          [roundEdges]="roundEdges"
-          [animations]="animations"
-          [noBarWhenZero]="noBarWhenZero"
-          (select)="onClick($event, group)"
-          (activate)="onActivate($event, group)"
-          (deactivate)="onDeactivate($event, group)"
-          (dataLabelHeightChanged)="onDataLabelMaxHeightChanged($event, index)"
-        />
-      </svg:g>
-    </lcu-charts-chart>
-  `,
-  styleUrls: ['../../common/base-chart.component.scss'],
+  selector: 'lcu-charts-bar-vertical-grouped',
+  templateUrl: './bar-vertical-grouped.component.html',
+  styleUrls: ['../../../common/base-chart.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
@@ -109,7 +32,7 @@ import { BaseChartComponent } from '../../common/base-chart.component';
     ])
   ]
 })
-export class BarVertical2DComponent extends BaseChartComponent {
+export class BarVerticalGroupedComponent extends BaseChartComponent {
   @Input() legend = false;
   @Input() legendTitle: string = 'Legend';
   @Input() legendPosition: string = 'right';

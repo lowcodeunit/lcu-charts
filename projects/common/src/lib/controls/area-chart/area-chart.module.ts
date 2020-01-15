@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { AreaChartComponent } from './area-chart.component';
-import { AreaChartNormalizedComponent } from './area-chart-normalized.component';
-import { AreaChartStackedComponent } from './area-chart-stacked.component';
+import { AreaChartSimpleComponent } from './area-simple/area-chart-simple.component';
+import { AreaChartNormalizedComponent } from './area-normalized/area-chart-normalized.component';
+import { AreaChartStackedComponent } from './area-stacked/area-chart-stacked.component';
 import { AreaSeriesComponent } from './area-series.component';
 import { ChartCommonModule } from '../../common/chart-common.module';
 
@@ -10,13 +10,13 @@ import { ChartCommonModule } from '../../common/chart-common.module';
     ChartCommonModule
   ],
   declarations: [
-    AreaChartComponent,
+    AreaChartSimpleComponent,
     AreaChartNormalizedComponent,
     AreaChartStackedComponent,
     AreaSeriesComponent
   ],
   exports: [
-    AreaChartComponent,
+    AreaChartSimpleComponent,
     AreaChartNormalizedComponent,
     AreaChartStackedComponent,
     AreaSeriesComponent

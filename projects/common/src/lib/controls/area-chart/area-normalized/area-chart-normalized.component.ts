@@ -3,160 +3,28 @@ import {
   Input,
   Output,
   EventEmitter,
-  ViewEncapsulation,
   HostListener,
+  ViewEncapsulation,
   ChangeDetectionStrategy,
   ContentChild,
   TemplateRef
 } from '@angular/core';
 import { scaleLinear, scalePoint, scaleTime } from 'd3-scale';
 import { curveLinear } from 'd3-shape';
-
-import { calculateViewDimensions, ViewDimensions } from '../../common/view-dimensions.helper';
-import { ColorHelper } from '../../common/color.helper';
-import { BaseChartComponent } from '../../common/base-chart.component';
-import { id } from '../../utils/id';
-import { getUniqueXDomainValues, getScaleType } from '../../common/domain.helper';
+import { calculateViewDimensions, ViewDimensions } from '../../../common/view-dimensions.helper';
+import { ColorHelper } from '../../../common/color.helper';
+import { BaseChartComponent } from '../../../common/base-chart.component';
+import { id } from '../../../utils/id';
+import { getUniqueXDomainValues, getScaleType } from '../../../common/domain.helper';
 
 @Component({
-  selector: 'lcu-charts-area-chart-stacked',
-  template: `
-    <lcu-charts-chart
-      [view]="[width, height]"
-      [showLegend]="legend"
-      [legendOptions]="legendOptions"
-      [activeEntries]="activeEntries"
-      [animations]="animations"
-      (legendLabelClick)="onClick($event)"
-      (legendLabelActivate)="onActivate($event)"
-      (legendLabelDeactivate)="onDeactivate($event)"
-    >
-      <svg:defs>
-        <svg:clipPath [attr.id]="clipPathId">
-          <svg:rect
-            [attr.width]="dims.width + 10"
-            [attr.height]="dims.height + 10"
-            [attr.transform]="'translate(-5, -5)'"
-          />
-        </svg:clipPath>
-      </svg:defs>
-      <svg:g [attr.transform]="transform" class="area-chart chart">
-        <svg:g
-          lcu-charts-x-axis
-          *ngIf="xAxis"
-          [xScale]="xScale"
-          [dims]="dims"
-          [showGridLines]="showGridLines"
-          [showLabel]="showXAxisLabel"
-          [labelText]="xAxisLabel"
-          [trimTicks]="trimXAxisTicks"
-          [rotateTicks]="rotateXAxisTicks"
-          [maxTickLength]="maxXAxisTickLength"
-          [tickFormatting]="xAxisTickFormatting"
-          [ticks]="xAxisTicks"
-          (dimensionsChanged)="updateXAxisHeight($event)"
-        ></svg:g>
-        <svg:g
-          lcu-charts-y-axis
-          *ngIf="yAxis"
-          [yScale]="yScale"
-          [dims]="dims"
-          [showGridLines]="showGridLines"
-          [showLabel]="showYAxisLabel"
-          [labelText]="yAxisLabel"
-          [trimTicks]="trimYAxisTicks"
-          [maxTickLength]="maxYAxisTickLength"
-          [tickFormatting]="yAxisTickFormatting"
-          [ticks]="yAxisTicks"
-          (dimensionsChanged)="updateYAxisWidth($event)"
-        ></svg:g>
-        <svg:g [attr.clip-path]="clipPath">
-          <svg:g *ngFor="let series of results; trackBy: trackBy">
-            <svg:g
-              lcu-charts-area-series
-              [xScale]="xScale"
-              [yScale]="yScale"
-              [colors]="colors"
-              [data]="series"
-              [scaleType]="scaleType"
-              [gradient]="gradient"
-              [activeEntries]="activeEntries"
-              stacked="true"
-              [curve]="curve"
-              [animations]="animations"
-            />
-          </svg:g>
-
-          <svg:g *ngIf="!tooltipDisabled" (mouseleave)="hideCircles()">
-            <svg:g
-              lcu-charts-tooltip-area
-              [dims]="dims"
-              [xSet]="xSet"
-              [xScale]="xScale"
-              [yScale]="yScale"
-              [results]="results"
-              [colors]="colors"
-              [tooltipDisabled]="tooltipDisabled"
-              [tooltipTemplate]="seriesTooltipTemplate"
-              (hover)="updateHoveredVertical($event)"
-            />
-
-            <svg:g *ngFor="let series of results; trackBy: trackBy">
-              <svg:g
-                lcu-charts-circle-series
-                type="stacked"
-                [xScale]="xScale"
-                [yScale]="yScale"
-                [colors]="colors"
-                [activeEntries]="activeEntries"
-                [data]="series"
-                [scaleType]="scaleType"
-                [visibleValue]="hoveredVertical"
-                [tooltipDisabled]="tooltipDisabled"
-                [tooltipTemplate]="tooltipTemplate"
-                (select)="onClick($event, series)"
-                (activate)="onActivate($event)"
-                (deactivate)="onDeactivate($event)"
-              />
-            </svg:g>
-          </svg:g>
-        </svg:g>
-      </svg:g>
-      <svg:g
-        lcu-charts-timeline
-        *ngIf="timeline && scaleType != 'ordinal'"
-        [attr.transform]="timelineTransform"
-        [results]="results"
-        [view]="[timelineWidth, height]"
-        [height]="timelineHeight"
-        [scheme]="scheme"
-        [customColors]="customColors"
-        [legend]="legend"
-        [scaleType]="scaleType"
-        (onDomainChange)="updateDomain($event)"
-      >
-        <svg:g *ngFor="let series of results; trackBy: trackBy">
-          <svg:g
-            lcu-charts-area-series
-            [xScale]="timelineXScale"
-            [yScale]="timelineYScale"
-            [colors]="colors"
-            [data]="series"
-            [scaleType]="scaleType"
-            [gradient]="gradient"
-            stacked="true"
-            [curve]="curve"
-            [animations]="animations"
-          />
-        </svg:g>
-      </svg:g>
-    </lcu-charts-chart>
-  `,
+  selector: 'lcu-charts-area-chart-normalized',
+  templateUrl: './area-chart-normalized.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrls: ['../../common/base-chart.component.scss'],
+  styleUrls: ['../../../common/base-chart.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class AreaChartStackedComponent extends BaseChartComponent {
+export class AreaChartNormalizedComponent extends BaseChartComponent {
   @Input() legend = false;
   @Input() legendTitle: string = 'Legend';
   @Input() legendPosition: string = 'right';
@@ -183,10 +51,6 @@ export class AreaChartStackedComponent extends BaseChartComponent {
   @Input() yAxisTicks: any[];
   @Input() roundDomains: boolean = false;
   @Input() tooltipDisabled: boolean = false;
-  @Input() xScaleMin: any;
-  @Input() xScaleMax: any;
-  @Input() yScaleMin: number;
-  @Input() yScaleMax: number;
 
   @Output() activate: EventEmitter<any> = new EventEmitter();
   @Output() deactivate: EventEmitter<any> = new EventEmitter();
@@ -207,6 +71,7 @@ export class AreaChartStackedComponent extends BaseChartComponent {
   clipPath: string;
   colors: ColorHelper;
   margin = [10, 20, 10, 20];
+  tooltipAreas: any[];
   hoveredVertical: any; // the value of the x axis that is hovered over
   xAxisHeight: number = 0;
   yAxisWidth: number = 0;
@@ -257,6 +122,23 @@ export class AreaChartStackedComponent extends BaseChartComponent {
     for (let i = 0; i < this.xSet.length; i++) {
       const val = this.xSet[i];
       let d0 = 0;
+
+      let total = 0;
+      for (const group of this.results) {
+        const d = group.series.find(item => {
+          let a = item.name;
+          let b = val;
+          if (this.scaleType === 'time') {
+            a = a.valueOf();
+            b = b.valueOf();
+          }
+          return a === b;
+        });
+        if (d) {
+          total += d.value;
+        }
+      }
+
       for (const group of this.results) {
         let d = group.series.find(item => {
           let a = item.name;
@@ -280,6 +162,14 @@ export class AreaChartStackedComponent extends BaseChartComponent {
             d1: d0
           };
           group.series.push(d);
+        }
+
+        if (total > 0) {
+          d.d0 = (d.d0 * 100) / total;
+          d.d1 = (d.d1 * 100) / total;
+        } else {
+          d.d0 = 0;
+          d.d1 = 0;
         }
       }
     }
@@ -311,19 +201,9 @@ export class AreaChartStackedComponent extends BaseChartComponent {
     this.scaleType = getScaleType(values);
     let domain = [];
 
-    if (this.scaleType === 'linear') {
-      values = values.map(v => Number(v));
-    }
-
-    let min;
-    let max;
-    if (this.scaleType === 'time' || this.scaleType === 'linear') {
-      min = this.xScaleMin ? this.xScaleMin : Math.min(...values);
-
-      max = this.xScaleMax ? this.xScaleMax : Math.max(...values);
-    }
-
     if (this.scaleType === 'time') {
+      const min = Math.min(...values);
+      const max = Math.max(...values);
       domain = [new Date(min), new Date(max)];
       this.xSet = [...values].sort((a, b) => {
         const aDate = a.getTime();
@@ -333,6 +213,9 @@ export class AreaChartStackedComponent extends BaseChartComponent {
         return 0;
       });
     } else if (this.scaleType === 'linear') {
+      values = values.map(v => Number(v));
+      const min = Math.min(...values);
+      const max = Math.max(...values);
       domain = [min, max];
       // Use compare function to sort numbers numerically
       this.xSet = [...values].sort((a, b) => a - b);
@@ -345,34 +228,7 @@ export class AreaChartStackedComponent extends BaseChartComponent {
   }
 
   getYDomain(): any[] {
-    const domain = [];
-
-    for (let i = 0; i < this.xSet.length; i++) {
-      const val = this.xSet[i];
-      let sum = 0;
-      for (const group of this.results) {
-        const d = group.series.find(item => {
-          let a = item.name;
-          let b = val;
-          if (this.scaleType === 'time') {
-            a = a.valueOf();
-            b = b.valueOf();
-          }
-          return a === b;
-        });
-
-        if (d) {
-          sum += d.value;
-        }
-      }
-
-      domain.push(sum);
-    }
-
-    const min = this.yScaleMin ? this.yScaleMin : Math.min(0, ...domain);
-
-    const max = this.yScaleMax ? this.yScaleMax : Math.max(...domain);
-    return [min, max];
+    return [0, 100];
   }
 
   getSeriesDomain(): any[] {
@@ -408,7 +264,7 @@ export class AreaChartStackedComponent extends BaseChartComponent {
     this.xScale = this.getXScale(this.xDomain, this.dims.width);
   }
 
-  updateHoveredVertical(item) {
+  updateHoveredVertical(item): void {
     this.hoveredVertical = item.value;
     this.deactivateAll();
   }
