@@ -43,18 +43,19 @@ export class AppComponent implements OnInit {
 
   protected setNavItems(): void {
     this.chartNavItems = [
-      { title: 'Simple Line Chart', icon: 'show_chart', route: 'simple-line-chart', type: 'Line_Area' },
-      { title: 'Simple Vertical Bar Chart', icon: 'bar_chart', route: 'simple-vertical-bar-chart', type: 'Bar' },
-      { title: 'Simple Horizontal Bar Chart', icon: 'notes', route: 'simple-horizonal-bar-chart', type: 'Bar' },
-      { title: 'Grouped Vertical Bar Chart', icon: 'bar_chart', route: 'grouped-vertical-bar-chart', type: 'Bar' },
-      { title: 'Grouped Horizontal Bar Chart', icon: 'notes', route: 'grouped-horizonal-bar-chart', type: 'Bar' },
-      { title: 'Simple Area Chart', icon: 'insert_photo', route: 'simple-area-chart', type: 'Line_Area' },
-      { title: 'Real Time Data', icon: 'device_hub', route: 'real-time-data', type: 'Example' },
-      { title: 'Combo Chart', icon: 'multiline_chart', route: 'combo-chart', type: 'Example' },
-      { title: 'Simple Pie Chart', icon: 'pie_chart', route: 'simple-pie-chart', type: 'Pie' },
-      { title: 'Advanced Pie Chart', icon: 'pie_chart', route: 'advanced-pie-chart', type: 'Pie' },
-      { title: 'Bubble Chart', icon: 'bubble_chart', route: 'bubble-chart', type: 'Other' },
-      { title: 'Gauge', icon: 'wifi_tethering', route: 'gauge', type: 'Other' }
+      { title: 'Simple Line Chart', icon: 'show_chart', route: 'charts/simple-line-chart', type: 'Line_Area' },
+      { title: 'Simple Vertical Bar Chart', icon: 'bar_chart', route: 'charts/simple-vertical-bar-chart', type: 'Bar' },
+      { title: 'Simple Horizontal Bar Chart', icon: 'notes', route: 'charts/simple-horizonal-bar-chart', type: 'Bar' },
+      { title: 'Grouped Vertical Bar Chart', icon: 'bar_chart', route: 'charts/grouped-vertical-bar-chart', type: 'Bar' },
+      { title: 'Grouped Horizontal Bar Chart', icon: 'notes', route: 'charts/grouped-horizonal-bar-chart', type: 'Bar' },
+      { title: 'Simple Area Chart', icon: 'insert_photo', route: 'charts/simple-area-chart', type: 'Line_Area' },
+      { title: 'Real Time Data', icon: 'device_hub', route: 'examples/real-time-data', type: 'Example' },
+      { title: 'Combo Chart', icon: 'multiline_chart', route: 'examples/combo-chart', type: 'Example' },
+      { title: 'Simple Pie Chart', icon: 'pie_chart', route: 'charts/simple-pie-chart', type: 'Pie' },
+      { title: 'Advanced Pie Chart', icon: 'pie_chart', route: 'charts/advanced-pie-chart', type: 'Pie' },
+      { title: 'Bubble Chart', icon: 'bubble_chart', route: 'charts/bubble-chart', type: 'Other' },
+      { title: 'Gauge', icon: 'wifi_tethering', route: 'charts/gauge', type: 'Other' },
+      { title: 'Chart Synchronization', icon: 'compare_arrows', route: 'examples/chart-synchronization', type: 'Example' }
     ];
     this.BarChartNavItems = this.chartNavItems.filter(item => item.type === 'Bar');
     this.ExampleChartNavItems = this.chartNavItems.filter(item => item.type === 'Example');
