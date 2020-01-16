@@ -69,6 +69,29 @@ export * from './lib/controls/line-chart/line-simple/line-chart-simple.component
 export * from './lib/controls/line-chart/line.component';
 export * from './lib/controls/line-chart/line-series.component';
 
+/** PIE CHART */
+export * from './lib/controls/pie-chart/pie-chart.module';
+export * from './lib/controls/pie-chart/pie-advanced/pie-chart-advanced.component';
+export * from './lib/controls/pie-chart/pie-simple/pie-chart-simple.component';
+export * from './lib/controls/pie-chart/pie-arc.component';
+export * from './lib/controls/pie-chart/pie-grid/pie-grid.component';
+export * from './lib/controls/pie-chart/pie-grid/pie-grid-series.component';
+export * from './lib/controls/pie-chart/pie-series.component';
+export * from './lib/controls/pie-chart/pie-label.component';
+
+/** BUBBLE CHART */
+export * from './lib/controls/bubble-chart/bubble-chart.module';
+export * from './lib/controls/bubble-chart/bubble-simple/bubble-chart-simple.component';
+export * from './lib/controls/bubble-chart/bubble-chart.utils';
+export * from './lib/controls/bubble-chart/bubble-series.component';
+
+/** GAUGE */
+export * from './lib/controls/gauge/gauge.module';
+export * from './lib/controls/gauge/gauge-arc.component';
+export * from './lib/controls/gauge/gauge-axis.component';
+export * from './lib/controls/gauge/gauge-simple/gauge-simple.component';
+export * from './lib/controls/gauge/gauge-linear/gauge-linear.component';
+
 /** MODELS */
 export * from './lib/models/chart-data.model';
 export * from './lib/models/date-format.model';

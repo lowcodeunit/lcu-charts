@@ -82,6 +82,8 @@ export class TooltipArea {
   anchorPos: number = -1;
   anchorValues: any[] = [];
   lastAnchorPos: number;
+  public xVal: any;
+  public userForcesXHover: boolean = false;
 
   @Input() dims;
   @Input() xSet;
@@ -90,11 +92,21 @@ export class TooltipArea {
   @Input() results;
   @Input() colors;
   @Input() showPercentage: boolean = false;
+  @Input() units: string;
   @Input() tooltipDisabled: boolean = false;
   @Input() tooltipTemplate: TemplateRef<any>;
   @Input() backgroundGradientConfigs: any[];
+  @Input('forced-anchor-position')
+  public set anchorPosition(val) {
+    if (val) {
+      this.userForcesXHover = true;
+      this.anchorPos = val.xValue;
+      this.anchorOpacity = 1;
+    }
+  }
 
   @Output() hover = new EventEmitter();
+  @Output() pixelValueX = new EventEmitter();
 
   @ViewChild('tooltipAnchor', { static: false }) tooltipAnchor;
 
@@ -114,6 +126,11 @@ export class TooltipArea {
         if (this.showPercentage) {
           val = (item.d1 - item.d0).toFixed(2) + '%';
         }
+        if(this.units){
+          // console.log("item = ", item)
+          val = item.value + this.units;
+        }
+
         let color;
         if (this.colors.scaleType === 'linear') {
           let v = val;
@@ -149,6 +166,7 @@ export class TooltipArea {
     this.anchorPos = this.xScale(closestPoint);
     this.anchorPos = Math.max(0, this.anchorPos);
     this.anchorPos = Math.min(this.dims.width, this.anchorPos);
+    this.xVal = this.anchorPos;
 
     this.anchorValues = this.getValues(closestPoint);
     if (this.anchorPos !== this.lastAnchorPos) {
@@ -157,6 +175,9 @@ export class TooltipArea {
       this.anchorOpacity = 0.7;
       this.hover.emit({
         value: closestPoint
+      });
+      this.pixelValueX.emit({
+        xValue: this.xVal
       });
       this.showTooltip();
 
@@ -203,7 +224,7 @@ export class TooltipArea {
   hideTooltip(): void {
     const event = createMouseEvent('mouseleave');
     this.tooltipAnchor.nativeElement.dispatchEvent(event);
-    this.anchorOpacity = 0;
+    this.anchorOpacity = this.userForcesXHover ? 1 : 0;
     this.lastAnchorPos = -1;
   }
 

@@ -42,8 +42,8 @@ export class DemoLineChartComponent implements OnInit {
   public yScaleMin: number;
   public yUnits: string = "\u00B0";
   public backgroundGradientConfigs: BackgroundGradientConfigurationNode[] = [];
-
-  public yAxisTickFormatting = this.FormatYAxisTicksDegree.bind(this);
+  public showPercentage: boolean = false;
+  public yAxisTickFormatting = this.FormatYAxisTicks.bind(this);
   public yAxisTicks: Array<any> = [0,30,70,100];
   public xAxisIsDate: boolean = true;
   public xAxisDateFormat: DateFormatModel = {DayOfWeek: true, 
@@ -69,6 +69,23 @@ export class DemoLineChartComponent implements OnInit {
     this.setColorScheme('cool');
     this.setBackgroundGradientConfigs();
   }
+
+  public hoveredVerticalChange(e) {
+    // console.log('message from tooltip - the x value hover has changed to: ', e)
+
+    this.ManualHover = e;
+    // now send it back to the tooltip to manually show that vertical line
+  }
+  
+  public ManualHover: any;
+
+  public onHoverChange(e) {
+    this.ManualHover = e;
+    // console.log('on hover change...: ', e)
+    this.ManualHover = e;
+  }
+
+
 
   public ngOnInit(): void {
     if (!this.fitContainer) {
