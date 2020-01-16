@@ -83,6 +83,8 @@
           [units]="units"
 
           (hover)="updateHoveredVertical($event)"
+          (pixelValueX)="sendBackPixelValueX($event)"
+          [forced-anchor-position]="ForceManualHover"
         />
 
         <svg:g *ngFor="let series of results">

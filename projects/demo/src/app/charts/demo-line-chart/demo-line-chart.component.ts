@@ -70,6 +70,23 @@ export class DemoLineChartComponent implements OnInit {
     this.setBackgroundGradientConfigs();
   }
 
+  public hoveredVerticalChange(e) {
+    // console.log('message from tooltip - the x value hover has changed to: ', e)
+
+    this.ManualHover = e;
+    // now send it back to the tooltip to manually show that vertical line
+  }
+  
+  public ManualHover: any;
+
+  public onHoverChange(e) {
+    this.ManualHover = e;
+    // console.log('on hover change...: ', e)
+    this.ManualHover = e;
+  }
+
+
+
   public ngOnInit(): void {
     if (!this.fitContainer) {
       this.applyDimensions();
