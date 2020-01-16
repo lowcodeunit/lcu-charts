@@ -78,6 +78,10 @@ export class LineChartSimpleComponent extends BaseChartComponent {
   @Input() yScaleMin: number;
   @Input() yScaleMax: number;
   @Input() backgroundGradientConfigs: any[];
+  @Input('forceManualXHover')
+  public set forceManualXHover(val) {
+    this.ForceManualHover = val;
+  }
 
   @Input() xAxisIsDate: boolean;
   /**
@@ -124,6 +128,7 @@ export class LineChartSimpleComponent extends BaseChartComponent {
   timelineXDomain: any;
   timelineTransform: any;
   timelinePadding: number = 10;
+  public ForceManualHover: any;
 
   update(): void {
     super.update();
@@ -332,9 +337,15 @@ export class LineChartSimpleComponent extends BaseChartComponent {
     this.xScale = this.getXScale(this.xDomain, this.dims.width);
   }
 
+  @Output() HoveredVerticalChange = new EventEmitter<any>();
+
   updateHoveredVertical(item): void {
     this.hoveredVertical = item.value;
     this.deactivateAll();
+  }
+
+  public sendBackPixelValueX(event) {
+    this.HoveredVerticalChange.emit(event);
   }
 
   @HostListener('mouseleave')
