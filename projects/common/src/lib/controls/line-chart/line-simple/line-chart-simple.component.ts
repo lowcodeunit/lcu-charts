@@ -17,6 +17,7 @@ import { ColorHelper } from '../../../common/color.helper';
 import { BaseChartComponent } from '../../../common/base-chart.component';
 import { id } from '../../../utils/id';
 import { getUniqueXDomainValues, getScaleType } from '../../../common/domain.helper';
+import { DateFormatModel } from '../../../models/date-format.model';
 
 @Component({
   selector: 'lcu-charts-line-chart-simple',
@@ -87,7 +88,7 @@ export class LineChartSimpleComponent extends BaseChartComponent {
    *          Time: true,
    *          TimeZone: false}
    */
-  @Input() xAxisDateFormat: object;
+  @Input() xAxisDateFormat: DateFormatModel;
 
   @Output() activate: EventEmitter<any> = new EventEmitter();
   @Output() deactivate: EventEmitter<any> = new EventEmitter();
@@ -144,9 +145,9 @@ export class LineChartSimpleComponent extends BaseChartComponent {
 /**\
  * if the X axis is a date and they passed in a format
  */
-    // if(this.xAxisIsDate && this.xAxisDateFormat){
-    //   this.xAxisTickFormatting = this.formatXAxisDate.bind(this);
-    // }
+    if(this.xAxisIsDate && this.xAxisDateFormat){
+      this.xAxisTickFormatting = this.FormatXAxisDate.bind(this);
+    }
 
     if (this.timeline) {
       this.dims.height -= this.timelineHeight + this.margin[2] + this.timelinePadding;
@@ -174,14 +175,36 @@ export class LineChartSimpleComponent extends BaseChartComponent {
     this.clipPath = `url(#${this.clipPathId})`;
   }
 
-  formatXAxisDate(value: Date){
-    console.log("value... = ", value);
-    // let newDate;
-    // if(this.xAxisDateFormat.DayOfWeek)
-    // this.xAxisDateFormat
-  let dateTime = value.toString();
-    return dateTime;
-  }
+    public FormatXAxisDate(value: Date){
+      let datestr: string = value.toString();
+      let dateArr = datestr.split(" ");
+      let dateTime: string = ""
+      if(this.xAxisDateFormat.DayOfWeek){
+        dateTime+=dateArr[0] +" ";
+      }
+      if(this.xAxisDateFormat.Month){
+       dateTime+=dateArr[1]+" ";
+      }
+      if(this.xAxisDateFormat.DayOfMonth){
+        dateTime+=dateArr[2]+" ";
+      }
+      if(this.xAxisDateFormat.Year){
+       dateTime+=dateArr[3]+" ";
+      }
+      if(this.xAxisDateFormat.Time){
+        let time = dateArr[4];
+  
+       dateTime+=time.substr(0, time.length-3)+" ";
+      }
+      if(this.xAxisDateFormat.TimeZone){
+       dateTime+=dateArr[5]+" ";
+      }
+      // dateTime.trimRight();
+  
+      // console.log("datestr= ", value.toString());
+      return dateTime;
+    }
+  
 
   updateTimeline(): void {
     if (this.timeline) {
