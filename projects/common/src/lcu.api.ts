@@ -69,6 +69,16 @@ export * from './lib/controls/line-chart/line-simple/line-chart-simple.component
 export * from './lib/controls/line-chart/line.component';
 export * from './lib/controls/line-chart/line-series.component';
 
+/** PIE CHART */
+export * from './lib/controls/pie-chart/pie-chart.module';
+export * from './lib/controls/pie-chart/pie-advanced/pie-chart-advanced.component';
+export * from './lib/controls/pie-chart/pie-simple/pie-chart-simple.component';
+export * from './lib/controls/pie-chart/pie-arc.component';
+export * from './lib/controls/pie-chart/pie-grid/pie-grid.component';
+export * from './lib/controls/pie-chart/pie-grid/pie-grid-series.component';
+export * from './lib/controls/pie-chart/pie-series.component';
+export * from './lib/controls/pie-chart/pie-label.component';
+
 /** MODELS */
 export * from './lib/models/chart-data.model';
 export * from './lib/models/date-format.model';

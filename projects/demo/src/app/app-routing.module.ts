@@ -6,6 +6,8 @@ import { DemoBarChartVerticalSimpleComponent } from './charts/demo-bar-chart-ver
 import { DemoBarChartVerticalGroupedComponent } from './charts/demo-bar-chart-vertical-grouped/demo-bar-chart-vertical-grouped.component';
 import { DemoBarChartHorizontalSimpleComponent } from './charts/demo-bar-chart-horizontal-simple/demo-bar-chart-horizontal-simple.component';
 import { DemoBarChartHorizontalGroupedComponent } from './charts/demo-bar-chart-horizontal-grouped/demo-bar-chart-horizontal-grouped.component';
+import { DemoPieChartSimpleComponent } from './charts/demo-pie-chart-simple/demo-pie-chart-simple.component';
+import { DemoPieChartAdvancedComponent } from './charts/demo-pie-chart-advanced/demo-pie-chart-advanced.component';
 import { ExampleChartSynchronizationComponent } from './examples/example-chart-synchronization/example-chart-synchronization.component';
 
 const routes: Routes = [
@@ -15,6 +17,8 @@ const routes: Routes = [
   { path: 'charts/simple-horizonal-bar-chart', component: DemoBarChartHorizontalSimpleComponent },
   { path: 'charts/grouped-vertical-bar-chart', component: DemoBarChartVerticalGroupedComponent },
   { path: 'charts/grouped-horizonal-bar-chart', component: DemoBarChartHorizontalGroupedComponent },
+  { path: 'charts/simple-pie-chart', component: DemoPieChartSimpleComponent },
+  { path: 'charts/advanced-pie-chart', component: DemoPieChartAdvancedComponent },
   { path: 'examples/chart-synchronization', component: ExampleChartSynchronizationComponent },
   { path: '**', component: DemoLineChartComponent }
 ];
