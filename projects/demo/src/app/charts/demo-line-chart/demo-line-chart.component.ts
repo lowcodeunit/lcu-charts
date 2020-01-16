@@ -42,8 +42,8 @@ export class DemoLineChartComponent implements OnInit {
   public yScaleMin: number;
   public yUnits: string = "\u00B0";
   public backgroundGradientConfigs: BackgroundGradientConfigurationNode[] = [];
-
-  public yAxisTickFormatting = this.FormatYAxisTicksDegree.bind(this);
+  public showPercentage: boolean = false;
+  public yAxisTickFormatting = this.FormatYAxisTicks.bind(this);
   public yAxisTicks: Array<any> = [0,30,70,100];
   public xAxisIsDate: boolean = true;
   public xAxisDateFormat: DateFormatModel = {DayOfWeek: true, 

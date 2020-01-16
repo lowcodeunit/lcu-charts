@@ -78,6 +78,8 @@ export class LineChartSimpleComponent extends BaseChartComponent {
   @Input() yScaleMin: number;
   @Input() yScaleMax: number;
   @Input() backgroundGradientConfigs: any[];
+  @Input() showPercentage: boolean;
+  @Input() units: string;
 
   @Input() xAxisIsDate: boolean;
   /**
