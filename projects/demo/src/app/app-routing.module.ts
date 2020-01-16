@@ -11,6 +11,7 @@ import { DemoPieChartAdvancedComponent } from './charts/demo-pie-chart-advanced/
 import { DemoBubbleChartSimpleComponent } from './charts/demo-bubble-chart-simple/demo-bubble-chart-simple.component';
 import { DemoGaugeSimpleComponent } from './charts/demo-gauge-simple/demo-gauge-simple.component';
 import { ExampleChartSynchronizationComponent } from './examples/example-chart-synchronization/example-chart-synchronization.component';
+import { ExampleRealTimeDataComponent } from './examples/example-real-time-data/example-real-time-data.component';
 
 const routes: Routes = [
   { path: 'charts/simple-area-chart', component: DemoAreaChartSimpleComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'charts/simple-bubble-chart', component: DemoBubbleChartSimpleComponent },
   { path: 'charts/simple-gauge', component: DemoGaugeSimpleComponent },
   { path: 'examples/chart-synchronization', component: ExampleChartSynchronizationComponent },
+  { path: 'examples/real-time-data', component: ExampleRealTimeDataComponent },
   { path: '**', component: DemoLineChartComponent }
 ];
 
