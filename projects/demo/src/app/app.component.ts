@@ -43,15 +43,15 @@ export class AppComponent implements OnInit {
 
   protected setNavItems(): void {
     this.chartNavItems = [
-      { title: 'Simple Line Chart', icon: 'show_chart', route: 'line-chart', type: 'Line_Area' },
-      { title: 'Simple Vertical Bar Chart', icon: 'bar_chart', route: 'vertical-bar-chart', type: 'Bar' },
-      { title: 'Simple Horizontal Bar Chart', icon: 'notes', route: 'horizonal-bar-chart', type: 'Bar' },
+      { title: 'Simple Line Chart', icon: 'show_chart', route: 'simple-line-chart', type: 'Line_Area' },
+      { title: 'Simple Vertical Bar Chart', icon: 'bar_chart', route: 'simple-vertical-bar-chart', type: 'Bar' },
+      { title: 'Simple Horizontal Bar Chart', icon: 'notes', route: 'simple-horizonal-bar-chart', type: 'Bar' },
       { title: 'Grouped Vertical Bar Chart', icon: 'bar_chart', route: 'grouped-vertical-bar-chart', type: 'Bar' },
       { title: 'Grouped Horizontal Bar Chart', icon: 'notes', route: 'grouped-horizonal-bar-chart', type: 'Bar' },
-      { title: 'Simple Area Chart', icon: 'insert_photo', route: 'area-chart', type: 'Line_Area' },
+      { title: 'Simple Area Chart', icon: 'insert_photo', route: 'simple-area-chart', type: 'Line_Area' },
       { title: 'Real Time Data', icon: 'device_hub', route: 'real-time-data', type: 'Example' },
       { title: 'Combo Chart', icon: 'multiline_chart', route: 'combo-chart', type: 'Example' },
-      { title: 'Simple Pie Chart', icon: 'pie_chart', route: 'pie-chart', type: 'Pie' },
+      { title: 'Simple Pie Chart', icon: 'pie_chart', route: 'simple-pie-chart', type: 'Pie' },
       { title: 'Advanced Pie Chart', icon: 'pie_chart', route: 'advanced-pie-chart', type: 'Pie' },
       { title: 'Bubble Chart', icon: 'bubble_chart', route: 'bubble-chart', type: 'Other' },
       { title: 'Gauge', icon: 'wifi_tethering', route: 'gauge', type: 'Other' }

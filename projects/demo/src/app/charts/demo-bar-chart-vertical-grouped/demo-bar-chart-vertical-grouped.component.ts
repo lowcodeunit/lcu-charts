@@ -1,49 +1,47 @@
 import { Component, OnInit } from '@angular/core';
 import { colorSets } from '@lowcodeunit/lcu-charts-common';
-import * as shape from 'd3-shape';
-import { weatherData } from '../../data';
+import { multi } from '../../data';
 
 @Component({
-  selector: 'lcu-demo-area-chart',
-  templateUrl: './demo-area-chart.component.html',
-  styleUrls: ['./demo-area-chart.component.scss']
+  selector: 'lcu-demo-bar-chart-vertical-grouped',
+  templateUrl: './demo-bar-chart-vertical-grouped.component.html',
+  styleUrls: ['./demo-bar-chart-vertical-grouped.component.scss']
 })
-export class DemoAreaChartComponent implements OnInit {
+export class DemoBarChartVerticalGroupedComponent implements OnInit {
   public animations: boolean = true;
-  public autoScale: boolean = true;
+  public barPadding: number = 8;
   public colorScheme: any;
-  public curve: any;
   public gradient: boolean = false;
+  public groupPadding: number = 16;
   public legendPosition: string = 'right';
   public legendTitle: string = '';
   public maxXAxisTickLength: number = 16;
   public maxYAxisTickLength: number = 16;
-  public rangeFillOpacity: number = 0.15;
+  public multi: any[];
+  public noBarWhenZero: boolean = true;
   public rotateXAxisTicks: boolean = true;
   public roundDomains: boolean = false;
+  public roundEdges: boolean = true;
   public schemeType: string = 'ordinal';
+  public showDataLabel: boolean = false;
   public showGridLines: boolean = true;
   public showLegend: boolean = true;
   public showXAxis: boolean = true;
   public showXAxisLabel: boolean = true;
   public showYAxis: boolean = true;
   public showYAxisLabel: boolean = true;
-  public timeline: boolean = false;
   public tooltipDisabled: boolean = false;
   public trimXAxisTicks: boolean = true;
   public trimYAxisTicks: boolean = true;
   public view: any[];
-  public weatherData: any[];
-  public xAxisLabel: string = 'Time';
+  public xAxisLabel: string = 'Country';
   public xScaleMax: any;
   public xScaleMin: any;
-  public yAxisLabel: string = 'Temperature (F)';
+  public yAxisLabel: string = 'GDP Per Capita';
   public yScaleMax: number;
   public yScaleMin: number;
 
   private colorSets: any;
-  private curveType: string = 'Linear';
-  private curves: any;
   private fitContainer: boolean = false;
   private height: number = 400;
   private width: number = 1000;
@@ -51,7 +49,7 @@ export class DemoAreaChartComponent implements OnInit {
   constructor() {
     Object.assign(this, {
       colorSets,
-      weatherData
+      multi
     });
     this.setColorScheme('cool');
   }
@@ -60,25 +58,6 @@ export class DemoAreaChartComponent implements OnInit {
     if (!this.fitContainer) {
       this.applyDimensions();
     }
-    this.curves = {
-      'Basis': shape.curveBasis,
-      'Basis Closed': shape.curveBasisClosed,
-      'Bundle': shape.curveBundle.beta(1),
-      'Cardinal': shape.curveCardinal,
-      'Cardinal Closed': shape.curveCardinalClosed,
-      'Catmull Rom': shape.curveCatmullRom,
-      'Catmull Rom Closed': shape.curveCatmullRomClosed,
-      'Linear': shape.curveLinear,
-      'Linear Closed': shape.curveLinearClosed,
-      'Monotone X': shape.curveMonotoneX,
-      'Monotone Y': shape.curveMonotoneY,
-      'Natural': shape.curveNatural,
-      'Step': shape.curveStep,
-      'Step After': shape.curveStepAfter,
-      'Step Before': shape.curveStepBefore,
-      'default': shape.curveLinear
-    };
-    this.curve = this.curves[this.curveType];
   }
 
   public activate(data: any): void {
