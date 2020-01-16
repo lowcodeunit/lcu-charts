@@ -90,6 +90,7 @@ export class TooltipArea {
   @Input() results;
   @Input() colors;
   @Input() showPercentage: boolean = false;
+  @Input() units: string;
   @Input() tooltipDisabled: boolean = false;
   @Input() tooltipTemplate: TemplateRef<any>;
   @Input() backgroundGradientConfigs: any[];
@@ -114,6 +115,11 @@ export class TooltipArea {
         if (this.showPercentage) {
           val = (item.d1 - item.d0).toFixed(2) + '%';
         }
+        if(this.units){
+          // console.log("item = ", item)
+          val = item.value + this.units;
+        }
+
         let color;
         if (this.colors.scaleType === 'linear') {
           let v = val;
