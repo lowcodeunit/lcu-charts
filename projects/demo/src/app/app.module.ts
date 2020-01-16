@@ -6,6 +6,7 @@ import { FathymSharedModule, MaterialModule } from '@lcu/common';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LcuChartsModule } from '@lowcodeunit/lcu-charts-common';
+import { HomeComponent } from './home/home.component';
 import { DemoAreaChartSimpleComponent } from './charts/demo-area-chart-simple/demo-area-chart-simple.component';
 import { DemoLineChartComponent } from './charts/demo-line-chart/demo-line-chart.component';
 import { DemoBarChartVerticalSimpleComponent } from './charts/demo-bar-chart-vertical-simple/demo-bar-chart-vertical-simple.component';
@@ -28,6 +29,7 @@ import { ExampleRealTimeDataComponent } from './examples/example-real-time-data/
     DemoBarChartVerticalGroupedComponent,
     DemoBarChartHorizontalSimpleComponent,
     DemoBarChartHorizontalGroupedComponent,
+    HomeComponent,
     DemoPieChartSimpleComponent,
     DemoPieChartAdvancedComponent,
     DemoBubbleChartSimpleComponent,

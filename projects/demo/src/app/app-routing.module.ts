@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { HomeComponent } from './home/home.component';
 import { DemoAreaChartSimpleComponent } from './charts/demo-area-chart-simple/demo-area-chart-simple.component';
 import { DemoLineChartComponent } from './charts/demo-line-chart/demo-line-chart.component';
 import { DemoBarChartVerticalSimpleComponent } from './charts/demo-bar-chart-vertical-simple/demo-bar-chart-vertical-simple.component';
@@ -26,7 +27,8 @@ const routes: Routes = [
   { path: 'charts/simple-gauge', component: DemoGaugeSimpleComponent },
   { path: 'examples/chart-synchronization', component: ExampleChartSynchronizationComponent },
   { path: 'examples/real-time-data', component: ExampleRealTimeDataComponent },
-  { path: '**', component: DemoLineChartComponent }
+  { path: 'home', component: HomeComponent},
+  { path: '**', component: HomeComponent }
 ];
 
 @NgModule({
