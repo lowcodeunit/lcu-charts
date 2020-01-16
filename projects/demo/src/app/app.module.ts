@@ -12,6 +12,10 @@ import { DemoBarChartVerticalSimpleComponent } from './charts/demo-bar-chart-ver
 import { DemoBarChartVerticalGroupedComponent } from './charts/demo-bar-chart-vertical-grouped/demo-bar-chart-vertical-grouped.component';
 import { DemoBarChartHorizontalSimpleComponent } from './charts/demo-bar-chart-horizontal-simple/demo-bar-chart-horizontal-simple.component';
 import { DemoBarChartHorizontalGroupedComponent } from './charts/demo-bar-chart-horizontal-grouped/demo-bar-chart-horizontal-grouped.component';
+import { DemoPieChartSimpleComponent } from './charts/demo-pie-chart-simple/demo-pie-chart-simple.component';
+import { DemoPieChartAdvancedComponent } from './charts/demo-pie-chart-advanced/demo-pie-chart-advanced.component';
+import { DemoBubbleChartSimpleComponent } from './charts/demo-bubble-chart-simple/demo-bubble-chart-simple.component';
+import { DemoGaugeSimpleComponent } from './charts/demo-gauge-simple/demo-gauge-simple.component';
 import { ExampleChartSynchronizationComponent } from './examples/example-chart-synchronization/example-chart-synchronization.component';
 import { HomeComponent } from './home/home.component';
 
@@ -24,8 +28,12 @@ import { HomeComponent } from './home/home.component';
     DemoBarChartVerticalGroupedComponent,
     DemoBarChartHorizontalSimpleComponent,
     DemoBarChartHorizontalGroupedComponent,
-    ExampleChartSynchronizationComponent,
-    HomeComponent
+    HomeComponent,
+    DemoPieChartSimpleComponent,
+    DemoPieChartAdvancedComponent,
+    DemoBubbleChartSimpleComponent,
+    DemoGaugeSimpleComponent,
+    ExampleChartSynchronizationComponent
   ],
   imports: [
     AppRoutingModule,

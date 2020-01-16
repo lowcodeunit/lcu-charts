@@ -1,0 +1,74 @@
+<lcu-charts-chart [view]="[width, height]" [showLegend]="false" [animations]="animations" (click)="onClick()">
+  <svg:g class="linear-gauge chart">
+    <svg:g
+      lcu-charts-bar
+      class="background-bar"
+      [width]="dims.width"
+      [height]="3"
+      [x]="margin[3]"
+      [y]="dims.height / 2 + margin[0] - 2"
+      [data]="{}"
+      [orientation]="'horizontal'"
+      [roundEdges]="true"
+      [animations]="animations"
+    ></svg:g>
+    <svg:g
+      lcu-charts-bar
+      [width]="valueScale(value)"
+      [height]="3"
+      [x]="margin[3]"
+      [y]="dims.height / 2 + margin[0] - 2"
+      [fill]="colors.getColor(units)"
+      [data]="{}"
+      [orientation]="'horizontal'"
+      [roundEdges]="true"
+      [animations]="animations"
+    ></svg:g>
+
+    <svg:line
+      *ngIf="hasPreviousValue"
+      [attr.transform]="transformLine"
+      x1="0"
+      y1="5"
+      x2="0"
+      y2="15"
+      [attr.stroke]="colors.getColor(units)"
+    />
+
+    <svg:line
+      *ngIf="hasPreviousValue"
+      [attr.transform]="transformLine"
+      x1="0"
+      y1="-5"
+      x2="0"
+      y2="-15"
+      [attr.stroke]="colors.getColor(units)"
+    />
+
+    <svg:g [attr.transform]="transform">
+      <svg:g [attr.transform]="valueTranslate">
+        <svg:text
+          #valueTextEl
+          class="value"
+          [style.textAnchor]="'middle'"
+          [attr.transform]="valueTextTransform"
+          alignment-baseline="after-edge"
+        >
+          {{ displayValue }}
+        </svg:text>
+      </svg:g>
+
+      <svg:g [attr.transform]="unitsTranslate">
+        <svg:text
+          #unitsTextEl
+          class="units"
+          [style.textAnchor]="'middle'"
+          [attr.transform]="unitsTextTransform"
+          alignment-baseline="before-edge"
+        >
+          {{ units }}
+        </svg:text>
+      </svg:g>
+    </svg:g>
+  </svg:g>
+</lcu-charts-chart>
