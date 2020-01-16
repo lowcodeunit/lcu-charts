@@ -6,6 +6,7 @@ import { FathymSharedModule, MaterialModule } from '@lcu/common';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LcuChartsModule } from '@lowcodeunit/lcu-charts-common';
+import { HomeComponent } from './home/home.component';
 import { DemoAreaChartSimpleComponent } from './charts/demo-area-chart-simple/demo-area-chart-simple.component';
 import { DemoLineChartComponent } from './charts/demo-line-chart/demo-line-chart.component';
 import { DemoBarChartVerticalSimpleComponent } from './charts/demo-bar-chart-vertical-simple/demo-bar-chart-vertical-simple.component';
@@ -17,7 +18,7 @@ import { DemoPieChartAdvancedComponent } from './charts/demo-pie-chart-advanced/
 import { DemoBubbleChartSimpleComponent } from './charts/demo-bubble-chart-simple/demo-bubble-chart-simple.component';
 import { DemoGaugeSimpleComponent } from './charts/demo-gauge-simple/demo-gauge-simple.component';
 import { ExampleChartSynchronizationComponent } from './examples/example-chart-synchronization/example-chart-synchronization.component';
-import { HomeComponent } from './home/home.component';
+import { ExampleRealTimeDataComponent } from './examples/example-real-time-data/example-real-time-data.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { HomeComponent } from './home/home.component';
     DemoPieChartAdvancedComponent,
     DemoBubbleChartSimpleComponent,
     DemoGaugeSimpleComponent,
-    ExampleChartSynchronizationComponent
+    ExampleChartSynchronizationComponent,
+    ExampleRealTimeDataComponent
   ],
   imports: [
     AppRoutingModule,

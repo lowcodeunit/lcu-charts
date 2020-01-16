@@ -49,13 +49,13 @@ export class AppComponent implements OnInit {
       { title: 'Grouped Vertical Bar Chart', icon: 'bar_chart', route: 'charts/grouped-vertical-bar-chart', type: 'Bar' },
       { title: 'Grouped Horizontal Bar Chart', icon: 'notes', route: 'charts/grouped-horizonal-bar-chart', type: 'Bar' },
       { title: 'Simple Area Chart', icon: 'insert_photo', route: 'charts/simple-area-chart', type: 'Line_Area' },
-      { title: 'Real Time Data', icon: 'device_hub', route: 'examples/real-time-data', type: 'Example' },
-      { title: 'Combo Chart', icon: 'multiline_chart', route: 'examples/combo-chart', type: 'Example' },
+      // { title: 'Combo Chart', icon: 'multiline_chart', route: 'examples/combo-chart', type: 'Example' },
       { title: 'Simple Pie Chart', icon: 'pie_chart', route: 'charts/simple-pie-chart', type: 'Pie' },
       { title: 'Advanced Pie Chart', icon: 'pie_chart', route: 'charts/advanced-pie-chart', type: 'Pie' },
       { title: 'Bubble Chart', icon: 'bubble_chart', route: 'charts/simple-bubble-chart', type: 'Other' },
       { title: 'Gauge', icon: 'wifi_tethering', route: 'charts/simple-gauge', type: 'Other' },
-      { title: 'Chart Synchronization', icon: 'compare_arrows', route: 'examples/chart-synchronization', type: 'Example' }
+      { title: 'Chart Synchronization', icon: 'compare_arrows', route: 'examples/chart-synchronization', type: 'Example' },
+      { title: 'Real Time Data', icon: 'device_hub', route: 'examples/real-time-data', type: 'Example' }
     ];
     this.BarChartNavItems = this.chartNavItems.filter(item => item.type === 'Bar');
     this.ExampleChartNavItems = this.chartNavItems.filter(item => item.type === 'Example');
