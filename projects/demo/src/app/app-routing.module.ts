@@ -6,14 +6,16 @@ import { DemoBarChartVerticalSimpleComponent } from './charts/demo-bar-chart-ver
 import { DemoBarChartVerticalGroupedComponent } from './charts/demo-bar-chart-vertical-grouped/demo-bar-chart-vertical-grouped.component';
 import { DemoBarChartHorizontalSimpleComponent } from './charts/demo-bar-chart-horizontal-simple/demo-bar-chart-horizontal-simple.component';
 import { DemoBarChartHorizontalGroupedComponent } from './charts/demo-bar-chart-horizontal-grouped/demo-bar-chart-horizontal-grouped.component';
+import { ExampleChartSynchronizationComponent } from './examples/example-chart-synchronization/example-chart-synchronization.component';
 
 const routes: Routes = [
-  { path: 'simple-area-chart', component: DemoAreaChartSimpleComponent },
-  { path: 'simple-line-chart', component: DemoLineChartComponent },
-  { path: 'simple-vertical-bar-chart', component: DemoBarChartVerticalSimpleComponent },
-  { path: 'simple-horizonal-bar-chart', component: DemoBarChartHorizontalSimpleComponent },
-  { path: 'grouped-vertical-bar-chart', component: DemoBarChartVerticalGroupedComponent },
-  { path: 'grouped-horizonal-bar-chart', component: DemoBarChartHorizontalGroupedComponent },
+  { path: 'charts/simple-area-chart', component: DemoAreaChartSimpleComponent },
+  { path: 'charts/simple-line-chart', component: DemoLineChartComponent },
+  { path: 'charts/simple-vertical-bar-chart', component: DemoBarChartVerticalSimpleComponent },
+  { path: 'charts/simple-horizonal-bar-chart', component: DemoBarChartHorizontalSimpleComponent },
+  { path: 'charts/grouped-vertical-bar-chart', component: DemoBarChartVerticalGroupedComponent },
+  { path: 'charts/grouped-horizonal-bar-chart', component: DemoBarChartHorizontalGroupedComponent },
+  { path: 'examples/chart-synchronization', component: ExampleChartSynchronizationComponent },
   { path: '**', component: DemoLineChartComponent }
 ];
 
