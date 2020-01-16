@@ -9,6 +9,7 @@ import { DemoBarChartHorizontalGroupedComponent } from './charts/demo-bar-chart-
 import { DemoPieChartSimpleComponent } from './charts/demo-pie-chart-simple/demo-pie-chart-simple.component';
 import { DemoPieChartAdvancedComponent } from './charts/demo-pie-chart-advanced/demo-pie-chart-advanced.component';
 import { DemoBubbleChartSimpleComponent } from './charts/demo-bubble-chart-simple/demo-bubble-chart-simple.component';
+import { DemoGaugeSimpleComponent } from './charts/demo-gauge-simple/demo-gauge-simple.component';
 import { ExampleChartSynchronizationComponent } from './examples/example-chart-synchronization/example-chart-synchronization.component';
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'charts/simple-pie-chart', component: DemoPieChartSimpleComponent },
   { path: 'charts/advanced-pie-chart', component: DemoPieChartAdvancedComponent },
   { path: 'charts/simple-bubble-chart', component: DemoBubbleChartSimpleComponent },
+  { path: 'charts/simple-gauge', component: DemoGaugeSimpleComponent },
   { path: 'examples/chart-synchronization', component: ExampleChartSynchronizationComponent },
   { path: '**', component: DemoLineChartComponent }
 ];

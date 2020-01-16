@@ -85,6 +85,13 @@ export * from './lib/controls/bubble-chart/bubble-simple/bubble-chart-simple.com
 export * from './lib/controls/bubble-chart/bubble-chart.utils';
 export * from './lib/controls/bubble-chart/bubble-series.component';
 
+/** GAUGE */
+export * from './lib/controls/gauge/gauge.module';
+export * from './lib/controls/gauge/gauge-arc.component';
+export * from './lib/controls/gauge/gauge-axis.component';
+export * from './lib/controls/gauge/gauge-simple/gauge-simple.component';
+export * from './lib/controls/gauge/gauge-linear/gauge-linear.component';
+
 /** MODELS */
 export * from './lib/models/chart-data.model';
 export * from './lib/models/date-format.model';

@@ -54,7 +54,7 @@ export class AppComponent implements OnInit {
       { title: 'Simple Pie Chart', icon: 'pie_chart', route: 'charts/simple-pie-chart', type: 'Pie' },
       { title: 'Advanced Pie Chart', icon: 'pie_chart', route: 'charts/advanced-pie-chart', type: 'Pie' },
       { title: 'Bubble Chart', icon: 'bubble_chart', route: 'charts/simple-bubble-chart', type: 'Other' },
-      { title: 'Gauge', icon: 'wifi_tethering', route: 'charts/gauge', type: 'Other' },
+      { title: 'Gauge', icon: 'wifi_tethering', route: 'charts/simple-gauge', type: 'Other' },
       { title: 'Chart Synchronization', icon: 'compare_arrows', route: 'examples/chart-synchronization', type: 'Example' }
     ];
     this.BarChartNavItems = this.chartNavItems.filter(item => item.type === 'Bar');
