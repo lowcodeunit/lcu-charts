@@ -44,10 +44,7 @@
   (activate)="activate($event)"
   (deactivate)="deactivate($event)"
   (legendLabelClick)="onLegendLabelClick($event)"
-  (select)="select($event)"
-  
-  [forceManualXHover]="ManualHover"
-  (HoveredVerticalChange)="hoveredVerticalChange($event)">
+  (select)="select($event)">
 <!-- tooltip with single value-->
   <ng-template #tooltipTemplate let-model="model">
     <div class="tooltip-item">
