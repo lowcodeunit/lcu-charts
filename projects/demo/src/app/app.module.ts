@@ -17,6 +17,7 @@ import { DemoPieChartAdvancedComponent } from './charts/demo-pie-chart-advanced/
 import { DemoBubbleChartSimpleComponent } from './charts/demo-bubble-chart-simple/demo-bubble-chart-simple.component';
 import { DemoGaugeSimpleComponent } from './charts/demo-gauge-simple/demo-gauge-simple.component';
 import { ExampleChartSynchronizationComponent } from './examples/example-chart-synchronization/example-chart-synchronization.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ExampleChartSynchronizationComponent } from './examples/example-chart-s
     DemoBarChartVerticalGroupedComponent,
     DemoBarChartHorizontalSimpleComponent,
     DemoBarChartHorizontalGroupedComponent,
+    HomeComponent,
     DemoPieChartSimpleComponent,
     DemoPieChartAdvancedComponent,
     DemoBubbleChartSimpleComponent,
