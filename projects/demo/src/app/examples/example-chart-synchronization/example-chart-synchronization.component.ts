@@ -58,8 +58,8 @@ export class ExampleChartSynchronizationComponent implements OnInit {
   private curveType: string = 'Linear';
   private curves: any;
   private fitContainer: boolean = false;
-  private height: number = 400;
-  private width: number = 1000;
+  private height: number = 200;
+  private width: number = 500;
 
   constructor() {
     Object.assign(this, {
