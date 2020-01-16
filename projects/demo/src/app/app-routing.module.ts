@@ -7,6 +7,7 @@ import { DemoBarChartVerticalGroupedComponent } from './charts/demo-bar-chart-ve
 import { DemoBarChartHorizontalSimpleComponent } from './charts/demo-bar-chart-horizontal-simple/demo-bar-chart-horizontal-simple.component';
 import { DemoBarChartHorizontalGroupedComponent } from './charts/demo-bar-chart-horizontal-grouped/demo-bar-chart-horizontal-grouped.component';
 import { ExampleChartSynchronizationComponent } from './examples/example-chart-synchronization/example-chart-synchronization.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   { path: 'charts/simple-area-chart', component: DemoAreaChartSimpleComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'charts/grouped-vertical-bar-chart', component: DemoBarChartVerticalGroupedComponent },
   { path: 'charts/grouped-horizonal-bar-chart', component: DemoBarChartHorizontalGroupedComponent },
   { path: 'examples/chart-synchronization', component: ExampleChartSynchronizationComponent },
+  { path: 'home', component: HomeComponent},
   { path: '**', component: DemoLineChartComponent }
 ];
 

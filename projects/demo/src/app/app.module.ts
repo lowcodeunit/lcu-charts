@@ -13,6 +13,7 @@ import { DemoBarChartVerticalGroupedComponent } from './charts/demo-bar-chart-ve
 import { DemoBarChartHorizontalSimpleComponent } from './charts/demo-bar-chart-horizontal-simple/demo-bar-chart-horizontal-simple.component';
 import { DemoBarChartHorizontalGroupedComponent } from './charts/demo-bar-chart-horizontal-grouped/demo-bar-chart-horizontal-grouped.component';
 import { ExampleChartSynchronizationComponent } from './examples/example-chart-synchronization/example-chart-synchronization.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ExampleChartSynchronizationComponent } from './examples/example-chart-s
     DemoBarChartVerticalGroupedComponent,
     DemoBarChartHorizontalSimpleComponent,
     DemoBarChartHorizontalGroupedComponent,
-    ExampleChartSynchronizationComponent
+    ExampleChartSynchronizationComponent,
+    HomeComponent
   ],
   imports: [
     AppRoutingModule,
