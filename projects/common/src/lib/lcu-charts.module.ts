@@ -5,6 +5,7 @@ import { lcuChartsPolyfills } from './polyfills';
 import { AreaChartModule } from './controls/area-chart/area-chart.module';
 import { BarChartModule } from './controls/bar-chart/bar-chart.module';
 import { PieChartModule } from './controls/pie-chart/pie-chart.module';
+import { BubbleChartModule } from './controls/bubble-chart/bubble-chart.module';
 
 @NgModule({
   exports: [
@@ -12,7 +13,8 @@ import { PieChartModule } from './controls/pie-chart/pie-chart.module';
     AreaChartModule,
     BarChartModule,
     LineChartModule,
-    PieChartModule
+    PieChartModule,
+    BubbleChartModule
   ]
 })
 export class LcuChartsModule {

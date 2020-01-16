@@ -79,6 +79,12 @@ export * from './lib/controls/pie-chart/pie-grid/pie-grid-series.component';
 export * from './lib/controls/pie-chart/pie-series.component';
 export * from './lib/controls/pie-chart/pie-label.component';
 
+/** BUBBLE CHART */
+export * from './lib/controls/bubble-chart/bubble-chart.module';
+export * from './lib/controls/bubble-chart/bubble-simple/bubble-chart-simple.component';
+export * from './lib/controls/bubble-chart/bubble-chart.utils';
+export * from './lib/controls/bubble-chart/bubble-series.component';
+
 /** MODELS */
 export * from './lib/models/chart-data.model';
 export * from './lib/models/date-format.model';

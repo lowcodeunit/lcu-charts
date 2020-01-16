@@ -11,7 +11,7 @@ import { PieChartModule } from '../pie-chart.module';
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000;
 
 @Component({
-  selector: 'test-component',
+  selector: 'lcu-test-component',
   template: ''
 })
 class TestComponent {

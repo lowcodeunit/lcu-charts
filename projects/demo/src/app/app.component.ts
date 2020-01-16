@@ -53,7 +53,7 @@ export class AppComponent implements OnInit {
       { title: 'Combo Chart', icon: 'multiline_chart', route: 'examples/combo-chart', type: 'Example' },
       { title: 'Simple Pie Chart', icon: 'pie_chart', route: 'charts/simple-pie-chart', type: 'Pie' },
       { title: 'Advanced Pie Chart', icon: 'pie_chart', route: 'charts/advanced-pie-chart', type: 'Pie' },
-      { title: 'Bubble Chart', icon: 'bubble_chart', route: 'charts/bubble-chart', type: 'Other' },
+      { title: 'Bubble Chart', icon: 'bubble_chart', route: 'charts/simple-bubble-chart', type: 'Other' },
       { title: 'Gauge', icon: 'wifi_tethering', route: 'charts/gauge', type: 'Other' },
       { title: 'Chart Synchronization', icon: 'compare_arrows', route: 'examples/chart-synchronization', type: 'Example' }
     ];
