@@ -1,90 +1,151 @@
 @import '~@angular/material/theming';
 
-@mixin lcu-component-theme($theme) {
+@mixin lcu-charts-component-theme($theme) {
   $primary: map-get($theme, primary);
   $accent: map-get($theme, accent);
   $warn: map-get($theme, warn);
 
-  .lcu-header {
-    .mat-toolbar {
-      justify-content: space-between;
+  $lcu-charts-header-height: 64px;
+  $lcu-charts-footer-height: 50px;
 
-      .toolbar-title {
-        display: block;
-        margin: 0;
+  .lcu-charts-container {
+    height: 100%;
 
-        .title-menu {
-          cursor: pointer;
-          margin-right: 15px;
+    .lcu-charts-header {
+      .mat-toolbar {
+        height: $lcu-charts-header-height;
+        justify-content: space-between;
 
-          .mat-icon {
-            font-size: 32px;
-            height: 32px;
-            width: 32px;
+        .toolbar-title {
+          display: block;
+          margin: 0;
+
+          .title-menu {
+            cursor: pointer;
+            margin-right: 15px;
+
+            .mat-icon {
+              font-size: 32px;
+              height: 32px;
+              width: 32px;
+            }
           }
-        }
 
-        .title-text {
-          color: white;
-          text-decoration: none;
+          .title-text {
+            color: white;
+            text-decoration: none;
 
-          &:hover {
-            text-decoration: underline;
-          }
+            &:hover {
+              text-decoration: underline;
+            }
 
-          small {
-            font-size: 0.5em;
-            line-height: 1.3em;
+            small {
+              font-size: 0.5em;
+              line-height: 1.3em;
 
-            &.subtitle {
-              display: block;
+              &.subtitle {
+                display: block;
+              }
             }
           }
         }
       }
     }
-  }
 
-  .lcu-body {
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+    .lcu-charts-body {
+      align-items: center;
+      justify-content: center;
+      height: calc(100% - #{$lcu-charts-header-height} - #{$lcu-charts-footer-height});
 
-    .body-sidenav-container {
-      background-color: transparent;
-      height: 100%;
-      width: 100%;
+      .body-sidenav-container {
+        background-color: transparent;
+        height: 100%;
+        width: 100%;
 
-      .mat-sidenav {
-        background-color: map-get($accent, 500);
+        .mat-sidenav {
+          background-color: map-get($accent, 500);
 
-        .mat-list-item {
-          font-size: 13px;
+          .mat-list-item {
+            font-size: 13px;
 
-          .mat-icon {
-            margin: 0 10px;
+            .mat-icon {
+              margin: 0 10px;
+            }
+          }
+        }
+      }
+
+      .body-sidenav-content {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        overflow-x: hidden;
+
+        lcu-home {
+          height: 100%;
+        }
+
+        .home-container {
+          height: 100%;
+          margin: 5%;
+
+          .home-row {
+            margin-bottom: 15px;
+          }
+
+          .code-name {
+            background-color: map-get($accent, 500);
+            border-radius: 5px;
+            border: 1px solid #2f3646;
+            color: map-get($primary, 500);
+            font-size: 0.8em;
+            margin: 0 3px;
+            padding: 2px;
+          }
+
+          .cli-code {
+            background-color: map-get($accent, 500);
+            border-radius: 5px;
+            border: 1px solid #2f3646;
+            font-weight: bold;
+            margin-left: 10px;
+            padding: 10px;
+          }
+
+          a {
+            color: map-get($primary, 500);
+
+            &:hover {
+              color: map-get($accent, 200);
+            }
+          }
+
+          pre {
+            background-color: map-get($accent, 500);
+            border-radius: 5px;
+            border: 1px solid #2f3646;
+            border-left: 3px solid map-get($primary, 500);
+            page-break-inside: avoid;
+            line-height: 1.6;
+            max-width: 100%;
+            overflow: auto;
+            display: block;
+            word-wrap: break-word;
           }
         }
       }
     }
 
-    .body-sidenav-content {
-      align-items: center;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      overflow-x: hidden;
-    }
-  }
+    .lcu-charts-footer {
+      .mat-toolbar {
+        height: $lcu-charts-footer-height;
+        justify-content: space-between;
 
-  .lcu-footer {
-    .mat-toolbar {
-      height: 40px;
-      justify-content: space-between;
-
-      small {
-        font-size: 0.5em;
-        line-height: 1.3em;
+        small {
+          font-size: 0.5em;
+          line-height: 1.3em;
+        }
       }
     }
   }

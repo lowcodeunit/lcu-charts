@@ -1,88 +1,184 @@
-<h1>LcuCharts</h1>
+<div fxLayout="column" class="home-container">
 
-<p>This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.4.</p>
+  <h1>Welcome to LCU-Charts</h1>
+  <div fxLayout="column">
+    <div fxLayout="row" class="home-row">
+      LCU-Charts is a Angular Charting and Graphing Library based on and influenced by&nbsp;<a href="https://github.com/swimlane/ngx-charts">Ngx-charts</a>.
+    </div>
 
-<h2>Development server</h2>
+    <div fxLayout="row" class="home-row">
+      This library began as a 'Fork' of Ngx-charts in order to extend features in the library to use in Fathym's Low Code Framework.
+      LCU-Charts was then built into a Low Code Unit (LCU), following the best practices and architecture of Fathym. This LCU is open
+      source, and can be installed as a dependency in any Angular project.
+    </div>
 
-<p>Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.</p>
+    <div fxLayout="row" class="home-row">
+      Start by checking out our&nbsp;<a routerLink="/charts/simple-line-chart" (click)="onExampleClick()">Simple Line Chart</a>, as well as browsing the rest of the LCU-Charts library.
+    </div>
+  </div>
 
- <h2>Code scaffolding</h2>
+  <div fxLayout="column">
+    <h1>Installing</h1>
+    <div fxLayout="row" class="home-row">
+      In your Angular project directory, run the following command to install the latest version of LCU-charts:
+    </div>
+    <div fxLayout="row" class="home-row">
+      <code class="cli-code">npm install @lowcodeunit/lcu-charts --save</code>
+    </div>
+  </div>
 
-<p>Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.</p>
+  <div fxLayout="column">
+    <h1>Setup</h1>
+    <div fxLayout="row" class="home-row">
+      In your <span class="code-name">app.module.ts</span> file, add the 'LcuChartsModule' to your imports array like so:
+    </div>
+    <div fxLayout="row" class="home-row">
+      <pre>
+        <code>
+      import {{ '{' }} NgModule {{ '}' }} from '@angular/core';
+      import {{ '{' }} AppComponent {{ '}' }} from './app.component';
+      import {{ '{' }} LcuChartsModule {{ '}' }} from '@lowcodeunit/lcu-charts-common';
 
-<h2>Build</h2>
+      @NgModule({{ '{' }}
+        declarations: [
+          AppComponent
+        ],
+        imports: [
+          LcuChartsModule
+        ],
+        bootstrap: [AppComponent]
+      {{ '}' }})
+      export class AppModule {{ '{' }} {{ '}' }}
+        </code>
+      </pre>
+    </div>
+  </div>
 
-<p>Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.</p>
+  <div fxLayout="column">
+    <h1>Implementation</h1>
+    <div fxLayout="row" class="home-row">
+      In your template, add the chart of your choice with the relative options in your ts file. For example:
+    </div>
+    <div fxLayout="row" class="home-row">
+      <div fxLayout="column" fxFlex="30%">
+        <span class="code-name">app.component.html</span>
+        <pre style="height: 100%; margin-right: 15px;">
+          <code>
+      &lt;lcu-charts-pie-chart-simple
+        class="chart-container"
+        [animations]="animations"
+        [arcWidth]="arcWidth"
+        [doughnut]="doughnut"
+        [explodeSlices]="explodeSlices"
+        [gradient]="gradient"
+        [labels]="showLabels"
+        [legendPosition]="legendPosition"
+        [legendTitle]="legendTitle"
+        [legend]="showLegend"
+        [results]="single"
+        [scheme]="colorScheme"
+        [tooltipDisabled]="tooltipDisabled"
+        [view]="view"
+        (activate)="activate($event)"
+        (deactivate)="deactivate($event)"
+        (select)="select($event)"&gt;
+      &lt;/lcu-charts-pie-chart-simple&gt;
+          </code>
+        </pre>
+      </div>
+      <div fxLayout="column" fxFlex="70%">
+        <span class="code-name">app.component.ts</span>
+        <pre>
+          <code>
+      import {{ '{' }} Component, OnInit {{ '}' }} from '@angular/core';
+      import {{ '{' }} colorSets, formatLabel, escapeLabel {{ '}' }} from '@lowcodeunit/lcu-charts-common';
+      import {{ '{' }} single {{ '}' }} from '../../data';
 
-<h2>Running unit tests</h2>
+      @Component({{ '{' }}
+        selector: 'app-root',
+        templateUrl: './app.component.html',
+        styleUrls: ['./app.component.scss']
+      {{ '}' }})
+      export class AppComponent implements OnInit {{ '{' }}
+        public animations: boolean = true;
+        public arcWidth: number = 0.25;
+        public colorScheme: any;
+        public doughnut: boolean = false;
+        public explodeSlices: boolean = false;
+        public gradient: boolean = false;
+        public legendPosition: string = 'right';
+        public legendTitle: string = '';
+        public showLabels: boolean = true;
+        public showLegend: boolean = true;
+        public single: any[];
+        public tooltipDisabled: boolean = false;
+        public view: any[];
 
-<p>Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).</p>
+        private colorSets: any;
+        private fitContainer: boolean = false;
+        private height: number = 400;
+        private width: number = 1000;
 
-<h2>Running end-to-end tests</h2>
+        constructor() {{ '{' }}
+          Object.assign(this, {{ '{' }}
+            colorSets,
+            single
+          {{ '}' }});
+          this.colorScheme = this.colorSets.find(s => s.name === 'fathym');
+        {{ '}' }}
 
-<p>Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).</p>
-
-<h2>Further help</h2>
-
-<p>To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).</p>
-
-<h2>Formatting Y-axis</h2>
-
-<p>The Y-axis is built using multiple inputs to the lcu-charts:
-    yAxisTickFormatting - allows you to customize the values displayed on the y-axis by calling a method that formats the data you are using.
-
-    EX: 
-      This will assign a string value to represnt the numerical value of the data (only in the Y-axis not the values displayed in the tooltip)
-    </p>
-    <code>
-      public yAxisTickFormatting = this.FormatYAxisTicks.bind(this);<br><br>
-      
-      public FormatYAxisTicks(value: any){{ '{' }}<br>
-        if(value &lt=0 ){{ '{' }}<br>
-            return "Freezing";<br>
-            {{ '}' }}<br>
-        if(value >0 && value&lt=32){{ '{' }}<br>
-           return "Cold";<br>
-           {{ '}' }}<br>
-        if(value >32 && value &lt=70){{ '{' }}<br>
-            return "Warm";<br>
-            {{ '}' }}<br>
-        if(value>70){{ '{' }}<br>
-            return "Hot";<br>
-      {{ '}' }}<br>
-      {{ '}' }}<br>
-    </code>
-
-    <p>However, if you do not have data that meets all the thresholds those values will be left out if you have autoScale=true.
-
-    autoScale is a boolean value where if true, the y-axis will fit to the data, making the graphs appear different each time the graph is generated based on the data passed in. If you want the y-axis to be consistent each time the graph is produced you will need autoScale to be false.
-
-    However, this will result in duplicate string values appearing on the y-axis depending on the range of data. To fix this issue you will need to use another input value called, yAxisTicks.
-
-    yAxisTicks allows you to pass in an array of values in which you want only those values to display on the y-axis thus eliminating duplicates appearing on the y-axis.
-</p>
-<h2>X-axis date format</h2>
-
-<p>The x-axis in many cases will be used for Date/Time. To simplify formatting for dates we added two inputs that allow this. xAxisIsDate and xAxisDateFormat:
-    xAxisIsDate is a boolean value to let the component know that the x-Axis is a date and the xAxisDateFormat specifies the format via the DateFormatModel.
-    
-    EX:</p>
-
-    <code>    xAxisDateFormat: DateFormatModel = {{ '{' }}<br>
-            DayOfWeek: true, <br>
-            Month: false, <br>
-            DayOfMonth:true, <br>
-            Year:false, <br>
-            Time: true, <br>
-            TimeZone: false<br>
-        {{ '}' }};<br>
-    </code>
-<p>The dateformat allows you to turn on/off certian properties found when Date.toString() is called.
-
-If the x-axis is a date and neither of these inputs are used, it will default to the ngx-charts date format which will only display time if the date is the same, limiting the amount of info your graph portrays.
-</p>
-<h2>Units</h2>
-
-    <p>Often times when we are graphing, the values have units associated with them.
-    Before if we wanted to pass units ex a degree symbol, to the tooltip we would have to use ng-template to access and modify the tooltip. However now we can use the input 'units' which is of type string to pass the units from the project all the way to the tooltip-area making it easier for the user to define a unit and pass it as an input.
-</p>
+        public ngOnInit(): void {{ '{' }}
+          if (!this.fitContainer) {{ '{' }}
+            this.view = [this.width, this.height];
+          {{ '}' }}
+        {{ '}' }}
+      {{ '}' }}
+          </code>
+        </pre>
+      </div>
+    </div>
+  </div>
+  <div fxLayout="column">
+    <h1>Configuration</h1>
+    <h2>Formatting Y-axis</h2>
+    <div fxLayout="row" class="home-row">
+      The Y-axis is built using multiple inputs to the lcu-charts.
+    </div>
+    <div fxLayout="row" class="home-row">
+      <span class="code-name">yAxisTickFormatting</span> - allows you to customize the values displayed on the y-axis
+      by calling a method that formats the data you are using. For example, this will assign a string value to
+      represent the numerical value of the data (only in the Y-axis not the values displayed in the tooltip).
+    </div>
+    <div fxLayout="row" class="home-row">
+      <span class="code-name">autoScale</span> - a boolean value where if true, the y-axis will fit to the data, making the graphs
+      appear different each time the graph is generated based on the data passed in. If you want the y-axis to be consistent each time
+      the graph is produced, you will need to set autoScale to false.
+    </div>
+    <div fxLayout="row" class="home-row">
+      <span class="code-name">yAxisTicks</span> - allows you to pass in an array of values in which you want only those values to display
+      on the y-axis thus eliminating duplicates appearing on the y-axis.
+    </div>
+  </div>
+  <div fxLayout="column">
+    <h2>Formatting X-axis</h2>
+    <div fxLayout="row" class="home-row">
+      The x-axis in many cases will be used for Date/Time. To simplify formatting for dates we added two inputs that allow this.
+    </div>
+    <div fxLayout="row" class="home-row">
+      <span class="code-name">xAxisIsDate</span> - a boolean value to let the component know that the x-Axis is a date.
+    </div>
+    <div fxLayout="row" class="home-row">
+      <span class="code-name">xAxisDateFormat</span> - specifies the format via the DateFormatModel.
+    </div>
+  </div>
+  <div fxLayout="column">
+    <h2>Custom Units</h2>
+    <div fxLayout="row" class="home-row">
+      When a value has a unit of measurement associated with it, we can pass the unit from the parent component all the way to the tooltip,
+      making it easier for the user to define a unit and pass it as an input.
+    </div>
+    <div fxLayout="row" class="home-row">
+      <span class="code-name">units</span> - a string value that defines the unit of measurement to use.
+    </div>
+  </div>
+</div>

@@ -1,270 +1,226 @@
-<div id="line-charts-cluster">
-    <div>
-        <lcu-charts-line-chart-simple
-            class="chart-container"
-            [animations]="animations"
-            [autoScale]="autoScale"
-            [backgroundGradientConfigs]="backgroundGradientConfigs"
-            [curve]="curve"
-            [gradient]="gradient"
-            [legendPosition]="legendPosition"
-            [legendTitle]="legendTitle"
-            [legend]="showLegend"
-            [maxXAxisTickLength]="maxXAxisTickLength"
-            [maxYAxisTickLength]="maxYAxisTickLength"
-            [rangeFillOpacity]="rangeFillOpacity"
-            [results]="weatherData"
-            [rotateXAxisTicks]="rotateXAxisTicks"
-            [roundDomains]="roundDomains"
-            [schemeType]="schemeType"
-            [scheme]="colorScheme"
-            [showGridLines]="showGridLines"
-            [showXAxisLabel]="showXAxisLabel"
-            [showYAxisLabel]="showYAxisLabel"
-            [timeline]="timeline"
-            [tooltipDisabled]="tooltipDisabled"
-            [trimXAxisTicks]="trimXAxisTicks"
-            [trimYAxisTicks]="trimYAxisTicks"
-            [view]="view"
-            [xAxisDateFormat]="xAxisDateFormat"
-            [xAxisIsDate]="xAxisIsDate"
-            [xAxisLabel]="xAxisLabel"
-            [xAxisTickFormatting]="xAxisTickFormatting"
-            [xAxis]="showXAxis"
-            [xScaleMax]="xScaleMax"
-            [xScaleMin]="xScaleMin"
-            [yAxisLabel]="yAxisLabel"
-            [yAxisTickFormatting]="yAxisTickFormatting"
-            [yAxisTicks]="yAxisTicks"
-            [yAxis]="showYAxis"
-            [yScaleMax]="yScaleMax"
-            [yScaleMin]="yScaleMin"
-    
-            [showPercentage]="showPercentage"
-            [units]="yUnits"
-    
-            (activate)="activate($event)"
-            (deactivate)="deactivate($event)"
-            (legendLabelClick)="onLegendLabelClick($event)"
-            (select)="select($event)"
-            
-            [forceManualXHover]="ManualHover"
-            (HoveredVerticalChange)="hoveredVerticalChange($event)">
-        <!-- tooltip with single value-->
-            <ng-template #tooltipTemplate let-model="model">
-            <div class="tooltip-item">
-                {{model.series}}: {{model.value}}{{yUnits}}
-            </div> 
-            </ng-template>
-        <!-- tooltip with multiple value
-            <ng-template #seriesTooltipTemplate let-model="model">
-            <div *ngFor="let item of model" class="tooltip-item">
-                <span class="tooltip-item-color" [style.background-color]="item.color"></span>
-                {{item.series}}: {{item.value}}
-            </div>     
-            </ng-template> -->
-    
-        </lcu-charts-line-chart-simple>
+<div fxLayout="column" class="chart-sync-wrapper">
+  <div fxLayout="row" class="chart-sync-row">
+    <div fxLayout="column" class="chart-sync-col">
+      <lcu-charts-line-chart-simple
+        class="chart-container"
+        [animations]="animations"
+        [autoScale]="autoScale"
+        [backgroundGradientConfigs]="backgroundGradientConfigs"
+        [curve]="curve"
+        [forceManualXHover]="ManualHover"
+        [gradient]="gradient"
+        [legendPosition]="legendPosition"
+        [legendTitle]="legendTitle"
+        [legend]="showLegend"
+        [maxXAxisTickLength]="maxXAxisTickLength"
+        [maxYAxisTickLength]="maxYAxisTickLength"
+        [rangeFillOpacity]="rangeFillOpacity"
+        [results]="weatherData"
+        [rotateXAxisTicks]="rotateXAxisTicks"
+        [roundDomains]="roundDomains"
+        [schemeType]="schemeType"
+        [scheme]="colorScheme"
+        [showGridLines]="showGridLines"
+        [showPercentage]="showPercentage"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [timeline]="timeline"
+        [tooltipDisabled]="tooltipDisabled"
+        [trimXAxisTicks]="trimXAxisTicks"
+        [trimYAxisTicks]="trimYAxisTicks"
+        [units]="yUnits"
+        [view]="view"
+        [xAxisDateFormat]="xAxisDateFormat"
+        [xAxisIsDate]="xAxisIsDate"
+        [xAxisLabel]="xAxisLabel"
+        [xAxisTickFormatting]="xAxisTickFormatting"
+        [xAxis]="showXAxis"
+        [xScaleMax]="xScaleMax"
+        [xScaleMin]="xScaleMin"
+        [yAxisLabel]="yAxisLabel"
+        [yAxisTickFormatting]="yAxisTickFormatting"
+        [yAxisTicks]="yAxisTicks"
+        [yAxis]="showYAxis"
+        [yScaleMax]="yScaleMax"
+        [yScaleMin]="yScaleMin"
+        (activate)="activate($event)"
+        (deactivate)="deactivate($event)"
+        (HoveredVerticalChange)="hoveredVerticalChange($event)"
+        (legendLabelClick)="onLegendLabelClick($event)"
+        (select)="select($event)">
+        <ng-template #tooltipTemplate let-model="model">
+          <div class="tooltip-item">
+              {{model.series}}: {{model.value}}{{yUnits}}
+          </div>
+        </ng-template>
+      </lcu-charts-line-chart-simple>
     </div>
-    <div>
-        <lcu-charts-line-chart-simple
-            class="chart-container"
-            [animations]="animations"
-            [autoScale]="autoScale"
-            [backgroundGradientConfigs]="backgroundGradientConfigs"
-            [curve]="curve"
-            [gradient]="gradient"
-            [legendPosition]="legendPosition"
-            [legendTitle]="legendTitle"
-            [legend]="showLegend"
-            [maxXAxisTickLength]="maxXAxisTickLength"
-            [maxYAxisTickLength]="maxYAxisTickLength"
-            [rangeFillOpacity]="rangeFillOpacity"
-            [results]="weatherData"
-            [rotateXAxisTicks]="rotateXAxisTicks"
-            [roundDomains]="roundDomains"
-            [schemeType]="schemeType"
-            [scheme]="colorScheme"
-            [showGridLines]="showGridLines"
-            [showXAxisLabel]="showXAxisLabel"
-            [showYAxisLabel]="showYAxisLabel"
-            [timeline]="timeline"
-            [tooltipDisabled]="tooltipDisabled"
-            [trimXAxisTicks]="trimXAxisTicks"
-            [trimYAxisTicks]="trimYAxisTicks"
-            [view]="view"
-            [xAxisDateFormat]="xAxisDateFormat"
-            [xAxisIsDate]="xAxisIsDate"
-            [xAxisLabel]="xAxisLabel"
-            [xAxisTickFormatting]="xAxisTickFormatting"
-            [xAxis]="showXAxis"
-            [xScaleMax]="xScaleMax"
-            [xScaleMin]="xScaleMin"
-            [yAxisLabel]="yAxisLabel"
-            [yAxisTickFormatting]="yAxisTickFormatting"
-            [yAxisTicks]="yAxisTicks"
-            [yAxis]="showYAxis"
-            [yScaleMax]="yScaleMax"
-            [yScaleMin]="yScaleMin"
-    
-            [showPercentage]="showPercentage"
-            [units]="yUnits"
-    
-            (activate)="activate($event)"
-            (deactivate)="deactivate($event)"
-            (legendLabelClick)="onLegendLabelClick($event)"
-            (select)="select($event)"
-            
-            [forceManualXHover]="ManualHover"
-            (HoveredVerticalChange)="hoveredVerticalChange($event)">
-        <!-- tooltip with single value-->
-            <ng-template #tooltipTemplate let-model="model">
-            <div class="tooltip-item">
-                {{model.series}}: {{model.value}}{{yUnits}}
-            </div> 
-            </ng-template>
-        <!-- tooltip with multiple value
-            <ng-template #seriesTooltipTemplate let-model="model">
-            <div *ngFor="let item of model" class="tooltip-item">
-                <span class="tooltip-item-color" [style.background-color]="item.color"></span>
-                {{item.series}}: {{item.value}}
-            </div>     
-            </ng-template> -->
-    
-        </lcu-charts-line-chart-simple>
+    <div fxLayout="column" class="chart-sync-col">
+      <lcu-charts-line-chart-simple
+        class="chart-container"
+        [animations]="animations"
+        [autoScale]="autoScale"
+        [backgroundGradientConfigs]="backgroundGradientConfigs"
+        [curve]="curve"
+        [forceManualXHover]="ManualHover"
+        [gradient]="gradient"
+        [legendPosition]="legendPosition"
+        [legendTitle]="legendTitle"
+        [legend]="showLegend"
+        [maxXAxisTickLength]="maxXAxisTickLength"
+        [maxYAxisTickLength]="maxYAxisTickLength"
+        [rangeFillOpacity]="rangeFillOpacity"
+        [results]="weatherData"
+        [rotateXAxisTicks]="rotateXAxisTicks"
+        [roundDomains]="roundDomains"
+        [schemeType]="schemeType"
+        [scheme]="colorScheme"
+        [showGridLines]="showGridLines"
+        [showPercentage]="showPercentage"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [timeline]="timeline"
+        [tooltipDisabled]="tooltipDisabled"
+        [trimXAxisTicks]="trimXAxisTicks"
+        [trimYAxisTicks]="trimYAxisTicks"
+        [units]="yUnits"
+        [view]="view"
+        [xAxisDateFormat]="xAxisDateFormat"
+        [xAxisIsDate]="xAxisIsDate"
+        [xAxisLabel]="xAxisLabel"
+        [xAxisTickFormatting]="xAxisTickFormatting"
+        [xAxis]="showXAxis"
+        [xScaleMax]="xScaleMax"
+        [xScaleMin]="xScaleMin"
+        [yAxisLabel]="yAxisLabel"
+        [yAxisTickFormatting]="yAxisTickFormatting"
+        [yAxisTicks]="yAxisTicks"
+        [yAxis]="showYAxis"
+        [yScaleMax]="yScaleMax"
+        [yScaleMin]="yScaleMin"
+        (activate)="activate($event)"
+        (deactivate)="deactivate($event)"
+        (HoveredVerticalChange)="hoveredVerticalChange($event)"
+        (legendLabelClick)="onLegendLabelClick($event)"
+        (select)="select($event)">
+        <ng-template #tooltipTemplate let-model="model">
+          <div class="tooltip-item">
+              {{model.series}}: {{model.value}}{{yUnits}}
+          </div>
+        </ng-template>
+      </lcu-charts-line-chart-simple>
     </div>
-    <div>
-        <lcu-charts-line-chart-simple
-            class="chart-container"
-            [animations]="animations"
-            [autoScale]="autoScale"
-            [backgroundGradientConfigs]="backgroundGradientConfigs"
-            [curve]="curve"
-            [gradient]="gradient"
-            [legendPosition]="legendPosition"
-            [legendTitle]="legendTitle"
-            [legend]="showLegend"
-            [maxXAxisTickLength]="maxXAxisTickLength"
-            [maxYAxisTickLength]="maxYAxisTickLength"
-            [rangeFillOpacity]="rangeFillOpacity"
-            [results]="weatherData"
-            [rotateXAxisTicks]="rotateXAxisTicks"
-            [roundDomains]="roundDomains"
-            [schemeType]="schemeType"
-            [scheme]="colorScheme"
-            [showGridLines]="showGridLines"
-            [showXAxisLabel]="showXAxisLabel"
-            [showYAxisLabel]="showYAxisLabel"
-            [timeline]="timeline"
-            [tooltipDisabled]="tooltipDisabled"
-            [trimXAxisTicks]="trimXAxisTicks"
-            [trimYAxisTicks]="trimYAxisTicks"
-            [view]="view"
-            [xAxisDateFormat]="xAxisDateFormat"
-            [xAxisIsDate]="xAxisIsDate"
-            [xAxisLabel]="xAxisLabel"
-            [xAxisTickFormatting]="xAxisTickFormatting"
-            [xAxis]="showXAxis"
-            [xScaleMax]="xScaleMax"
-            [xScaleMin]="xScaleMin"
-            [yAxisLabel]="yAxisLabel"
-            [yAxisTickFormatting]="yAxisTickFormatting"
-            [yAxisTicks]="yAxisTicks"
-            [yAxis]="showYAxis"
-            [yScaleMax]="yScaleMax"
-            [yScaleMin]="yScaleMin"
-    
-            [showPercentage]="showPercentage"
-            [units]="yUnits"
-    
-            (activate)="activate($event)"
-            (deactivate)="deactivate($event)"
-            (legendLabelClick)="onLegendLabelClick($event)"
-            (select)="select($event)"
-            
-            [forceManualXHover]="ManualHover"
-            (HoveredVerticalChange)="hoveredVerticalChange($event)">
-        <!-- tooltip with single value-->
-            <ng-template #tooltipTemplate let-model="model">
-            <div class="tooltip-item">
-                {{model.series}}: {{model.value}}{{yUnits}}
-            </div> 
-            </ng-template>
-        <!-- tooltip with multiple value
-            <ng-template #seriesTooltipTemplate let-model="model">
-            <div *ngFor="let item of model" class="tooltip-item">
-                <span class="tooltip-item-color" [style.background-color]="item.color"></span>
-                {{item.series}}: {{item.value}}
-            </div>     
-            </ng-template> -->
-    
-        </lcu-charts-line-chart-simple>
+  </div>
+  <div fxLayout="row" class="chart-sync-row">
+    <div fxLayout="column" class="chart-sync-col">
+      <lcu-charts-line-chart-simple
+        class="chart-container"
+        [animations]="animations"
+        [autoScale]="autoScale"
+        [backgroundGradientConfigs]="backgroundGradientConfigs"
+        [curve]="curve"
+        [forceManualXHover]="ManualHover"
+        [gradient]="gradient"
+        [legendPosition]="legendPosition"
+        [legendTitle]="legendTitle"
+        [legend]="showLegend"
+        [maxXAxisTickLength]="maxXAxisTickLength"
+        [maxYAxisTickLength]="maxYAxisTickLength"
+        [rangeFillOpacity]="rangeFillOpacity"
+        [results]="weatherData"
+        [rotateXAxisTicks]="rotateXAxisTicks"
+        [roundDomains]="roundDomains"
+        [schemeType]="schemeType"
+        [scheme]="colorScheme"
+        [showGridLines]="showGridLines"
+        [showPercentage]="showPercentage"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [timeline]="timeline"
+        [tooltipDisabled]="tooltipDisabled"
+        [trimXAxisTicks]="trimXAxisTicks"
+        [trimYAxisTicks]="trimYAxisTicks"
+        [units]="yUnits"
+        [view]="view"
+        [xAxisDateFormat]="xAxisDateFormat"
+        [xAxisIsDate]="xAxisIsDate"
+        [xAxisLabel]="xAxisLabel"
+        [xAxisTickFormatting]="xAxisTickFormatting"
+        [xAxis]="showXAxis"
+        [xScaleMax]="xScaleMax"
+        [xScaleMin]="xScaleMin"
+        [yAxisLabel]="yAxisLabel"
+        [yAxisTickFormatting]="yAxisTickFormatting"
+        [yAxisTicks]="yAxisTicks"
+        [yAxis]="showYAxis"
+        [yScaleMax]="yScaleMax"
+        [yScaleMin]="yScaleMin"
+        (activate)="activate($event)"
+        (deactivate)="deactivate($event)"
+        (HoveredVerticalChange)="hoveredVerticalChange($event)"
+        (legendLabelClick)="onLegendLabelClick($event)"
+        (select)="select($event)">
+        <ng-template #tooltipTemplate let-model="model">
+          <div class="tooltip-item">
+              {{model.series}}: {{model.value}}{{yUnits}}
+          </div>
+        </ng-template>
+      </lcu-charts-line-chart-simple>
     </div>
-    <div>
-        <lcu-charts-line-chart-simple
-            class="chart-container"
-            [animations]="animations"
-            [autoScale]="autoScale"
-            [backgroundGradientConfigs]="backgroundGradientConfigs"
-            [curve]="curve"
-            [gradient]="gradient"
-            [legendPosition]="legendPosition"
-            [legendTitle]="legendTitle"
-            [legend]="showLegend"
-            [maxXAxisTickLength]="maxXAxisTickLength"
-            [maxYAxisTickLength]="maxYAxisTickLength"
-            [rangeFillOpacity]="rangeFillOpacity"
-            [results]="weatherData"
-            [rotateXAxisTicks]="rotateXAxisTicks"
-            [roundDomains]="roundDomains"
-            [schemeType]="schemeType"
-            [scheme]="colorScheme"
-            [showGridLines]="showGridLines"
-            [showXAxisLabel]="showXAxisLabel"
-            [showYAxisLabel]="showYAxisLabel"
-            [timeline]="timeline"
-            [tooltipDisabled]="tooltipDisabled"
-            [trimXAxisTicks]="trimXAxisTicks"
-            [trimYAxisTicks]="trimYAxisTicks"
-            [view]="view"
-            [xAxisDateFormat]="xAxisDateFormat"
-            [xAxisIsDate]="xAxisIsDate"
-            [xAxisLabel]="xAxisLabel"
-            [xAxisTickFormatting]="xAxisTickFormatting"
-            [xAxis]="showXAxis"
-            [xScaleMax]="xScaleMax"
-            [xScaleMin]="xScaleMin"
-            [yAxisLabel]="yAxisLabel"
-            [yAxisTickFormatting]="yAxisTickFormatting"
-            [yAxisTicks]="yAxisTicks"
-            [yAxis]="showYAxis"
-            [yScaleMax]="yScaleMax"
-            [yScaleMin]="yScaleMin"
-    
-            [showPercentage]="showPercentage"
-            [units]="yUnits"
-    
-            (activate)="activate($event)"
-            (deactivate)="deactivate($event)"
-            (legendLabelClick)="onLegendLabelClick($event)"
-            (select)="select($event)"
-            
-            [forceManualXHover]="ManualHover"
-            (HoveredVerticalChange)="hoveredVerticalChange($event)">
-        <!-- tooltip with single value-->
-            <ng-template #tooltipTemplate let-model="model">
-            <div class="tooltip-item">
-                {{model.series}}: {{model.value}}{{yUnits}}
-            </div> 
-            </ng-template>
-        <!-- tooltip with multiple value
-            <ng-template #seriesTooltipTemplate let-model="model">
-            <div *ngFor="let item of model" class="tooltip-item">
-                <span class="tooltip-item-color" [style.background-color]="item.color"></span>
-                {{item.series}}: {{item.value}}
-            </div>     
-            </ng-template> -->
-    
-        </lcu-charts-line-chart-simple>
+    <div fxLayout="column" class="chart-sync-col">
+      <lcu-charts-line-chart-simple
+        class="chart-container"
+        [animations]="animations"
+        [autoScale]="autoScale"
+        [backgroundGradientConfigs]="backgroundGradientConfigs"
+        [curve]="curve"
+        [forceManualXHover]="ManualHover"
+        [gradient]="gradient"
+        [legendPosition]="legendPosition"
+        [legendTitle]="legendTitle"
+        [legend]="showLegend"
+        [maxXAxisTickLength]="maxXAxisTickLength"
+        [maxYAxisTickLength]="maxYAxisTickLength"
+        [rangeFillOpacity]="rangeFillOpacity"
+        [results]="weatherData"
+        [rotateXAxisTicks]="rotateXAxisTicks"
+        [roundDomains]="roundDomains"
+        [schemeType]="schemeType"
+        [scheme]="colorScheme"
+        [showGridLines]="showGridLines"
+        [showPercentage]="showPercentage"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [timeline]="timeline"
+        [tooltipDisabled]="tooltipDisabled"
+        [trimXAxisTicks]="trimXAxisTicks"
+        [trimYAxisTicks]="trimYAxisTicks"
+        [units]="yUnits"
+        [view]="view"
+        [xAxisDateFormat]="xAxisDateFormat"
+        [xAxisIsDate]="xAxisIsDate"
+        [xAxisLabel]="xAxisLabel"
+        [xAxisTickFormatting]="xAxisTickFormatting"
+        [xAxis]="showXAxis"
+        [xScaleMax]="xScaleMax"
+        [xScaleMin]="xScaleMin"
+        [yAxisLabel]="yAxisLabel"
+        [yAxisTickFormatting]="yAxisTickFormatting"
+        [yAxisTicks]="yAxisTicks"
+        [yAxis]="showYAxis"
+        [yScaleMax]="yScaleMax"
+        [yScaleMin]="yScaleMin"
+        (activate)="activate($event)"
+        (deactivate)="deactivate($event)"
+        (HoveredVerticalChange)="hoveredVerticalChange($event)"
+        (legendLabelClick)="onLegendLabelClick($event)"
+        (select)="select($event)">
+        <ng-template #tooltipTemplate let-model="model">
+        <div class="tooltip-item">
+            {{model.series}}: {{model.value}}{{yUnits}}
+        </div>
+        </ng-template>
+      </lcu-charts-line-chart-simple>
     </div>
+  </div>
 </div>

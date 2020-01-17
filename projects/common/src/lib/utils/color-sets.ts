@@ -1,5 +1,22 @@
 export let colorSets = [
   {
+    name: 'fathym',
+    selectable: true,
+    group: 'Ordinal',
+    domain: [
+      '#ef4351',
+      '#67c7c5',
+      '#fbfcf3',
+      '#4a918e',
+      '#3f68a9',
+      '#a4bab3',
+      '#282d35',
+      '#dfeff2',
+      '#ab111d',
+      '#9cd8d7'
+    ]
+  },
+  {
     name: 'vivid',
     selectable: true,
     group: 'Ordinal',

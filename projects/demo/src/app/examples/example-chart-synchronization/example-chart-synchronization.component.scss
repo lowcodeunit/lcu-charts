@@ -1,11 +1,9 @@
-#line-charts-cluster {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    height: 100vh;
-    div {
-        height: 50%;
-        width: 50%;
-        max-width: calc(100% * (1/2));
+.chart-sync-wrapper {
+  .chart-sync-row {
+    .chart-sync-col {
+      border: 1px solid #2f3646;
+      margin: 5px;
+      padding: 5px;
     }
+  }
 }
