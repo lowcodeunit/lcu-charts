@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { colorSets } from '@lowcodeunit/lcu-charts-common';
 import * as shape from 'd3-shape';
-import { weatherData } from '../../data';
+import { generateData } from '../../data';
 
 @Component({
   selector: 'lcu-demo-area-chart-simple',
@@ -10,14 +10,17 @@ import { weatherData } from '../../data';
 })
 export class DemoAreaChartSimpleComponent implements OnInit {
   public animations: boolean = true;
-  public autoScale: boolean = true;
+  public autoScale: boolean = false;
   public colorScheme: any;
   public curve: any;
+  public dateData: any[];
+  public dateDataWithRange: any[];
   public gradient: boolean = false;
   public legendPosition: string = 'right';
-  public legendTitle: string = '';
+  public legendTitle: string = 'Country';
   public maxXAxisTickLength: number = 16;
   public maxYAxisTickLength: number = 16;
+  public range: boolean = false;
   public rangeFillOpacity: number = 0.15;
   public rotateXAxisTicks: boolean = true;
   public roundDomains: boolean = false;
@@ -28,16 +31,15 @@ export class DemoAreaChartSimpleComponent implements OnInit {
   public showXAxisLabel: boolean = true;
   public showYAxis: boolean = true;
   public showYAxisLabel: boolean = true;
-  public timeline: boolean = false;
+  public timeline: boolean = true;
   public tooltipDisabled: boolean = false;
   public trimXAxisTicks: boolean = true;
   public trimYAxisTicks: boolean = true;
   public view: any[];
-  public weatherData: any[];
-  public xAxisLabel: string = 'Time';
+  public xAxisLabel: string = 'Census Date';
   public xScaleMax: any;
   public xScaleMin: any;
-  public yAxisLabel: string = 'Temperature (F)';
+  public yAxisLabel: string = 'GDP Per Capita';
   public yScaleMax: number;
   public yScaleMin: number;
 
@@ -48,12 +50,21 @@ export class DemoAreaChartSimpleComponent implements OnInit {
   private height: number = 400;
   private width: number = 1000;
 
+  get dateDataWithOrWithoutRange() {
+    if (this.range) {
+      return this.dateDataWithRange;
+    } else {
+      return this.dateData;
+    }
+  }
+
   constructor() {
     Object.assign(this, {
-      colorSets,
-      weatherData
+      colorSets
     });
     this.setColorScheme('cool');
+    this.dateData = generateData(5, false);
+    this.dateDataWithRange = generateData(2, true);
   }
 
   public ngOnInit(): void {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { colorSets, DateFormatModel } from '@lowcodeunit/lcu-charts-common';
+import { colorSets } from '@lowcodeunit/lcu-charts-common';
 import * as shape from 'd3-shape';
-import { weatherData } from '../../data';
+import { generateData } from '../../data';
 
 @Component({
   selector: 'lcu-demo-line-chart',
@@ -13,11 +13,14 @@ export class DemoLineChartComponent implements OnInit {
   public autoScale: boolean = false;
   public colorScheme: any;
   public curve: any;
+  public dateData: any[];
+  public dateDataWithRange: any[];
   public gradient: boolean = false;
   public legendPosition: string = 'right';
-  public legendTitle: string = '';
+  public legendTitle: string = 'Country';
   public maxXAxisTickLength: number = 16;
   public maxYAxisTickLength: number = 16;
+  public range: boolean = false;
   public rangeFillOpacity: number = 0.15;
   public rotateXAxisTicks: boolean = true;
   public roundDomains: boolean = false;
@@ -28,31 +31,17 @@ export class DemoLineChartComponent implements OnInit {
   public showXAxisLabel: boolean = true;
   public showYAxis: boolean = true;
   public showYAxisLabel: boolean = true;
-  public timeline: boolean = false;
+  public timeline: boolean = true;
   public tooltipDisabled: boolean = false;
   public trimXAxisTicks: boolean = true;
   public trimYAxisTicks: boolean = true;
   public view: any[];
-  public weatherData: any[];
-  public xAxisLabel: string = 'Time';
+  public xAxisLabel: string = 'Census Date';
   public xScaleMax: any;
   public xScaleMin: any;
-  public yAxisLabel: string = 'Temperature (F)';
-  public yScaleMax: number = 100;
+  public yAxisLabel: string = 'GDP Per Capita';
+  public yScaleMax: number;
   public yScaleMin: number;
-  public yUnits: string = "\u00B0";
-  public backgroundGradientConfigs: BackgroundGradientConfigurationNode[] = [];
-  public showPercentage: boolean = false;
-  public yAxisTickFormatting = this.FormatYAxisTicks.bind(this);
-  public yAxisTicks: Array<any> = [0,30,70,100];
-  public xAxisIsDate: boolean = true;
-  public xAxisDateFormat: DateFormatModel = {DayOfWeek: true, 
-                    Month: false, 
-                    DayOfMonth:true, 
-                    Year:false, 
-                    Time: true, 
-                    TimeZone: false
-                  };
 
   private colorSets: any;
   private curveType: string = 'Linear';
@@ -61,30 +50,22 @@ export class DemoLineChartComponent implements OnInit {
   private height: number = 400;
   private width: number = 1000;
 
+  get dateDataWithOrWithoutRange() {
+    if (this.range) {
+      return this.dateDataWithRange;
+    } else {
+      return this.dateData;
+    }
+  }
+
   constructor() {
     Object.assign(this, {
-      colorSets,
-      weatherData
+      colorSets
     });
     this.setColorScheme('cool');
-    this.setBackgroundGradientConfigs();
+    this.dateData = generateData(5, false);
+    this.dateDataWithRange = generateData(2, true);
   }
-
-  public hoveredVerticalChange(e) {
-    // console.log('message from tooltip - the x value hover has changed to: ', e)
-
-    this.ManualHover = e;
-    // now send it back to the tooltip to manually show that vertical line
-  }
-  
-  public ManualHover: any;
-
-  public onHoverChange(e) {
-    this.ManualHover = e;
-    // console.log('on hover change...: ', e)
-    this.ManualHover = e;
-  }
-
 
 
   public ngOnInit(): void {
@@ -112,31 +93,6 @@ export class DemoLineChartComponent implements OnInit {
     this.curve = this.curves[this.curveType];
   }
 
-  public FormatYAxisTicks(value: any){
-    if(value <=0 ){
-      return "Freezing";
-    }
-    if(value >0 && value<=32){
-      return "Cold";
-    }
-    if(value >32 && value <=70){
-      return "Warm";
-    }
-    if(value>70){
-      return "Hot";
-    }
-  }
-
-  public FormatYAxisTicksDegree(value: any){
-    return value + this.yUnits;
-  }
-
-  public BuildSeriesTooltip(model: any){
-    console.log("model=", model);
-    console.log("type=", model.type())
-  }
-
-
   public activate(data: any): void {
     console.log('Activate', JSON.parse(JSON.stringify(data)));
   }
@@ -161,38 +117,4 @@ export class DemoLineChartComponent implements OnInit {
     this.colorScheme = this.colorSets.find(s => s.name === name);
   }
 
-  protected setBackgroundGradientConfigs() {
-    const backgroundMarker = this.weatherData[0].series;
-
-    backgroundMarker.forEach((ser, idx) => {
-      const idxPercentage = idx * 100 / backgroundMarker.length;
-      if (ser.value > 38) {
-        this.backgroundGradientConfigs.push({
-          offset: idxPercentage,
-          color: 'red'
-        });
-      } else if (ser.value > 33) {
-        this.backgroundGradientConfigs.push({
-          offset: idxPercentage,
-          color: 'orange'
-        });
-      } else {
-        this.backgroundGradientConfigs.push({
-          offset: idxPercentage,
-          color: 'blue'
-        });
-      }
-    });
-  }
-
-}
-
-export class BackgroundGradientConfigurationNode {
-  offset: number;
-  color: string;
-
-  constructor(node: BackgroundGradientConfigurationNode) {
-    this.offset = node.offset;
-    this.color = node.color;
-  }
 }

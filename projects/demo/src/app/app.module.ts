@@ -19,6 +19,7 @@ import { DemoBubbleChartSimpleComponent } from './charts/demo-bubble-chart-simpl
 import { DemoGaugeSimpleComponent } from './charts/demo-gauge-simple/demo-gauge-simple.component';
 import { ExampleChartSynchronizationComponent } from './examples/example-chart-synchronization/example-chart-synchronization.component';
 import { ExampleRealTimeDataComponent } from './examples/example-real-time-data/example-real-time-data.component';
+import { AppEventService } from './app-event.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,7 @@ import { ExampleRealTimeDataComponent } from './examples/example-real-time-data/
     FlexLayoutModule,
     LcuChartsModule
   ],
-  providers: [],
+  providers: [AppEventService],
   bootstrap: [AppComponent],
   exports: [LcuChartsModule]
 })

@@ -1,72 +1,75 @@
-<div [className]="ThemeClass | async" style="height: 100%" fxLayout="column" fxLayoutAlign="start stretch">
-  <div class="lcu-header" fxFlexAlign="stretch" fxLayout="row">
-    <mat-toolbar color="primary">
-      <div class="toolbar-title" fxLayout="row">
-        <a fxFlex class="title-menu" (click)="sidenav.toggle()">
-          <mat-icon>menu</mat-icon>
-        </a>
-        <a fxFlex class="title-text" [routerLink]="'/'">
-          LCU-<strong>Charts</strong>
-          <small class="subtitle">{{ APP_DESCRIPTION }}</small>
-        </a>
-      </div>
-      <span fxFlex="nogrow">
-        <button mat-icon-button [matMenuTriggerFor]="menu">
-          <mat-icon>format_color_fill</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
-          <div *ngFor="let theme of Themes">
-            <div fxLayout="row" fxLayoutGap="10px" fxFlex fxLayoutAlign="start center" mat-menu-item
-              (click)="PickTheme(theme.Color)">
-              <mat-icon [ngClass]="theme.ColorSwatch">{{theme.Icon}}</mat-icon>
-              <span>{{theme.Label}}</span>
+<div [className]="ThemeClass | async" style="height: 100%;">
+  <div class="lcu-charts-container" fxLayout="column" fxLayoutAlign="start stretch">
+    <div class="lcu-charts-header" fxFlexAlign="stretch" fxLayout="row">
+      <mat-toolbar color="primary">
+        <div class="toolbar-title" fxLayout="row">
+          <a fxFlex class="title-menu" (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+          </a>
+          <a fxFlex class="title-text" [routerLink]="'/'">
+            LCU-<strong>Charts</strong>
+            <small class="subtitle">{{ APP_DESCRIPTION }}</small>
+          </a>
+        </div>
+        <span fxFlex="nogrow">
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>format_color_fill</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <div *ngFor="let theme of Themes">
+              <div fxLayout="row" fxLayoutGap="10px" fxFlex fxLayoutAlign="start center" mat-menu-item
+                (click)="PickTheme(theme.Color)">
+                <mat-icon [ngClass]="theme.ColorSwatch">{{theme.Icon}}</mat-icon>
+                <span>{{theme.Label}}</span>
+              </div>
             </div>
-          </div>
-        </mat-menu>
-      </span>
-    </mat-toolbar>
-  </div>
-  <div class="lcu-body dark" fxLayout="row" fxLayout.lt-md="column">
-    <mat-sidenav-container class="body-sidenav-container">
-      <mat-sidenav #sidenav mode="side" [(opened)]="Opened">
-        <mat-nav-list>
-          <h3 mat-subheader>Line & Area Charts</h3>
-          <a mat-list-item [routerLink]="item.route" *ngFor="let item of LineChartNavItems">
-            <mat-icon>{{ item.icon }}</mat-icon>
-            <span>{{ item.title }}</span>
-          </a>
-          <h3 mat-subheader>Bar Charts</h3>
-          <a mat-list-item [routerLink]="item.route" *ngFor="let item of BarChartNavItems">
-            <mat-icon>{{ item.icon }}</mat-icon>
-            <span>{{ item.title }}</span>
-          </a>
-          <h3 mat-subheader>Pie Charts</h3>
-          <a mat-list-item [routerLink]="item.route" *ngFor="let item of PieChartNavItems">
-            <mat-icon>{{ item.icon }}</mat-icon>
-            <span>{{ item.title }}</span>
-          </a>
-          <h3 mat-subheader>Other Charts</h3>
-          <a mat-list-item [routerLink]="item.route" *ngFor="let item of OtherChartNavItems">
-            <mat-icon>{{ item.icon }}</mat-icon>
-            <span>{{ item.title }}</span>
-          </a>
-          <h3 mat-subheader>Examples</h3>
-          <a mat-list-item [routerLink]="item.route" *ngFor="let item of ExampleChartNavItems">
-            <mat-icon>{{ item.icon }}</mat-icon>
-            <span>{{ item.title }}</span>
-          </a>
-        </mat-nav-list>
-      </mat-sidenav>
+          </mat-menu>
+        </span>
+      </mat-toolbar>
+    </div>
+    <div class="lcu-charts-body dark" fxLayout="row" fxLayout.lt-md="column">
+      <mat-sidenav-container class="body-sidenav-container">
+        <mat-sidenav #sidenav mode="side" [(opened)]="Opened">
+          <mat-nav-list>
+            <h3 mat-subheader>Line & Area Charts</h3>
+            <a mat-list-item [routerLink]="item.route" *ngFor="let item of LineChartNavItems">
+              <mat-icon>{{ item.icon }}</mat-icon>
+              <span>{{ item.title }}</span>
+            </a>
+            <h3 mat-subheader>Bar Charts</h3>
+            <a mat-list-item [routerLink]="item.route" *ngFor="let item of BarChartNavItems">
+              <mat-icon>{{ item.icon }}</mat-icon>
+              <span>{{ item.title }}</span>
+            </a>
+            <h3 mat-subheader>Pie Charts</h3>
+            <a mat-list-item [routerLink]="item.route" *ngFor="let item of PieChartNavItems">
+              <mat-icon>{{ item.icon }}</mat-icon>
+              <span>{{ item.title }}</span>
+            </a>
+            <h3 mat-subheader>Other Charts</h3>
+            <a mat-list-item [routerLink]="item.route" *ngFor="let item of OtherChartNavItems">
+              <mat-icon>{{ item.icon }}</mat-icon>
+              <span>{{ item.title }}</span>
+            </a>
+            <h3 mat-subheader>Examples</h3>
+            <a mat-list-item [routerLink]="item.route" *ngFor="let item of ExampleChartNavItems">
+              <mat-icon>{{ item.icon }}</mat-icon>
+              <span>{{ item.title }}</span>
+            </a>
+          </mat-nav-list>
+        </mat-sidenav>
 
-      <mat-sidenav-content class="body-sidenav-content">
-        <router-outlet></router-outlet>
-      </mat-sidenav-content>
-    </mat-sidenav-container>
-  </div>
-  <div class="lcu-footer" fxFlexAlign="stretch" fxLayout="row">
-    <mat-toolbar color="accent">
-      <small>VERSION: {{ APP_VERSION }}</small>
-      <small>2020 &copy; Fathym</small>
-    </mat-toolbar>
+        <mat-sidenav-content class="body-sidenav-content">
+          <router-outlet></router-outlet>
+        </mat-sidenav-content>
+      </mat-sidenav-container>
+    </div>
+    <div class="lcu-charts-footer" fxFlexAlign="stretch" fxLayout="row">
+      <mat-toolbar color="accent">
+        <small>VERSION: {{ APP_VERSION }}</small>
+        <div class="primary-logo" alt="Fathym Framework"></div>
+        <small>2020 &copy; Fathym</small>
+      </mat-toolbar>
+    </div>
   </div>
 </div>
