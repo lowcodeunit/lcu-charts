@@ -1,6 +1,6 @@
 {
   "name": "@lowcodeunit/lcu-charts-common",
-  "version": "1.5.7",
+  "version": "1.5.8",
   "description": "A Charting and Graphing Library based on and influenced by Ngx-charts",
   "repository": {
     "type": "git",
