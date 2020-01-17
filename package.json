@@ -1,6 +1,6 @@
 {
 	"name": "@lowcodeunit/lcu-charts",
-	"version": "0.0.10",
+	"version": "0.0.11",
 	"scripts": {
 		"build:common": "ng build common",
 		"build:demo": "ng build demo --prod",
