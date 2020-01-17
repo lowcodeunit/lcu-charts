@@ -104,7 +104,7 @@ export class ExampleRealTimeDataComponent implements OnInit {
       single,
       multi
     });
-    this.setColorScheme('cool');
+    this.setColorScheme('fathym');
     this.dateData = generateData(5, false);
     this.dateDataWithRange = generateData(2, true);
   }

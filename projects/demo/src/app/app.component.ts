@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { ThemeColorPickerService } from '@lcu/common';
 import { version, description } from '@lowcodeunit/lcu-charts-common/package.json';
+import { AppEventService } from './app-event.service';
 
 @Component({
   selector: 'lcu-root',
@@ -23,9 +24,18 @@ export class AppComponent implements OnInit {
 
   private chartNavItems: any[];
 
+  @ViewChild('sidenav', { static: false }) sidenav: ElementRef<any>;
+
   constructor(
+    private appEventService: AppEventService,
     private themeService: ThemeColorPickerService
-  ) { }
+  ) {
+    this.appEventService.getExampleLinkClickedEvent().subscribe(
+      () => {
+        this.Opened = true;
+      }
+    );
+  }
 
   public ngOnInit(): void {
     this.resetTheme();

@@ -30,16 +30,18 @@
 }
 
 @mixin component-themes($theme) {
-  @include lcu-component-theme($theme);
+  @include lcu-charts-component-theme($theme);
 }
 
 @mixin primary-logo($logo, $theme, $opacity) {
   .primary-logo {
     background-image: fathym-logo(
       $logo,
-      mat-color(map-get($theme, accent)),
+      mat-color(map-get($theme, primary)),
       $opacity
     );
+    height: 40px;
+    width: 150px;
   }
 }
 

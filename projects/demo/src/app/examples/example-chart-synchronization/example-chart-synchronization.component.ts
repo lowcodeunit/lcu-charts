@@ -22,11 +22,11 @@ export class ExampleChartSynchronizationComponent implements OnInit {
   public roundDomains: boolean = false;
   public schemeType: string = 'ordinal';
   public showGridLines: boolean = true;
-  public showLegend: boolean = true;
+  public showLegend: boolean = false;
   public showXAxis: boolean = true;
-  public showXAxisLabel: boolean = true;
+  public showXAxisLabel: boolean = false;
   public showYAxis: boolean = true;
-  public showYAxisLabel: boolean = true;
+  public showYAxisLabel: boolean = false;
   public timeline: boolean = false;
   public tooltipDisabled: boolean = false;
   public trimXAxisTicks: boolean = true;
@@ -39,7 +39,7 @@ export class ExampleChartSynchronizationComponent implements OnInit {
   public yAxisLabel: string = 'Temperature (F)';
   public yScaleMax: number = 100;
   public yScaleMin: number;
-  public yUnits: string = "\u00B0";
+  public yUnits: string = '\u00B0';
   public backgroundGradientConfigs: BackgroundGradientConfigurationNode[] = [];
   public showPercentage: boolean = false;
   public yAxisTickFormatting = this.FormatYAxisTicks.bind(this);
@@ -58,8 +58,8 @@ export class ExampleChartSynchronizationComponent implements OnInit {
   private curveType: string = 'Linear';
   private curves: any;
   private fitContainer: boolean = false;
-  private height: number = 200;
-  private width: number = 500;
+  private height: number = 300;
+  private width: number = 600;
 
   constructor() {
     Object.assign(this, {
