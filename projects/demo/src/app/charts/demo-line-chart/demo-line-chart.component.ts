@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { colorSets } from '@lowcodeunit/lcu-charts-common';
 import * as shape from 'd3-shape';
 import { generateData } from '../../data';
+import { AppEventService } from '../../app-event.service';
+import { ChartLineOptionsModel } from '../../models/chart-line-options.model';
+import { AppConstants } from '../../app-constants';
 
 @Component({
   selector: 'lcu-demo-line-chart',
@@ -43,12 +46,14 @@ export class DemoLineChartComponent implements OnInit {
   public yScaleMax: number;
   public yScaleMin: number;
 
+  public lineChartOptions: ChartLineOptionsModel;
+
   private colorSets: any;
   private curveType: string = 'Linear';
   private curves: any;
   private fitContainer: boolean = false;
-  private height: number = 400;
-  private width: number = 1000;
+  private height: number;
+  private width: number;
 
   get dateDataWithOrWithoutRange() {
     if (this.range) {
@@ -58,7 +63,15 @@ export class DemoLineChartComponent implements OnInit {
     }
   }
 
-  constructor() {
+  constructor(
+    private appEventService: AppEventService
+  ) {
+    this.lineChartOptions = AppConstants.DEFAULT_LINE_CHART_OPTIONS;
+    this.appEventService.getDemoFormValueEvent().subscribe(
+      (value) => {
+        this.updateChartOptions(value);
+      }
+    );
     Object.assign(this, {
       colorSets
     });
@@ -115,6 +128,17 @@ export class DemoLineChartComponent implements OnInit {
 
   private setColorScheme(name: string): void {
     this.colorScheme = this.colorSets.find(s => s.name === name);
+  }
+
+  private updateChartOptions(value: any): void {
+    console.log('updateChartOptions() value: ', value);
+    Object.assign(this, value);
+
+    if (!this.fitContainer) {
+      this.applyDimensions();
+    } else {
+      this.view = undefined;
+    }
   }
 
 }

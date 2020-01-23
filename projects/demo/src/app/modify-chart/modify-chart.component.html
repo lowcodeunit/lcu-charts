@@ -1,0 +1,179 @@
+<div fxFlex fxLayout="column" class="sidenav-content-form-container">
+  <div fxFlex fxLayout="row" fxLayoutAlign="space-between center" class="form-title-toggle" (click)="ToggleChartForm()">
+    <h3>Modify Chart</h3>
+    <mat-icon color="primary">edit</mat-icon>
+  </div>
+  <div fxFlex fxLayout="row" *ngIf="IsChartFormDisplayed" class="form-content">
+    <form autocomplete="off" [formGroup]="ChartsForm">
+      <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+        <div fxFlex fxLayout="column" fxLayoutAlign="start start" class="form-column-group">
+          <h4>Axes</h4>
+          <div fxFlex fxLayout="row" fxFlexAlign="stretch" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+            <div fxFlex fxLayout="column">
+              <mat-form-field fxFlex>
+                <input formControlName="yAxisLabel" matInput placeholder="Y Axis Label">
+                <mat-icon matSuffix matTooltip="yAxisLabel: The text displayed along the y-axis">help_outline</mat-icon>
+              </mat-form-field>
+            </div>
+            <div fxFlex fxLayout="column">
+              <mat-form-field fxFlex>
+                <input formControlName="xAxisLabel" matInput placeholder="X Axis Label">
+                <mat-icon matSuffix matTooltip="xAxisLabel: The text displayed along the x-axis">help_outline</mat-icon>
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxFlex fxLayout="row" fxFlexAlign="stretch" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+            <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+              <mat-checkbox formControlName="showYAxis">Show Y Axis</mat-checkbox>
+              <mat-icon matSuffix matTooltip="yAxis: Toggles the Y-axis on/off">help_outline</mat-icon>
+            </div>
+            <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+              <mat-checkbox formControlName="showXAxis">Show X Axis</mat-checkbox>
+              <mat-icon matSuffix matTooltip="xAxis: Toggles the X-axis on/off">help_outline</mat-icon>
+            </div>
+          </div>
+          <div fxFlex fxLayout="row" fxFlexAlign="stretch" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+            <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+              <mat-checkbox formControlName="showYAxisLabel">Show Y Axis Label</mat-checkbox>
+              <mat-icon matSuffix matTooltip="showYAxisLabel: Toggles the Y-axis label on/off">help_outline</mat-icon>
+            </div>
+            <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+              <mat-checkbox formControlName="showXAxisLabel">Show X Axis Label</mat-checkbox>
+              <mat-icon matSuffix matTooltip="showXAxisLabel: Toggles the X-axis label on/off">help_outline</mat-icon>
+            </div>
+          </div>
+        </div>
+
+        <div fxFlex fxLayout="column" fxLayoutAlign="start start" class="form-column-group">
+          <h4>Dimensions</h4>
+          <div fxFlex fxLayout="row" fxFlexAlign="stretch" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+            <div fxFlex fxLayout="column">
+              <mat-form-field fxFlex class="form-field-small">
+                <input formControlName="height" matInput placeholder="Height">
+                <mat-icon matSuffix matTooltip="view: [ height, width ] Sets the dimensions of the chart">help_outline</mat-icon>
+              </mat-form-field>
+            </div>
+            <div fxFlex fxLayout="column">
+              <mat-form-field fxFlex class="form-field-small">
+                <input formControlName="width" matInput placeholder="Width">
+                <mat-icon matSuffix matTooltip="view: [ height, width ] Sets the dimensions of the chart">help_outline</mat-icon>
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxFlex fxLayout="row" fxFlexAlign="stretch" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+            <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+              <mat-checkbox formControlName="autoScale">Auto Scale</mat-checkbox>
+              <mat-icon matSuffix matTooltip="autoScale: Toggles the minumum value of Y based on the data (instead of zero)">help_outline</mat-icon>
+            </div>
+            <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+              <mat-checkbox formControlName="fitContainer">Fit Container</mat-checkbox>
+              <mat-icon matSuffix matTooltip="view: [ height, width ]: Toggles whether to fit the chart height and width to the parent container. Set view = undefined to fit the chart to the size of it's parent container">help_outline</mat-icon>
+            </div>
+          </div>
+          <div fxFlex fxLayout="row" fxFlexAlign="stretch" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+            <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+
+            </div>
+            <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+              <!-- <mat-checkbox formControlName="">Show min and max values</mat-checkbox> -->
+
+            </div>
+          </div>
+        </div>
+
+        <div fxFlex fxLayout="column" fxLayoutAlign="start start" class="form-column-group">
+          <h4>Legend</h4>
+          <div fxFlex fxLayout="row" fxFlexAlign="stretch" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+            <div fxFlex fxLayout="column">
+              <mat-form-field fxFlex>
+                <input formControlName="legendTitle" matInput placeholder="Legend Title">
+                <mat-icon matSuffix matTooltip="legendTitle: The text displayed on the Legend">help_outline</mat-icon>
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxFlex fxLayout="row" fxFlexAlign="stretch" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+            <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+              <mat-checkbox formControlName="showLegend">Show Legend</mat-checkbox>
+              <mat-icon matSuffix matTooltip="legend: Toggles the Legend on/off">help_outline</mat-icon>
+            </div>
+          </div>
+          <div fxFlex fxLayout="row" fxFlexAlign="stretch" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+            <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+              <mat-radio-group formControlName="legendPosition" aria-label="Select an option">
+                <mat-radio-button value="right">Right</mat-radio-button>
+                <mat-radio-button value="below">Below</mat-radio-button>
+              </mat-radio-group>
+              <mat-icon matSuffix matTooltip="legendPosition: The position of the Legend in relation to the chart">help_outline</mat-icon>
+            </div>
+          </div>
+        </div>
+
+        <div fxFlex fxLayout="column" fxLayoutAlign="start start" class="form-column-group">
+          <h4>UI Customization</h4>
+          <div fxFlex fxLayout="row" fxFlexAlign="stretch" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+            <div fxFlex fxLayout="column">
+              <mat-form-field fxFlex>
+                <mat-select disableOptionCentering placeholder="Color Scheme" formControlName="colorScheme">
+                  <mat-option *ngFor="let scheme of ColorSets" [value]="scheme.name">{{ scheme.name }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div fxFlex fxLayout="column">
+              <mat-form-field fxFlex>
+                <mat-select disableOptionCentering placeholder="Scheme Type" formControlName="schemeType">
+                  <mat-option value="ordinal">Ordinal</mat-option>
+                  <mat-option value="linear">Linear</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxFlex fxLayout="row" fxFlexAlign="stretch" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+            <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+              <mat-checkbox formControlName="animations">Animations</mat-checkbox>
+              <mat-icon matSuffix matTooltip="animations: Toggles chart animations on/off">help_outline</mat-icon>
+            </div>
+            <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+              <mat-checkbox formControlName="gradient">Use Gradients</mat-checkbox>
+              <mat-icon matSuffix matTooltip="gradient: Toggles chart gradients on/off">help_outline</mat-icon>
+            </div>
+          </div>
+          <div fxFlex fxLayout="row" fxFlexAlign="stretch" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+            <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+              <mat-checkbox formControlName="showGridLines">Show Grid Lines</mat-checkbox>
+              <mat-icon matSuffix matTooltip="showGridLines: Toggles the chart grid lines on/off">help_outline</mat-icon>
+            </div>
+            <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+              <mat-checkbox formControlName="roundDomains">Round Domains</mat-checkbox>
+              <mat-icon matSuffix matTooltip="roundDomains: Toggles min/max chart values on/off">help_outline</mat-icon>
+            </div>
+          </div>
+        </div>
+
+        <div fxFlex fxLayout="column" fxLayoutAlign="start start" class="form-column-group">
+          <h4>Line Chart Specific</h4> <!-- TODO: dynamically name this -->
+          <div fxFlex fxLayout="row" fxFlexAlign="stretch" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+            <div fxFlex fxLayout="column">
+              <mat-form-field fxFlex>
+                <mat-select disableOptionCentering placeholder="Line Interpolation" formControlName="curve">
+                  <mat-option *ngFor="let curve of CurveTypes" [value]="Curves[curve]">{{ curve }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxFlex fxLayout="row" fxFlexAlign="stretch" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+            <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+              <mat-checkbox formControlName="timeline">Timeline</mat-checkbox>
+              <mat-icon matSuffix matTooltip="timeline: Toggles chart timeline on/off">help_outline</mat-icon>
+            </div>
+          </div>
+          <div fxFlex fxLayout="row" fxFlexAlign="stretch" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+            <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+              <mat-checkbox formControlName="tooltipDisabled">Disable Tooltip</mat-checkbox>
+              <mat-icon matSuffix matTooltip="tooltipDisabled: Toggles the tooptip on/off">help_outline</mat-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

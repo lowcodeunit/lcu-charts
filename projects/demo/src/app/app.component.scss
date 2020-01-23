@@ -1,4 +1,5 @@
 @import '~@angular/material/theming';
+@import "./modify-chart/modify-chart.component.scss";
 
 @mixin lcu-charts-component-theme($theme) {
   $primary: map-get($theme, primary);
@@ -78,12 +79,24 @@
       .body-sidenav-content {
         align-items: center;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
         overflow-x: hidden;
 
+        @include lcu-charts-modify-form($theme);
+
         lcu-home {
           height: 100%;
+        }
+
+        .lcu-chart-container {
+          align-items: center;
+          justify-content: center;
+          position: absolute;
+          top: 5%;
+          bottom: 1%;
+          left: 1%;
+          right: 1%;
         }
 
         .home-container {

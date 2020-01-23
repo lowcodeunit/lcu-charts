@@ -31,6 +31,10 @@
 
 @mixin component-themes($theme) {
   @include lcu-charts-component-theme($theme);
+
+  .mat-tooltip {
+    background: rgba($color: mat-color(map-get($theme, primary), 500), $alpha: 0.9);
+  }
 }
 
 @mixin primary-logo($logo, $theme, $opacity) {
@@ -55,6 +59,23 @@
   $theme: fathym-contrast-theme(true);
   @include theme-setup($theme);
   @include primary-logo(thinky-full-logo, $theme, 1);
+
+  /** TODO: The accent color in 'fathym-contrast-theme' is a shade of black, making checkboxes
+   ** and other controls that use accent colors very hard to see, specifically when using dark theme.
+   ** The color palette will need to be modified to use a lighter color to fix this. */
+  .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: mat-color(map-get($theme, primary), 500);
+  }
+
+  .mat-radio-button.mat-accent.mat-radio-checked {
+
+    .mat-radio-outer-circle {
+      border-color: mat-color(map-get($theme, primary), 500) !important;
+    }
+    .mat-radio-inner-circle {
+      background-color: mat-color(map-get($theme, primary), 500) !important;
+    }
+  }
 }
 
 .fathym-cool-candy-theme {
