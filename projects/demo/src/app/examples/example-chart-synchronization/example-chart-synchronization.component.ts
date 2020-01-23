@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { colorSets, DateFormatModel } from '@lowcodeunit/lcu-charts-common';
 import * as shape from 'd3-shape';
 import { weatherData } from '../../data';
+import { ViewDimensions } from 'projects/common/src/lcu.api';
 @Component({
   selector: 'lcu-example-chart-synchronization',
   templateUrl: './example-chart-synchronization.component.html',
@@ -54,12 +55,15 @@ export class ExampleChartSynchronizationComponent implements OnInit {
     TimeZone: false
   };
 
+  public dims: ViewDimensions= {width:550, height: 275, xOffset:70}
+
   private colorSets: any;
   private curveType: string = 'Linear';
   private curves: any;
   private fitContainer: boolean = false;
-  private height: number = 300;
-  private width: number = 600;
+  private height: number = 310;
+  private width: number = 625;
+
 
   constructor() {
     Object.assign(this, {
@@ -126,6 +130,7 @@ export class ExampleChartSynchronizationComponent implements OnInit {
       return "Hot";
     }
   }
+
 
   public FormatYAxisTicksDegree(value: any) {
     return value + this.yUnits;
