@@ -96,6 +96,9 @@ export class TooltipArea {
   @Input() tooltipDisabled: boolean = false;
   @Input() tooltipTemplate: TemplateRef<any>;
   @Input() backgroundGradientConfigs: any[];
+  @Input() tooltipFormatting: any;
+  @Input() formatTooltip: boolean;
+
   @Input('forced-anchor-position')
   public set anchorPosition(val) {
     if (val) {
@@ -110,6 +113,8 @@ export class TooltipArea {
 
   @ViewChild('tooltipAnchor', { static: false }) tooltipAnchor;
 
+  tickFormat: (o: any) => string;
+
   getValues(xVal): any[] {
     const results = [];
 
@@ -123,13 +128,19 @@ export class TooltipArea {
       if (item) {
         const label = item.name;
         let val = item.value;
+        if(this.formatTooltip && this.tooltipFormatting){
+          this.tickFormat = this.tooltipFormatting;
+          val = this.tickFormat(val);
+          // console.log("val =", val)
+        }
         if (this.showPercentage) {
           val = (item.d1 - item.d0).toFixed(2) + '%';
         }
         if(this.units){
           // console.log("item = ", item)
-          val = item.value + this.units;
+          val = val + this.units;
         }
+        
 
         let color;
         if (this.colors.scaleType === 'linear') {

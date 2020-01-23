@@ -85,6 +85,8 @@ export class LineChartSimpleComponent extends BaseChartComponent {
   @Input() showPercentage: boolean;
   @Input() units: string;
   @Input() dims: ViewDimensions;
+  @Input() valueFormat: any;
+  @Input() formatTooltip: boolean;
 
   @Input() xAxisIsDate: boolean;
   /**
