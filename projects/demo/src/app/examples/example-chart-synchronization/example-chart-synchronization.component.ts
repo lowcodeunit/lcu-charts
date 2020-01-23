@@ -56,6 +56,7 @@ export class ExampleChartSynchronizationComponent implements OnInit {
   };
 
   public dims: ViewDimensions= {width:550, height: 275, xOffset:70}
+  public formatTooltip:boolean = true;
 
   private colorSets: any;
   private curveType: string = 'Linear';
