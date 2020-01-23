@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ViewChild, ChangeDetectionStrategy, TemplateRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, ChangeDetectionStrategy, TemplateRef, OnInit } from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { createMouseEvent } from '../events';
 import select from 'd3-selection';
@@ -13,7 +13,7 @@ import select from 'd3-selection';
         y="0"
         [attr.width]="dims.width"
         [attr.height]="dims.height"
-        [attr.fill]="'url(#lin-grad)'"
+        [attr.fill]="generatedGradientUrl"
         [attr.opacity]="'0.5'"
         (mousemove)="mouseMove($event)"
         (mouseleave)="hideTooltip()"
@@ -21,7 +21,7 @@ import select from 'd3-selection';
 
       <svg:linearGradient
         [attr.width]="dims.width"
-        [attr.height]="dims.height" [id]="'lin-grad'" [attr.x1]="'0%'" [attr.y1]="'0%'" [attr.x2]="'100%'" [attr.y2]="'0%'">
+        [attr.height]="dims.height" [id]="generatedGradientId" [attr.x1]="'0%'" [attr.y1]="'0%'" [attr.x2]="'100%'" [attr.y2]="'0%'">
           <svg:stop
             *ngFor="let stop of backgroundGradientConfigs"
             [attr.offset]="stop.offset + '%'"
@@ -77,7 +77,7 @@ import select from 'd3-selection';
     ])
   ]
 })
-export class TooltipArea {
+export class TooltipArea implements OnInit {
   anchorOpacity: number = 0;
   anchorPos: number = -1;
   anchorValues: any[] = [];
@@ -156,6 +156,14 @@ export class TooltipArea {
     }
 
     return results;
+  }
+
+  public generatedGradientId: string;
+  public generatedGradientUrl: string;
+  ngOnInit() {
+    const id = Math.ceil(Math.random() * 10000);
+    this.generatedGradientId = `lin-grad${id}`;
+    this.generatedGradientUrl = `url(#${this.generatedGradientId})`;
   }
 
   mouseMove(event) {
