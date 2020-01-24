@@ -1,4 +1,3 @@
-// TODO: Move to common
 export class ChartGlobalOptionsModel {
   public animations?: boolean;
   public autoScale?: boolean;

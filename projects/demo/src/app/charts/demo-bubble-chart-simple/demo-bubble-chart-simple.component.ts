@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { bubble } from '../../data';
 import { AppEventService } from '../../app-event.service';
 import { AppConstants } from '../../app-constants';
-import { ChartBubbleOptionsModel } from '../../models/chart-bubble-options.model';
+import { ChartBubbleOptionsModel } from '@lowcodeunit/lcu-charts-common';
 
 @Component({
   selector: 'lcu-demo-bubble-chart-simple',

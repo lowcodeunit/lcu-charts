@@ -1,6 +1,5 @@
 import { ChartGlobalOptionsModel } from './chart-global-options.model';
 
-// TODO: Move to common
 export class ChartGaugeOptionsModel extends ChartGlobalOptionsModel {
   public gaugeAngleSpan: number;
   public gaugeLargeSegments: number;

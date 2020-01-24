@@ -1,7 +1,7 @@
 import { Component, Inject, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { MatTabChangeEvent, MatSnackBar } from '@angular/material';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ChartGlobalOptionsModel } from '../models/chart-global-options.model';
+import { ChartGlobalOptionsModel } from '@lowcodeunit/lcu-charts-common';
 import { ChartNavModel } from '../models/chart-nav.model';
 
 @Component({

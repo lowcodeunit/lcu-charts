@@ -1,12 +1,14 @@
 import { ChartNavModel, ChartNavType } from './models/chart-nav.model';
-import { ChartGlobalOptionsModel } from './models/chart-global-options.model';
-import { ChartLineAreaOptionsModel } from './models/chart-line-area-options.model';
+import {
+  ChartGlobalOptionsModel,
+  ChartLineAreaOptionsModel,
+  ChartBarOptionsModel,
+  ChartPieOptionsModel,
+  ChartBubbleOptionsModel,
+  ChartGaugeOptionsModel
+} from '@lowcodeunit/lcu-charts-common';
 import * as shape from 'd3-shape';
 import { colorSets } from '@lowcodeunit/lcu-charts-common';
-import { ChartBarOptionsModel } from './models/chart-bar-options.model';
-import { ChartPieOptionsModel } from './models/chart-pie-options.model';
-import { ChartBubbleOptionsModel } from './models/chart-bubble-options.model';
-import { ChartGaugeOptionsModel } from './models/chart-gauge-options.model';
 
 export class AppConstants {
   public static readonly FATHYM_THEMES: Array<any> = [

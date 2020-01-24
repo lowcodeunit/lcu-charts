@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { multi } from '../../data';
 import { AppEventService } from '../../app-event.service';
 import { AppConstants } from '../../app-constants';
-import { ChartBarOptionsModel } from '../../models/chart-bar-options.model';
+import { ChartBarOptionsModel } from '@lowcodeunit/lcu-charts-common';
 
 @Component({
   selector: 'lcu-demo-bar-chart-vertical-grouped',

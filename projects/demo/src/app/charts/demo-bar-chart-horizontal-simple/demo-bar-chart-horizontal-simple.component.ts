@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { single } from '../../data';
-import { ChartBarOptionsModel } from '../../models/chart-bar-options.model';
+import { ChartBarOptionsModel } from '@lowcodeunit/lcu-charts-common';
 import { AppEventService } from '../../app-event.service';
 import { AppConstants } from '../../app-constants';
 

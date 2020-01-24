@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { generateData } from '../../data';
 import { AppEventService } from '../../app-event.service';
-import { ChartLineAreaOptionsModel } from '../../models/chart-line-area-options.model';
+import { ChartLineAreaOptionsModel } from '@lowcodeunit/lcu-charts-common';
 import { AppConstants } from '../../app-constants';
 
 @Component({

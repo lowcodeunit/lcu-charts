@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { single } from '../../data';
-import { ChartGaugeOptionsModel } from '../../models/chart-gauge-options.model';
+import { ChartGaugeOptionsModel } from '@lowcodeunit/lcu-charts-common';
 import { AppEventService } from '../../app-event.service';
 import { AppConstants } from '../../app-constants';
 

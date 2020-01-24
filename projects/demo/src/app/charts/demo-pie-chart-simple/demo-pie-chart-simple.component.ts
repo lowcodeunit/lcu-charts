@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { formatLabel, escapeLabel } from '@lowcodeunit/lcu-charts-common';
 import { single } from '../../data';
-import { ChartPieOptionsModel } from '../../models/chart-pie-options.model';
+import { ChartPieOptionsModel } from '@lowcodeunit/lcu-charts-common';
 import { AppEventService } from '../../app-event.service';
 import { AppConstants } from '../../app-constants';
 
