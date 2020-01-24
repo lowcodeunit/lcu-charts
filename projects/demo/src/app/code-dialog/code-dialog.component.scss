@@ -1,0 +1,30 @@
+@mixin lcu-charts-code-dialog($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+
+  .mat-dialog-container {
+    background-color: #1b1e27;
+
+    pre {
+      background-color: map-get($accent, 500);
+      border-radius: 5px;
+      border: 1px solid #2f3646;
+      border-left: 3px solid map-get($primary, 500);
+      page-break-inside: avoid;
+      line-height: 1.6;
+      max-width: 100%;
+      overflow: auto;
+      display: block;
+      word-wrap: break-word;
+
+      .code-line {
+        margin-left: 10px;
+      }
+
+      .code-line-indent {
+        margin-left: 20px;
+      }
+    }
+  }
+}

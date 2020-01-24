@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>{{ DialogTitle }}</h1>
+
+<div mat-dialog-content>
+  <mat-tab-group (selectedTabChange)="selectedTabChangeEvent($event)">
+    <mat-tab label="HTML">
+      <pre #htmlBlock>
+        <div class="code-line" *ngFor="let line of HTMLCode">{{ line }}</div>
+      </pre>
+    </mat-tab>
+    <mat-tab label="TS">
+      <pre #tsBlock>
+        <div class="code-line" *ngFor="let line of TypescriptCode">{{ line }}</div>
+      </pre>
+    </mat-tab>
+    <mat-tab label="CSS">
+      <pre #cssBlock>
+        <div class="code-line" *ngFor="let line of CSSCode">{{ line }}</div>
+      </pre>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+<div mat-dialog-actions>
+  <button type="button" mat-stroked-button (click)="onClose()">Close</button>
+  <button type="button" mat-stroked-button cdkFocusInitial color="primary" (click)="onCopy()">Copy to Clipboard</button>
+</div>

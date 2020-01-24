@@ -3,10 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FathymSharedModule, MaterialModule } from '@lcu/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AppEventService } from './app-event.service';
 import { LcuChartsModule } from '@lowcodeunit/lcu-charts-common';
 import { HomeComponent } from './home/home.component';
+import { ModifyChartComponent } from './modify-chart/modify-chart.component';
+import { CodeDialogComponent } from './code-dialog/code-dialog.component';
 import { DemoAreaChartSimpleComponent } from './charts/demo-area-chart-simple/demo-area-chart-simple.component';
 import { DemoLineChartComponent } from './charts/demo-line-chart/demo-line-chart.component';
 import { DemoBarChartVerticalSimpleComponent } from './charts/demo-bar-chart-vertical-simple/demo-bar-chart-vertical-simple.component';
@@ -19,18 +23,19 @@ import { DemoBubbleChartSimpleComponent } from './charts/demo-bubble-chart-simpl
 import { DemoGaugeSimpleComponent } from './charts/demo-gauge-simple/demo-gauge-simple.component';
 import { ExampleChartSynchronizationComponent } from './examples/example-chart-synchronization/example-chart-synchronization.component';
 import { ExampleRealTimeDataComponent } from './examples/example-real-time-data/example-real-time-data.component';
-import { AppEventService } from './app-event.service';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
+    ModifyChartComponent,
+    CodeDialogComponent,
     DemoAreaChartSimpleComponent,
     DemoLineChartComponent,
     DemoBarChartVerticalSimpleComponent,
     DemoBarChartVerticalGroupedComponent,
     DemoBarChartHorizontalSimpleComponent,
     DemoBarChartHorizontalGroupedComponent,
-    HomeComponent,
     DemoPieChartSimpleComponent,
     DemoPieChartAdvancedComponent,
     DemoBubbleChartSimpleComponent,
@@ -42,6 +47,7 @@ import { AppEventService } from './app-event.service';
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     FathymSharedModule,
     MaterialModule,
     FlexLayoutModule,
@@ -49,6 +55,7 @@ import { AppEventService } from './app-event.service';
   ],
   providers: [AppEventService],
   bootstrap: [AppComponent],
-  exports: [LcuChartsModule]
+  exports: [LcuChartsModule],
+  entryComponents: [CodeDialogComponent]
 })
 export class AppModule { }
