@@ -58,8 +58,13 @@ export class AppComponent implements OnInit {
     this.BarChartNavItems = this.chartNavItems.filter(item => item.type === ChartNavType.BAR);
     this.ExampleChartNavItems = this.chartNavItems.filter(item => item.type === ChartNavType.EXAMPLE);
     this.LineChartNavItems = this.chartNavItems.filter(item => item.type === ChartNavType.LINE_AREA);
-    this.OtherChartNavItems = this.chartNavItems.filter(item => item.type === ChartNavType.OTHER);
     this.PieChartNavItems = this.chartNavItems.filter(item => item.type === ChartNavType.PIE);
+    this.OtherChartNavItems = this.chartNavItems.filter((item) => {
+      return item.type !== ChartNavType.BAR
+          && item.type !== ChartNavType.EXAMPLE
+          && item.type !== ChartNavType.LINE_AREA
+          && item.type !== ChartNavType.PIE;
+    });
   }
 
   protected setThemes(): void {

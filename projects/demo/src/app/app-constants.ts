@@ -1,7 +1,12 @@
 import { ChartNavModel, ChartNavType } from './models/chart-nav.model';
 import { ChartGlobalOptionsModel } from './models/chart-global-options.model';
-import { ChartLineOptionsModel } from './models/chart-line-options.model';
+import { ChartLineAreaOptionsModel } from './models/chart-line-area-options.model';
 import * as shape from 'd3-shape';
+import { colorSets } from '@lowcodeunit/lcu-charts-common';
+import { ChartBarOptionsModel } from './models/chart-bar-options.model';
+import { ChartPieOptionsModel } from './models/chart-pie-options.model';
+import { ChartBubbleOptionsModel } from './models/chart-bubble-options.model';
+import { ChartGaugeOptionsModel } from './models/chart-gauge-options.model';
 
 export class AppConstants {
   public static readonly FATHYM_THEMES: Array<any> = [
@@ -16,26 +21,98 @@ export class AppConstants {
   ];
 
   public static readonly CHART_NAV_ITEMS: Array<ChartNavModel> = [
-    { title: 'Simple Line Chart', icon: 'show_chart', route: 'charts/simple-line-chart', type: ChartNavType.LINE_AREA },
-    { title: 'Simple Vertical Bar Chart', icon: 'bar_chart', route: 'charts/simple-vertical-bar-chart', type: ChartNavType.BAR },
-    { title: 'Simple Horizontal Bar Chart', icon: 'notes', route: 'charts/simple-horizonal-bar-chart', type: ChartNavType.BAR },
-    { title: 'Grouped Vertical Bar Chart', icon: 'bar_chart', route: 'charts/grouped-vertical-bar-chart', type: ChartNavType.BAR },
-    { title: 'Grouped Horizontal Bar Chart', icon: 'notes', route: 'charts/grouped-horizonal-bar-chart', type: ChartNavType.BAR },
-    { title: 'Simple Area Chart', icon: 'insert_photo', route: 'charts/simple-area-chart', type: ChartNavType.LINE_AREA },
-    // { title: 'Combo Chart', icon: 'multiline_chart', route: 'examples/combo-chart', type: ChartNavType.EXAMPLE },
-    { title: 'Simple Pie Chart', icon: 'pie_chart', route: 'charts/simple-pie-chart', type: ChartNavType.PIE },
-    { title: 'Advanced Pie Chart', icon: 'pie_chart', route: 'charts/advanced-pie-chart', type: ChartNavType.PIE },
-    { title: 'Bubble Chart', icon: 'bubble_chart', route: 'charts/simple-bubble-chart', type: ChartNavType.OTHER },
-    { title: 'Gauge', icon: 'wifi_tethering', route: 'charts/simple-gauge', type: ChartNavType.OTHER },
-    { title: 'Chart Synchronization', icon: 'compare_arrows', route: 'examples/chart-synchronization', type: ChartNavType.EXAMPLE },
-    { title: 'Real Time Data', icon: 'device_hub', route: 'examples/real-time-data', type: ChartNavType.EXAMPLE }
+    {
+      title: 'Simple Line Chart',
+      icon: 'show_chart',
+      route: '/charts/simple-line-chart',
+      type: ChartNavType.LINE_AREA,
+      selector: 'lcu-charts-line-chart-simple'
+    },
+    {
+      title: 'Simple Vertical Bar Chart',
+      icon: 'bar_chart',
+      route: '/charts/simple-vertical-bar-chart',
+      type: ChartNavType.BAR,
+      selector: 'lcu-charts-bar-vertical-simple'
+    },
+    {
+      title: 'Simple Horizontal Bar Chart',
+      icon: 'notes',
+      route: '/charts/simple-horizonal-bar-chart',
+      type: ChartNavType.BAR,
+      selector: 'lcu-charts-bar-horizontal-simple'
+    },
+    {
+      title: 'Grouped Vertical Bar Chart',
+      icon: 'bar_chart',
+      route: '/charts/grouped-vertical-bar-chart',
+      type: ChartNavType.BAR,
+      selector: 'lcu-charts-bar-vertical-grouped'
+    },
+    {
+      title: 'Grouped Horizontal Bar Chart',
+      icon: 'notes',
+      route: '/charts/grouped-horizonal-bar-chart',
+      type: ChartNavType.BAR,
+      selector: 'lcu-charts-bar-horizontal-grouped'
+    },
+    {
+      title: 'Simple Area Chart',
+      icon: 'insert_photo',
+      route: '/charts/simple-area-chart',
+      type: ChartNavType.LINE_AREA,
+      selector: 'lcu-charts-area-chart-simple'
+    },
+    {
+      title: 'Simple Pie Chart',
+      icon: 'pie_chart',
+      route: '/charts/simple-pie-chart',
+      type: ChartNavType.PIE,
+      selector: 'lcu-charts-pie-chart-simple'
+    },
+    {
+      title: 'Advanced Pie Chart',
+      icon: 'pie_chart',
+      route: '/charts/advanced-pie-chart',
+      type: ChartNavType.PIE,
+      selector: 'lcu-charts-pie-chart-advanced'
+    },
+    {
+      title: 'Bubble Chart',
+      icon: 'bubble_chart',
+      route: '/charts/simple-bubble-chart',
+      type: ChartNavType.BUBBLE,
+      selector: 'lcu-charts-bubble-chart-simple'
+    },
+    {
+      title: 'Gauge',
+      icon: 'wifi_tethering',
+      route: '/charts/simple-gauge',
+      type: ChartNavType.GAUGE,
+      selector: 'lcu-charts-gauge-simple'
+    },
+    {
+      title: 'Chart Synchronization',
+      icon: 'compare_arrows',
+      route: '/examples/chart-synchronization',
+      type: ChartNavType.EXAMPLE
+    },
+    {
+      title: 'Real Time Data',
+      icon: 'device_hub',
+      route: '/examples/real-time-data',
+      type: ChartNavType.EXAMPLE
+    }
   ];
 
   public static readonly DEFAULT_GLOBAL_CHART_OPTIONS: ChartGlobalOptionsModel = {
     animations: true,
     autoScale: false,
     colorScheme: 'cool',
+    colorSets: [...colorSets],
+    fitContainer: false,
     gradient: false,
+    height: 400,
     legendPosition: 'right',
     legendTitle: '',
     maxXAxisTickLength: 16,
@@ -55,19 +132,17 @@ export class AppConstants {
     trimXAxisTicks: true,
     trimYAxisTicks: true,
     view: null,
+    width: 1000,
     xAxisLabel: 'Country',
     xScaleMax: null,
     xScaleMin: null,
     yAxisLabel: 'GDP Per Capita',
     yScaleMax: null,
-    yScaleMin: null,
-    height: 400,
-    width: 1000,
-    fitContainer: false
+    yScaleMin: null
   };
 
-  public static readonly DEFAULT_LINE_CHART_OPTIONS: ChartLineOptionsModel = {
-    curveType: 'Linear',
+  public static readonly DEFAULT_LINE_AREA_CHART_OPTIONS: ChartLineAreaOptionsModel = {
+    curve: shape.curveLinear,
     curves: {
       'Basis': shape.curveBasis,
       'Basis Closed': shape.curveBasisClosed,
@@ -86,11 +161,61 @@ export class AppConstants {
       'Step Before': shape.curveStepBefore,
       'default': shape.curveLinear
     },
-    curve: shape.curveLinear,
+    curveType: 'Linear',
+    legendTitle: 'Country',
     rangeFillOpacity: 0.15,
     timeline: true,
     xAxisLabel: 'Census Date',
-    yAxisLabel: 'GDP Per Capita'
+    yAxisLabel: 'GDP Per Capita',
   };
+
+  public static readonly DEFAULT_BAR_CHART_OPTIONS: ChartBarOptionsModel = {
+    barPadding: 8,
+    groupPadding: 16,
+    noBarWhenZero: true,
+    roundEdges: true
+  };
+
+  public static readonly DEFAULT_PIE_CHART_OPTIONS: ChartPieOptionsModel = {
+    arcWidth: 0.25,
+    doughnut: false,
+    explodeSlices: false,
+    showLabels: true
+  };
+
+  public static readonly DEFAULT_ADVANCED_PIE_CHART_OPTIONS: ChartPieOptionsModel = {
+    arcWidth: 0.25,
+    doughnut: true,
+    explodeSlices: false,
+    showLabels: false,
+    width: 1100
+  };
+
+  public static readonly DEFAULT_BUBBLE_CHART_OPTIONS: ChartBubbleOptionsModel = {
+    maxRadius: 20,
+    minRadius: 5,
+    xAxisLabel: 'Census Date',
+    yAxisLabel: 'Life expectancy [years]',
+    yScaleMax: 82,
+    yScaleMin: 74
+  };
+
+  public static readonly DEFAULT_GAUGE_CHART_OPTIONS: ChartGaugeOptionsModel = {
+    gaugeAngleSpan: 240,
+    gaugeLargeSegments: 10,
+    gaugeMax: 50000,
+    gaugeMin: 0,
+    gaugeShowAxis: true,
+    gaugeSmallSegments: 5,
+    gaugeStartAngle: -120,
+    gaugeTextValue: '',
+    gaugeUnits: 'alerts',
+    margin: true,
+    marginBottom: 40,
+    marginLeft: 40,
+    marginRight: 40,
+    marginTop: 40,
+    showText: true
+  }
 
 }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { colorSets } from '@lowcodeunit/lcu-charts-common';
-import * as shape from 'd3-shape';
 import { generateData } from '../../data';
+import { ChartLineAreaOptionsModel } from '../../models/chart-line-area-options.model';
+import { AppEventService } from '../../app-event.service';
+import { AppConstants } from '../../app-constants';
 
 @Component({
   selector: 'lcu-demo-area-chart-simple',
@@ -9,46 +10,45 @@ import { generateData } from '../../data';
   styleUrls: ['./demo-area-chart-simple.component.scss']
 })
 export class DemoAreaChartSimpleComponent implements OnInit {
-  public animations: boolean = true;
-  public autoScale: boolean = false;
+  public animations: boolean;
+  public autoScale: boolean;
   public colorScheme: any;
   public curve: any;
   public dateData: any[];
   public dateDataWithRange: any[];
-  public gradient: boolean = false;
-  public legendPosition: string = 'right';
-  public legendTitle: string = 'Country';
-  public maxXAxisTickLength: number = 16;
-  public maxYAxisTickLength: number = 16;
-  public range: boolean = false;
-  public rangeFillOpacity: number = 0.15;
-  public rotateXAxisTicks: boolean = true;
-  public roundDomains: boolean = false;
-  public schemeType: string = 'ordinal';
-  public showGridLines: boolean = true;
-  public showLegend: boolean = true;
-  public showXAxis: boolean = true;
-  public showXAxisLabel: boolean = true;
-  public showYAxis: boolean = true;
-  public showYAxisLabel: boolean = true;
-  public timeline: boolean = true;
-  public tooltipDisabled: boolean = false;
-  public trimXAxisTicks: boolean = true;
-  public trimYAxisTicks: boolean = true;
+  public gradient: boolean;
+  public legendPosition: string;
+  public legendTitle: string;
+  public areaChartOptions: ChartLineAreaOptionsModel;
+  public maxXAxisTickLength: number;
+  public maxYAxisTickLength: number;
+  public range: boolean;
+  public rangeFillOpacity: number;
+  public rotateXAxisTicks: boolean;
+  public roundDomains: boolean;
+  public schemeType: string;
+  public showGridLines: boolean;
+  public showLegend: boolean;
+  public showXAxis: boolean;
+  public showXAxisLabel: boolean;
+  public showYAxis: boolean;
+  public showYAxisLabel: boolean;
+  public timeline: boolean;
+  public tooltipDisabled: boolean;
+  public trimXAxisTicks: boolean;
+  public trimYAxisTicks: boolean;
   public view: any[];
-  public xAxisLabel: string = 'Census Date';
+  public xAxisLabel: string;
   public xScaleMax: any;
   public xScaleMin: any;
-  public yAxisLabel: string = 'GDP Per Capita';
+  public yAxisLabel: string;
   public yScaleMax: number;
   public yScaleMin: number;
 
   private colorSets: any;
-  private curveType: string = 'Linear';
-  private curves: any;
   private fitContainer: boolean = false;
-  private height: number = 400;
-  private width: number = 1000;
+  private height: number;
+  private width: number;
 
   get dateDataWithOrWithoutRange() {
     if (this.range) {
@@ -58,11 +58,17 @@ export class DemoAreaChartSimpleComponent implements OnInit {
     }
   }
 
-  constructor() {
-    Object.assign(this, {
-      colorSets
-    });
-    this.setColorScheme('cool');
+  constructor(
+    private appEventService: AppEventService
+  ) {
+    this.areaChartOptions = {...AppConstants.DEFAULT_GLOBAL_CHART_OPTIONS, ...AppConstants.DEFAULT_LINE_AREA_CHART_OPTIONS};
+    this.appEventService.getDemoFormValueEvent().subscribe(
+      (value) => {
+        this.updateChartOptions(value);
+      }
+    );
+    Object.assign(this, this.areaChartOptions);
+    this.setColorScheme(this.colorScheme);
     this.dateData = generateData(5, false);
     this.dateDataWithRange = generateData(2, true);
   }
@@ -71,25 +77,6 @@ export class DemoAreaChartSimpleComponent implements OnInit {
     if (!this.fitContainer) {
       this.applyDimensions();
     }
-    this.curves = {
-      'Basis': shape.curveBasis,
-      'Basis Closed': shape.curveBasisClosed,
-      'Bundle': shape.curveBundle.beta(1),
-      'Cardinal': shape.curveCardinal,
-      'Cardinal Closed': shape.curveCardinalClosed,
-      'Catmull Rom': shape.curveCatmullRom,
-      'Catmull Rom Closed': shape.curveCatmullRomClosed,
-      'Linear': shape.curveLinear,
-      'Linear Closed': shape.curveLinearClosed,
-      'Monotone X': shape.curveMonotoneX,
-      'Monotone Y': shape.curveMonotoneY,
-      'Natural': shape.curveNatural,
-      'Step': shape.curveStep,
-      'Step After': shape.curveStepAfter,
-      'Step Before': shape.curveStepBefore,
-      'default': shape.curveLinear
-    };
-    this.curve = this.curves[this.curveType];
   }
 
   public activate(data: any): void {
@@ -114,6 +101,16 @@ export class DemoAreaChartSimpleComponent implements OnInit {
 
   private setColorScheme(name: string): void {
     this.colorScheme = this.colorSets.find(s => s.name === name);
+  }
+
+  private updateChartOptions(value: any): void {
+    Object.assign(this, value);
+
+    if (!this.fitContainer) {
+      this.applyDimensions();
+    } else {
+      this.view = undefined;
+    }
   }
 
 }

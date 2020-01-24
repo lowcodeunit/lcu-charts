@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { colorSets, formatLabel, escapeLabel } from '@lowcodeunit/lcu-charts-common';
 import { single } from '../../data';
+import { ChartGaugeOptionsModel } from '../../models/chart-gauge-options.model';
+import { AppEventService } from '../../app-event.service';
+import { AppConstants } from '../../app-constants';
 
 @Component({
   selector: 'lcu-demo-gauge-simple',
@@ -8,9 +10,10 @@ import { single } from '../../data';
   styleUrls: ['./demo-gauge-simple.component.scss']
 })
 export class DemoGaugeSimpleComponent implements OnInit {
-  public animations: boolean = true;
+  public animations: boolean;
   public colorScheme: any;
   public gaugeAngleSpan: number = 240;
+  public gaugeChartOptions: ChartGaugeOptionsModel;
   public gaugeLargeSegments: number = 10;
   public gaugeMax: number = 100;
   public gaugeMin: number = 0;
@@ -19,30 +22,36 @@ export class DemoGaugeSimpleComponent implements OnInit {
   public gaugeStartAngle: number = -120;
   public gaugeTextValue: string = '';
   public gaugeUnits: string = 'alerts';
-  public legendPosition: string = 'right';
-  public legendTitle: string = '';
+  public legendPosition: string;
+  public legendTitle: string;
   public margin: boolean = false;
   public marginBottom: number = 40;
   public marginLeft: number = 40;
   public marginRight: number = 40;
   public marginTop: number = 40;
-  public showLegend: boolean = true;
+  public showLegend: boolean;
   public showText: boolean = true;
   public single: any[];
-  public tooltipDisabled: boolean = false;
+  public tooltipDisabled: boolean;
   public view: any[];
 
   private colorSets: any;
   private fitContainer: boolean = false;
-  private height: number = 400;
-  private width: number = 1000;
+  private height: number;
+  private width: number;
 
-  constructor() {
-    Object.assign(this, {
-      colorSets,
-      single
-    });
-    this.setColorScheme('cool');
+  constructor(
+    private appEventService: AppEventService
+  ) {
+    this.gaugeChartOptions = {...AppConstants.DEFAULT_GLOBAL_CHART_OPTIONS, ...AppConstants.DEFAULT_GAUGE_CHART_OPTIONS};
+    this.appEventService.getDemoFormValueEvent().subscribe(
+      (value) => {
+        this.updateChartOptions(value);
+      }
+    );
+    Object.assign(this, this.gaugeChartOptions);
+    this.setColorScheme(this.colorScheme);
+    this.single = [...single];
   }
 
   public ngOnInit(): void {
@@ -73,6 +82,16 @@ export class DemoGaugeSimpleComponent implements OnInit {
 
   private setColorScheme(name: string): void {
     this.colorScheme = this.colorSets.find(s => s.name === name);
+  }
+
+  private updateChartOptions(value: any): void {
+    Object.assign(this, value);
+
+    if (!this.fitContainer) {
+      this.applyDimensions();
+    } else {
+      this.view = undefined;
+    }
   }
 
 }

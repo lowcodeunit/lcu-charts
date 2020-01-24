@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { colorSets, formatLabel, escapeLabel } from '@lowcodeunit/lcu-charts-common';
+import { formatLabel, escapeLabel } from '@lowcodeunit/lcu-charts-common';
 import { single } from '../../data';
+import { ChartPieOptionsModel } from '../../models/chart-pie-options.model';
+import { AppEventService } from '../../app-event.service';
+import { AppConstants } from '../../app-constants';
 
 @Component({
   selector: 'lcu-demo-pie-chart-advanced',
@@ -8,24 +11,36 @@ import { single } from '../../data';
   styleUrls: ['./demo-pie-chart-advanced.component.scss']
 })
 export class DemoPieChartAdvancedComponent implements OnInit {
-  public animations: boolean = true;
+  public animations: boolean;
+  public arcWidth: number;
   public colorScheme: any;
-  public gradient: boolean = false;
+  public doughnut: boolean;
+  public gradient: boolean;
+  public legendPosition: string;
+  public legendTitle: string;
+  public pieChartOptions: ChartPieOptionsModel;
+  public showLegend: boolean;
   public single: any[];
-  public tooltipDisabled: boolean = false;
+  public tooltipDisabled: boolean;
   public view: any[];
 
   private colorSets: any;
   private fitContainer: boolean = false;
-  private height: number = 400;
-  private width: number = 1000;
+  private height: number;
+  private width: number;
 
-  constructor() {
-    Object.assign(this, {
-      colorSets,
-      single
-    });
-    this.setColorScheme('cool');
+  constructor(
+    private appEventService: AppEventService
+  ) {
+    this.pieChartOptions = {...AppConstants.DEFAULT_GLOBAL_CHART_OPTIONS, ...AppConstants.DEFAULT_ADVANCED_PIE_CHART_OPTIONS};
+    this.appEventService.getDemoFormValueEvent().subscribe(
+      (value) => {
+        this.updateChartOptions(value);
+      }
+    );
+    Object.assign(this, this.pieChartOptions);
+    this.setColorScheme(this.colorScheme);
+    this.single = [...single];
   }
 
   public ngOnInit(): void {
@@ -74,6 +89,16 @@ export class DemoPieChartAdvancedComponent implements OnInit {
 
   private setColorScheme(name: string): void {
     this.colorScheme = this.colorSets.find(s => s.name === name);
+  }
+
+  private updateChartOptions(value: any): void {
+    Object.assign(this, value);
+
+    if (!this.fitContainer) {
+      this.applyDimensions();
+    } else {
+      this.view = undefined;
+    }
   }
 
 }

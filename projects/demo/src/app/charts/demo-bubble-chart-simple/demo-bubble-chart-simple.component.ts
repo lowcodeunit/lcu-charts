@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { colorSets } from '@lowcodeunit/lcu-charts-common';
 import { bubble } from '../../data';
+import { AppEventService } from '../../app-event.service';
+import { AppConstants } from '../../app-constants';
+import { ChartBubbleOptionsModel } from '../../models/chart-bubble-options.model';
 
 @Component({
   selector: 'lcu-demo-bubble-chart-simple',
@@ -8,48 +10,54 @@ import { bubble } from '../../data';
   styleUrls: ['./demo-bubble-chart-simple.component.scss']
 })
 export class DemoBubbleChartSimpleComponent implements OnInit {
-  public animations: boolean = true;
-  public autoScale: boolean = false;
+  public animations: boolean;
+  public autoScale: boolean;
   public bubble: any;
+  public bubbleChartOptions: ChartBubbleOptionsModel;
   public colorScheme: any;
-  public legendPosition: string = 'right';
-  public legendTitle: string = '';
-  public maxRadius: number = 20;
-  public maxXAxisTickLength: number = 16;
-  public maxYAxisTickLength: number = 16;
-  public minRadius: number = 5;
-  public rangeFillOpacity: number = 0.15;
-  public rotateXAxisTicks: boolean = true;
-  public roundDomains: boolean = false;
-  public schemeType: string = 'ordinal';
-  public showGridLines: boolean = true;
-  public showLegend: boolean = true;
-  public showXAxis: boolean = true;
-  public showXAxisLabel: boolean = true;
-  public showYAxis: boolean = true;
-  public showYAxisLabel: boolean = true;
-  public tooltipDisabled: boolean = false;
-  public trimXAxisTicks: boolean = true;
-  public trimYAxisTicks: boolean = true;
+  public legendPosition: string;
+  public legendTitle: string;
+  public maxRadius: number;
+  public maxXAxisTickLength: number;
+  public maxYAxisTickLength: number;
+  public minRadius: number;
+  public rotateXAxisTicks: boolean;
+  public roundDomains: boolean;
+  public schemeType: string;
+  public showGridLines: boolean;
+  public showLegend: boolean;
+  public showXAxis: boolean;
+  public showXAxisLabel: boolean;
+  public showYAxis: boolean;
+  public showYAxisLabel: boolean;
+  public tooltipDisabled: boolean;
+  public trimXAxisTicks: boolean;
+  public trimYAxisTicks: boolean;
   public view: any[];
-  public xAxisLabel: string = 'Census Date';
+  public xAxisLabel: string;
   public xScaleMax: any;
   public xScaleMin: any;
-  public yAxisLabel: string = 'Life expectancy [years]';
-  public yScaleMax: number = 82;
-  public yScaleMin: number = 74;
+  public yAxisLabel: string;
+  public yScaleMax: number;
+  public yScaleMin: number;
 
   private colorSets: any;
   private fitContainer: boolean = false;
-  private height: number = 400;
-  private width: number = 1000;
+  private height: number;
+  private width: number;
 
-  constructor() {
-    Object.assign(this, {
-      colorSets,
-      bubble
-    });
-    this.setColorScheme('cool');
+  constructor(
+    private appEventService: AppEventService
+  ) {
+    this.bubbleChartOptions = {...AppConstants.DEFAULT_GLOBAL_CHART_OPTIONS, ...AppConstants.DEFAULT_BUBBLE_CHART_OPTIONS};
+    this.appEventService.getDemoFormValueEvent().subscribe(
+      (value) => {
+        this.updateChartOptions(value);
+      }
+    );
+    Object.assign(this, this.bubbleChartOptions);
+    this.setColorScheme(this.colorScheme);
+    this.bubble = [...bubble];
   }
 
   public ngOnInit(): void {
@@ -76,6 +84,16 @@ export class DemoBubbleChartSimpleComponent implements OnInit {
 
   private setColorScheme(name: string): void {
     this.colorScheme = this.colorSets.find(s => s.name === name);
+  }
+
+  private updateChartOptions(value: any): void {
+    Object.assign(this, value);
+
+    if (!this.fitContainer) {
+      this.applyDimensions();
+    } else {
+      this.view = undefined;
+    }
   }
 
 }

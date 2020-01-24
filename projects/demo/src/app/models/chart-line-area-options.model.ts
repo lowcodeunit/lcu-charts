@@ -1,5 +1,7 @@
+import { ChartGlobalOptionsModel } from './chart-global-options.model';
+
 // TODO: Move to common
-export class ChartLineOptionsModel {
+export class ChartLineAreaOptionsModel extends ChartGlobalOptionsModel {
   public curveType: string;
   public curves: any;
   public curve: any;
@@ -8,7 +10,8 @@ export class ChartLineOptionsModel {
   public xAxisLabel: string;
   public yAxisLabel: string;
 
-  constructor(opts: ChartLineOptionsModel) {
+  constructor(opts: ChartLineAreaOptionsModel) {
+    super(opts);
     Object.assign(this, opts);
   }
 }

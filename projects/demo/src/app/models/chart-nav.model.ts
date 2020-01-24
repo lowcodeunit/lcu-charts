@@ -1,7 +1,8 @@
 export class ChartNavModel {
-  public title: string;
   public icon: string;
   public route: string;
+  public selector?: string;
+  public title: string;
   public type: ChartNavType;
 
   constructor(opts: ChartNavModel) {
@@ -14,5 +15,7 @@ export enum ChartNavType {
   BAR = 'Bar',
   PIE = 'Pie',
   EXAMPLE = 'Example',
+  BUBBLE = 'Bubble',
+  GAUGE = 'Gauge',
   OTHER = 'Other'
 }
