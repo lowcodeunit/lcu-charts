@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: 'examples/chart-synchronization', component: ExampleChartSynchronizationComponent },
   { path: 'examples/real-time-data', component: ExampleRealTimeDataComponent },
   { path: 'home', component: HomeComponent},
-  { path: '**', component: HomeComponent }
+  { path: '**', redirectTo: 'home' }
 ];
 
 @NgModule({
