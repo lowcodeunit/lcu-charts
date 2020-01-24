@@ -32,8 +32,10 @@
 @mixin component-themes($theme) {
   @include lcu-charts-component-theme($theme);
 
-  .mat-tooltip {
-    background: rgba($color: mat-color(map-get($theme, primary), 500), $alpha: 0.9);
+  .mat-tooltip,
+  .mat-snack-bar-container {
+    background: rgba($color: mat-color(map-get($theme, primary), 500), $alpha: 0.8);
+    color: rgba($color: mat-color(map-get($theme, primary), default-contrast), $alpha: 1);
   }
 }
 
