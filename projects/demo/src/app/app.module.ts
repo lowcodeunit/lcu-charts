@@ -10,6 +10,7 @@ import { AppEventService } from './app-event.service';
 import { LcuChartsModule } from '@lowcodeunit/lcu-charts-common';
 import { HomeComponent } from './home/home.component';
 import { ModifyChartComponent } from './modify-chart/modify-chart.component';
+import { CodeDialogComponent } from './code-dialog/code-dialog.component';
 import { DemoAreaChartSimpleComponent } from './charts/demo-area-chart-simple/demo-area-chart-simple.component';
 import { DemoLineChartComponent } from './charts/demo-line-chart/demo-line-chart.component';
 import { DemoBarChartVerticalSimpleComponent } from './charts/demo-bar-chart-vertical-simple/demo-bar-chart-vertical-simple.component';
@@ -28,6 +29,7 @@ import { ExampleRealTimeDataComponent } from './examples/example-real-time-data/
     AppComponent,
     HomeComponent,
     ModifyChartComponent,
+    CodeDialogComponent,
     DemoAreaChartSimpleComponent,
     DemoLineChartComponent,
     DemoBarChartVerticalSimpleComponent,
@@ -53,6 +55,7 @@ import { ExampleRealTimeDataComponent } from './examples/example-real-time-data/
   ],
   providers: [AppEventService],
   bootstrap: [AppComponent],
-  exports: [LcuChartsModule]
+  exports: [LcuChartsModule],
+  entryComponents: [CodeDialogComponent]
 })
 export class AppModule { }

@@ -1,5 +1,6 @@
 @import '~@angular/material/theming';
 @import "./modify-chart/modify-chart.component.scss";
+@import "./code-dialog/code-dialog.component.scss";
 
 @mixin lcu-charts-component-theme($theme) {
   $primary: map-get($theme, primary);
@@ -8,6 +9,8 @@
 
   $lcu-charts-header-height: 64px;
   $lcu-charts-footer-height: 50px;
+
+  @include lcu-charts-code-dialog($theme);
 
   .lcu-charts-container {
     height: 100%;
@@ -152,6 +155,7 @@
 
     .lcu-charts-footer {
       .mat-toolbar {
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
         height: $lcu-charts-footer-height;
         justify-content: space-between;
 
