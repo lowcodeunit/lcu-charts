@@ -202,7 +202,7 @@ export class ExampleRealTimeDataComponent implements OnInit {
     console.log('Activate', JSON.parse(JSON.stringify(data)));
   }
 
-  public dblclick(event): void {
+  public dblclick(event: any): void {
     console.log('Doube click', event);
   }
 
@@ -214,7 +214,7 @@ export class ExampleRealTimeDataComponent implements OnInit {
     console.log('Legend clicked', entry);
   }
 
-  public pieTooltipText({ data }): string {
+  public pieTooltipText({ data }: any): string {
     const label = formatLabel(data.name);
     const val = formatLabel(data.value);
 
@@ -233,7 +233,7 @@ export class ExampleRealTimeDataComponent implements OnInit {
   }
 
   private setColorScheme(name: string): void {
-    this.colorScheme = this.colorSets.find(s => s.name === name);
+    this.colorScheme = this.colorSets.find((s: any) => s.name === name);
   }
 
 }

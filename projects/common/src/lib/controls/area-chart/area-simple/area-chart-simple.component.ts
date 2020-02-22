@@ -217,7 +217,7 @@ export class AreaChartSimpleComponent extends BaseChartComponent {
   }
 
   getXScale(domain: any, width: any): any {
-    let scale;
+    let scale: any;
 
     if (this.scaleType === 'time') {
       scale = scaleTime();

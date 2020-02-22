@@ -1,5 +1,6 @@
 import { Component, Inject, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { MatTabChangeEvent, MatSnackBar } from '@angular/material';
+import { MatTabChangeEvent } from '@angular/material/tabs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ChartGlobalOptionsModel } from '@lowcodeunit/lcu-charts-common';
 import { ChartNavModel } from '../models/chart-nav.model';
@@ -71,7 +72,7 @@ export class CodeDialogComponent implements AfterViewInit {
     }
   }
 
-  private generateTsCode(data): any {
+  private generateTsCode(data: any): any {
     let arr = [];
     for (const [key, value] of Object.entries(data)) {
       const propValue = typeof value === 'string' ? `'${value}'` : value;
@@ -84,7 +85,7 @@ export class CodeDialogComponent implements AfterViewInit {
     return arr;
   }
 
-  private generateHTMLCode(data): any {
+  private generateHTMLCode(data: any): any {
     const arr = [];
     arr.push(`<${this.data.chart.selector}`);
     arr.push(`  class="chart-container"`);
@@ -143,12 +144,12 @@ export class CodeDialogComponent implements AfterViewInit {
     arr.push(`}`);
     arr.push(` `);
     arr.push(`private setColorScheme(name: string): void {`);
-    arr.push(`  this.colorScheme = this.colorSets.find(s => s.name === name);`);
+    arr.push(`  this.colorScheme = this.colorSets.find((s: any) => s.name === name);`);
     arr.push(`}`);
     return arr;
   }
 
-  private removeProps(data): any {
+  private removeProps(data: any): any {
     delete data.colorSets;
     return data;
   }

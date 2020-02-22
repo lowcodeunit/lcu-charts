@@ -63,7 +63,7 @@ export class DemoLineChartComponent implements OnInit {
   ) {
     this.lineChartOptions = {...AppConstants.DEFAULT_GLOBAL_CHART_OPTIONS, ...AppConstants.DEFAULT_LINE_AREA_CHART_OPTIONS};
     this.appEventService.getDemoFormValueEvent().subscribe(
-      (value) => {
+      (value: any) => {
         this.updateChartOptions(value);
       }
     );
@@ -101,7 +101,7 @@ export class DemoLineChartComponent implements OnInit {
   }
 
   private setColorScheme(name: string): void {
-    this.colorScheme = this.colorSets.find(s => s.name === name);
+    this.colorScheme = this.colorSets.find((s: any) => s.name === name);
   }
 
   private updateChartOptions(value: any): void {
