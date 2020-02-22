@@ -42,7 +42,7 @@ export class PieChartSimpleComponent extends BaseChartComponent {
   @Output() activate: EventEmitter<any> = new EventEmitter();
   @Output() deactivate: EventEmitter<any> = new EventEmitter();
 
-  @ContentChild('tooltipTemplate', { static: false }) tooltipTemplate: TemplateRef<any>;
+  @ContentChild('tooltipTemplate') tooltipTemplate: TemplateRef<any>;
 
   translation: string;
   outerRadius: number;
@@ -91,7 +91,7 @@ export class PieChartSimpleComponent extends BaseChartComponent {
     this.domain = this.getDomain();
 
     // sort data according to domain
-    this.data = this.results.sort((a, b) => {
+    this.data = this.results.sort((a: any, b: any) => {
       return this.domain.indexOf(a.name) - this.domain.indexOf(b.name);
     });
 
@@ -100,7 +100,7 @@ export class PieChartSimpleComponent extends BaseChartComponent {
   }
 
   getDomain(): any[] {
-    return this.results.map(d => d.label);
+    return this.results.map((d: any) => d.label);
   }
 
   onClick(data: DataItem): void {
@@ -121,8 +121,8 @@ export class PieChartSimpleComponent extends BaseChartComponent {
     };
   }
 
-  onActivate(item, fromLegend = false) {
-    item = this.results.find(d => {
+  onActivate(item: any, fromLegend = false) {
+    item = this.results.find((d: any) => {
       if (fromLegend) {
         return d.label === item.name;
       } else {
@@ -141,8 +141,8 @@ export class PieChartSimpleComponent extends BaseChartComponent {
     this.activate.emit({ value: item, entries: this.activeEntries });
   }
 
-  onDeactivate(item, fromLegend = false) {
-    item = this.results.find(d => {
+  onDeactivate(item: any, fromLegend = false) {
+    item = this.results.find((d: any) => {
       if (fromLegend) {
         return d.label === item.name;
       } else {

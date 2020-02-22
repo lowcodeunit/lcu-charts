@@ -58,11 +58,11 @@ import { sortLinear, sortByTime, sortByDomain } from '../../utils/sort';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LineSeriesComponent implements OnChanges {
-  @Input() data;
-  @Input() xScale;
-  @Input() yScale;
-  @Input() colors;
-  @Input() scaleType;
+  @Input() data: any;
+  @Input() xScale: any;
+  @Input() yScale: any;
+  @Input() colors: any;
+  @Input() scaleType: any;
   @Input() curve: any;
   @Input() activeEntries: any[];
   @Input() rangeFillOpacity: number;
@@ -101,7 +101,7 @@ export class LineSeriesComponent implements OnChanges {
 
     if (this.hasGradient) {
       this.stroke = this.gradientUrl;
-      const values = this.data.series.map(d => d.value);
+      const values = this.data.series.map((d: any) => d.value);
       const max = Math.max(...values);
       const min = Math.min(...values);
       if (max === min) {
@@ -114,7 +114,7 @@ export class LineSeriesComponent implements OnChanges {
 
   getLineGenerator(): any {
     return line<any>()
-      .x(d => {
+      .x((d: any) => {
         const label = d.name;
         let value;
         if (this.scaleType === 'time') {
@@ -126,13 +126,13 @@ export class LineSeriesComponent implements OnChanges {
         }
         return value;
       })
-      .y(d => this.yScale(d.value))
+      .y((d: any) => this.yScale(d.value))
       .curve(this.curve);
   }
 
   getRangeGenerator(): any {
     return area<any>()
-      .x(d => {
+      .x((d: any) => {
         const label = d.name;
         let value;
         if (this.scaleType === 'time') {
@@ -144,13 +144,13 @@ export class LineSeriesComponent implements OnChanges {
         }
         return value;
       })
-      .y0(d => this.yScale(typeof d.min === 'number' ? d.min : d.value))
-      .y1(d => this.yScale(typeof d.max === 'number' ? d.max : d.value))
+      .y0((d: any) => this.yScale(typeof d.min === 'number' ? d.min : d.value))
+      .y1((d: any) => this.yScale(typeof d.max === 'number' ? d.max : d.value))
       .curve(this.curve);
   }
 
   getAreaGenerator(): any {
-    const xProperty = d => {
+    const xProperty = (d: any) => {
       const label = d.name;
       return this.xScale(label);
     };
@@ -158,11 +158,11 @@ export class LineSeriesComponent implements OnChanges {
     return area<any>()
       .x(xProperty)
       .y0(() => this.yScale.range()[0])
-      .y1(d => this.yScale(d.value))
+      .y1((d: any) => this.yScale(d.value))
       .curve(this.curve);
   }
 
-  sortData(data) {
+  sortData(data: any) {
     if (this.scaleType === 'linear') {
       data = sortLinear(data, 'name');
     } else if (this.scaleType === 'time') {
@@ -179,7 +179,7 @@ export class LineSeriesComponent implements OnChanges {
       this.hasGradient = true;
       this.gradientId = 'grad' + id().toString();
       this.gradientUrl = `url(#${this.gradientId})`;
-      const values = this.data.series.map(d => d.value);
+      const values = this.data.series.map((d: any) => d.value);
       const max = Math.max(...values);
       const min = Math.min(...values);
       this.gradientStops = this.colors.getLinearGradientStops(max, min);
@@ -191,7 +191,7 @@ export class LineSeriesComponent implements OnChanges {
     }
   }
 
-  isActive(entry): boolean {
+  isActive(entry: any): boolean {
     if (!this.activeEntries) return false;
     const item = this.activeEntries.find(d => {
       return entry.name === d.name;
@@ -199,7 +199,7 @@ export class LineSeriesComponent implements OnChanges {
     return item !== undefined;
   }
 
-  isInactive(entry): boolean {
+  isInactive(entry: any): boolean {
     if (!this.activeEntries || this.activeEntries.length === 0) return false;
     const item = this.activeEntries.find(d => {
       return entry.name === d.name;

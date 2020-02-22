@@ -1,5 +1,5 @@
-export function sortLinear(data, property, direction = 'asc') {
-  return data.sort((a, b) => {
+export function sortLinear(data: any, property: any, direction = 'asc') {
+  return data.sort((a: any, b: any) => {
     if (direction === 'asc') {
       return a[property] - b[property];
     } else {
@@ -8,8 +8,8 @@ export function sortLinear(data, property, direction = 'asc') {
   });
 }
 
-export function sortByDomain(data, property, direction = 'asc', domain) {
-  return data.sort((a, b) => {
+export function sortByDomain(data: any, property: any, direction = 'asc', domain: any) {
+  return data.sort((a: any, b: any) => {
     const aVal = a[property];
     const bVal = b[property];
 
@@ -24,8 +24,8 @@ export function sortByDomain(data, property, direction = 'asc', domain) {
   });
 }
 
-export function sortByTime(data, property, direction = 'asc') {
-  return data.sort((a, b) => {
+export function sortByTime(data: any, property: any, direction = 'asc') {
+  return data.sort((a: any, b: any) => {
     const aDate = a[property].getTime();
     const bDate = b[property].getTime();
 

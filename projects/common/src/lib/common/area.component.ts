@@ -22,14 +22,14 @@ import { id } from '../utils/id';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AreaComponent implements OnChanges {
-  @Input() data;
-  @Input() path;
-  @Input() startingPath;
-  @Input() fill;
+  @Input() data: any;
+  @Input() path: any;
+  @Input() startingPath: any;
+  @Input() fill: any;
   @Input() opacity = 1;
   @Input() startOpacity = 0.5;
   @Input() endOpacity = 1;
-  @Input() activeLabel;
+  @Input() activeLabel: any;
   @Input() gradient: boolean = false;
   @Input() stops: any[];
   @Input() animations: boolean = true;

@@ -37,12 +37,12 @@ export class BarVerticalNormalizedComponent extends BaseChartComponent {
   @Input() legend = false;
   @Input() legendTitle: string = 'Legend';
   @Input() legendPosition: string = 'right';
-  @Input() xAxis;
-  @Input() yAxis;
-  @Input() showXAxisLabel;
-  @Input() showYAxisLabel;
-  @Input() xAxisLabel;
-  @Input() yAxisLabel;
+  @Input() xAxis: any;
+  @Input() yAxis: any;
+  @Input() showXAxisLabel: any;
+  @Input() showYAxisLabel: any;
+  @Input() xAxisLabel: any;
+  @Input() yAxisLabel: any;
   @Input() tooltipDisabled: boolean = false;
   @Input() gradient: boolean;
   @Input() showGridLines: boolean = true;
@@ -64,7 +64,7 @@ export class BarVerticalNormalizedComponent extends BaseChartComponent {
   @Output() activate: EventEmitter<any> = new EventEmitter();
   @Output() deactivate: EventEmitter<any> = new EventEmitter();
 
-  @ContentChild('tooltipTemplate', { static: false }) tooltipTemplate: TemplateRef<any>;
+  @ContentChild('tooltipTemplate') tooltipTemplate: TemplateRef<any>;
 
   dims: ViewDimensions;
   groupDomain: any[];
@@ -113,7 +113,7 @@ export class BarVerticalNormalizedComponent extends BaseChartComponent {
   }
 
   getGroupDomain() {
-    const domain = [];
+    const domain: any[] = [];
     for (const group of this.results) {
       if (!domain.includes(group.label)) {
         domain.push(group.label);
@@ -124,7 +124,7 @@ export class BarVerticalNormalizedComponent extends BaseChartComponent {
   }
 
   getInnerDomain() {
-    const domain = [];
+    const domain: any[] = [];
     for (const group of this.results) {
       for (const d of group.series) {
         if (!domain.includes(d.label)) {
@@ -156,11 +156,11 @@ export class BarVerticalNormalizedComponent extends BaseChartComponent {
     return this.roundDomains ? scale.nice() : scale;
   }
 
-  groupTransform(group) {
+  groupTransform(group: { name: any; }) {
     return `translate(${this.xScale(group.name)}, 0)`;
   }
 
-  onClick(data, group?) {
+  onClick(data: { series: any; }, group?: { name: any; }) {
     if (group) {
       data.series = group.name;
     }
@@ -168,7 +168,7 @@ export class BarVerticalNormalizedComponent extends BaseChartComponent {
     this.select.emit(data);
   }
 
-  trackBy(index, item) {
+  trackBy(index: any, item: { name: any; }) {
     return item.name;
   }
 
@@ -184,7 +184,7 @@ export class BarVerticalNormalizedComponent extends BaseChartComponent {
   }
 
   getLegendOptions() {
-    const opts = {
+    const opts: any = {
       scaleType: this.schemeType,
       colors: undefined,
       domain: [],
@@ -203,26 +203,26 @@ export class BarVerticalNormalizedComponent extends BaseChartComponent {
     return opts;
   }
 
-  updateYAxisWidth({ width }) {
+  updateYAxisWidth({ width }: any) {
     this.yAxisWidth = width;
     this.update();
   }
 
-  updateXAxisHeight({ height }) {
+  updateXAxisHeight({ height }: any) {
     this.xAxisHeight = height;
     this.update();
   }
 
-  onActivate(event, group, fromLegend = false) {
+  onActivate(event: any, group: { name: any; }, fromLegend = false) {
     const item = Object.assign({}, event);
     if (group) {
       item.series = group.name;
     }
 
     const items = this.results
-      .map(g => g.series)
+      .map((g: { series: any; }) => g.series)
       .flat()
-      .filter(i => {
+      .filter((i: { label: any; name: any; series: any; }) => {
         if (fromLegend) {
           return i.label === item.name;
         } else {
@@ -234,7 +234,7 @@ export class BarVerticalNormalizedComponent extends BaseChartComponent {
     this.activate.emit({ value: item, entries: this.activeEntries });
   }
 
-  onDeactivate(event, group, fromLegend = false) {
+  onDeactivate(event: any, group: { name: any; }, fromLegend = false) {
     const item = Object.assign({}, event);
     if (group) {
       item.series = group.name;

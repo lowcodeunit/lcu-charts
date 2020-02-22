@@ -16,8 +16,8 @@ import { pie } from 'd3-shape';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PieGridSeriesComponent implements OnChanges {
-  @Input() colors;
-  @Input() data;
+  @Input() colors: any;
+  @Input() data: any;
   @Input() innerRadius = 70;
   @Input() outerRadius = 80;
   @Input() animations: boolean = true;
@@ -40,14 +40,14 @@ export class PieGridSeriesComponent implements OnChanges {
 
   update(): void {
     this.layout = pie<any, any>()
-      .value(d => d.data.value)
+      .value((d: any) => d.data.value)
       .sort(null);
 
     this.arcs = this.getArcs();
   }
 
   getArcs(): any[] {
-    return this.layout(this.data).map((arc, index) => {
+    return this.layout(this.data).map((arc: any, index: any) => {
       const label = arc.data.data.name;
       const other = arc.data.data.other;
 
@@ -68,19 +68,19 @@ export class PieGridSeriesComponent implements OnChanges {
     });
   }
 
-  onClick(data): void {
+  onClick(data: any): void {
     this.select.emit(this.data[0].data);
   }
 
-  trackBy(index, item): string {
+  trackBy(index: any, item: any): string {
     return item.data.name;
   }
 
-  label(arc): string {
+  label(arc: any): string {
     return arc.data.name;
   }
 
-  color(arc): any {
+  color(arc: any): any {
     return this.colors(this.label(arc));
   }
 }

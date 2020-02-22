@@ -74,7 +74,7 @@ export class BubbleChartSimpleComponent extends BaseChartComponent {
   @Output() activate: EventEmitter<any> = new EventEmitter();
   @Output() deactivate: EventEmitter<any> = new EventEmitter();
 
-  @ContentChild('tooltipTemplate', { static: false }) tooltipTemplate: TemplateRef<any>;
+  @ContentChild('tooltipTemplate') tooltipTemplate: TemplateRef<any>;
 
   dims: ViewDimensions;
   colors: ColorHelper;
@@ -124,7 +124,7 @@ export class BubbleChartSimpleComponent extends BaseChartComponent {
       legendPosition: this.legendPosition
     });
 
-    this.seriesDomain = this.results.map(d => d.name);
+    this.seriesDomain = this.results.map((d: any) => d.name);
     this.rDomain = this.getRDomain();
     this.xDomain = this.getXDomain();
     this.yDomain = this.getYDomain();
@@ -158,7 +158,7 @@ export class BubbleChartSimpleComponent extends BaseChartComponent {
     this.deactivateAll();
   }
 
-  onClick(data, series?): void {
+  onClick(data: any, series?: any): void {
     if (series) {
       data.series = series.name;
     }
@@ -203,15 +203,15 @@ export class BubbleChartSimpleComponent extends BaseChartComponent {
     this.yScale = this.getYScale(this.yDomain, height);
   }
 
-  getYScale(domain, height): any {
+  getYScale(domain: any, height: any): any {
     return getScale(domain, [height, this.bubblePadding[0]], this.yScaleType, this.roundDomains);
   }
 
-  getXScale(domain, width): any {
+  getXScale(domain: any, width: any): any {
     return getScale(domain, [this.bubblePadding[3], width], this.xScaleType, this.roundDomains);
   }
 
-  getRScale(domain, range): any {
+  getRScale(domain: any, range: any): any {
     const scale = scaleLinear()
       .range(range)
       .domain(domain);
@@ -220,7 +220,7 @@ export class BubbleChartSimpleComponent extends BaseChartComponent {
   }
 
   getLegendOptions(): any {
-    const opts = {
+    const opts: any = {
       scaleType: this.schemeType,
       colors: undefined,
       domain: [],
@@ -241,7 +241,7 @@ export class BubbleChartSimpleComponent extends BaseChartComponent {
   }
 
   getXDomain(): any[] {
-    const values = [];
+    const values: any = [];
 
     for (const results of this.results) {
       for (const d of results.series) {
@@ -256,7 +256,7 @@ export class BubbleChartSimpleComponent extends BaseChartComponent {
   }
 
   getYDomain(): any[] {
-    const values = [];
+    const values: any = [];
 
     for (const results of this.results) {
       for (const d of results.series) {
@@ -285,17 +285,17 @@ export class BubbleChartSimpleComponent extends BaseChartComponent {
     return [min, max];
   }
 
-  updateYAxisWidth({ width }): void {
+  updateYAxisWidth({ width }: any): void {
     this.yAxisWidth = width;
     this.update();
   }
 
-  updateXAxisHeight({ height }): void {
+  updateXAxisHeight({ height }: any): void {
     this.xAxisHeight = height;
     this.update();
   }
 
-  onActivate(item): void {
+  onActivate(item: any): void {
     const idx = this.activeEntries.findIndex(d => {
       return d.name === item.name;
     });
@@ -307,7 +307,7 @@ export class BubbleChartSimpleComponent extends BaseChartComponent {
     this.activate.emit({ value: item, entries: this.activeEntries });
   }
 
-  onDeactivate(item): void {
+  onDeactivate(item: any): void {
     const idx = this.activeEntries.findIndex(d => {
       return d.name === item.name;
     });
@@ -326,7 +326,7 @@ export class BubbleChartSimpleComponent extends BaseChartComponent {
     this.activeEntries = [];
   }
 
-  trackBy(index, item): string {
+  trackBy(index: any, item: any): string {
     return item.name;
   }
 }

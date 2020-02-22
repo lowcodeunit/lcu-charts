@@ -24,11 +24,11 @@ export class GaugeLinearComponent extends BaseChartComponent implements AfterVie
   @Input() max: number = 100;
   @Input() value: number = 0;
   @Input() units: string;
-  @Input() previousValue;
+  @Input() previousValue: any;
   @Input() valueFormatting: any;
 
-  @ViewChild('valueTextEl', { static: false }) valueTextEl: ElementRef;
-  @ViewChild('unitsTextEl', { static: false }) unitsTextEl: ElementRef;
+  @ViewChild('valueTextEl') valueTextEl: ElementRef;
+  @ViewChild('unitsTextEl') unitsTextEl: ElementRef;
 
   dims: ViewDimensions;
   valueDomain: any;
@@ -107,7 +107,7 @@ export class GaugeLinearComponent extends BaseChartComponent implements AfterVie
     return this.value.toLocaleString();
   }
 
-  scaleText(element, repeat: boolean = true): void {
+  scaleText(element: any, repeat: boolean = true): void {
     let el;
     let resizeScale;
     if (element === 'value') {

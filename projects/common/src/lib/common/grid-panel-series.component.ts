@@ -20,20 +20,11 @@ import { Component, SimpleChanges, Input, OnChanges, ChangeDetectionStrategy } f
 export class GridPanelSeriesComponent implements OnChanges {
   gridPanels: any[];
 
-  @Input()
-  data;
-
-  @Input()
-  dims;
-
-  @Input()
-  xScale;
-
-  @Input()
-  yScale;
-
-  @Input()
-  orient;
+  @Input() data: any;
+  @Input() dims: any;
+  @Input() xScale: any;
+  @Input() yScale: any;
+  @Input() orient: any;
 
   ngOnChanges(changes: SimpleChanges): void {
     this.update();
@@ -44,7 +35,7 @@ export class GridPanelSeriesComponent implements OnChanges {
   }
 
   getGridPanels(): any[] {
-    return this.data.map(d => {
+    return this.data.map((d: any) => {
       let offset;
       let width;
       let height;

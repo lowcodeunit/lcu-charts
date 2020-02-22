@@ -1,6 +1,6 @@
 import { scaleBand } from 'd3-scale';
 
-export function gridSize(dims, len, minWidth) {
+export function gridSize(dims: any, len: any, minWidth: any) {
   let rows = 1;
   let cols = len;
   const width = dims.width;
@@ -15,7 +15,7 @@ export function gridSize(dims, len, minWidth) {
   return [cols, rows];
 }
 
-export function gridLayout(dims, data, minWidth, designatedTotal) {
+export function gridLayout(dims: any, data: any, minWidth: any, designatedTotal: any) {
   const xScale: any = scaleBand<number>();
   const yScale: any = scaleBand<number>();
   const width = dims.width;
@@ -37,7 +37,7 @@ export function gridLayout(dims, data, minWidth, designatedTotal) {
   xScale.rangeRound([0, width], 0.1);
   yScale.rangeRound([0, height], 0.1);
 
-  const res = [];
+  const res: any = [];
   const total = designatedTotal ? designatedTotal : getTotal(data);
   const cardWidth = xScale.bandwidth();
   const cardHeight = yScale.bandwidth();
@@ -61,6 +61,6 @@ export function gridLayout(dims, data, minWidth, designatedTotal) {
   return res;
 }
 
-function getTotal(results) {
-  return results.map(d => (d ? d.value : 0)).reduce((sum, val) => sum + val, 0);
+function getTotal(results: any) {
+  return results.map((d: any) => (d ? d.value : 0)).reduce((sum: any, val: any) => sum + val, 0);
 }

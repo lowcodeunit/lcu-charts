@@ -85,7 +85,7 @@ export class TooltipDirective implements OnDestroy {
   }
 
   @HostListener('mouseleave', ['$event.target'])
-  onMouseLeave(target): void {
+  onMouseLeave(target: any): void {
     if (this.listensForHover && this.tooltipCloseOnMouseLeave) {
       clearTimeout(this.timeout);
 
@@ -129,7 +129,7 @@ export class TooltipDirective implements OnDestroy {
     }, time);
   }
 
-  addHideListeners(tooltip): void {
+  addHideListeners(tooltip: any): void {
     // on mouse enter, cancel the hide triggered by the leave
     this.mouseEnterContentEvent = this.renderer.listen(tooltip, 'mouseenter', () => {
       clearTimeout(this.timeout);

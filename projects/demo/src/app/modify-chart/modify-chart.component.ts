@@ -61,7 +61,7 @@ export class ModifyChartComponent implements OnInit {
 
   protected onChanges(): void {
     this.ChartsForm.valueChanges.subscribe(
-      (value) => {
+      (value: any) => {
         console.log('onChanges(): ', value);
         this.appEventService.emitDemoFormValueEvent(value);
       }

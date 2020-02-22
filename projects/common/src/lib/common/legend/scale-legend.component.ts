@@ -24,10 +24,10 @@ import { DomSanitizer } from '@angular/platform-browser';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ScaleLegendComponent implements OnChanges {
-  @Input() valueRange;
-  @Input() colors;
-  @Input() height;
-  @Input() width;
+  @Input() valueRange: any;
+  @Input() colors: any;
+  @Input() height: any;
+  @Input() width: any;
   @Input() horizontal = false;
 
   gradient: any;
@@ -45,11 +45,11 @@ export class ScaleLegendComponent implements OnChanges {
    * @param colors array of colors
    * @param splits array of splits on a scale of (0, 1)
    */
-  gradientString(colors, splits): string {
+  gradientString(colors: any, splits: any): string {
     // add the 100%
     splits.push(1);
-    const pairs = [];
-    colors.reverse().forEach((c, i) => {
+    const pairs: any = [];
+    colors.reverse().forEach((c: any, i: any) => {
       pairs.push(`${c} ${Math.round(splits[i] * 100)}%`);
     });
 
