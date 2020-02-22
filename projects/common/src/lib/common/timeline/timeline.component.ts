@@ -38,15 +38,15 @@ import { id } from '../..//utils/id';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Timeline implements OnChanges {
-  @Input() view;
-  @Input() state;
-  @Input() results;
-  @Input() scheme;
-  @Input() customColors;
-  @Input() legend;
-  @Input() miniChart;
-  @Input() autoScale;
-  @Input() scaleType;
+  @Input() view: any;
+  @Input() state: any;
+  @Input() results: any;
+  @Input() scheme: any;
+  @Input() customColors: any;
+  @Input() legend: any;
+  @Input() miniChart: any;
+  @Input() autoScale: any;
+  @Input() scaleType: any;
   @Input() height: number = 50;
 
   @Output() select = new EventEmitter();
@@ -96,7 +96,7 @@ export class Timeline implements OnChanges {
   }
 
   getXDomain(): any[] {
-    let values = [];
+    let values: any = [];
 
     for (const results of this.results) {
       for (const d of results.series) {
@@ -112,7 +112,7 @@ export class Timeline implements OnChanges {
       const max = Math.max(...values);
       domain = [min, max];
     } else if (this.scaleType === 'linear') {
-      values = values.map(v => Number(v));
+      values = values.map((v: any) => Number(v));
       const min = Math.min(...values);
       const max = Math.max(...values);
       domain = [min, max];

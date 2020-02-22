@@ -1,9 +1,9 @@
 import { scaleLinear, scalePoint, scaleTime } from 'd3-scale';
 
-export function getDomain(values, scaleType, autoScale, minVal?, maxVal?): number[] {
+export function getDomain(values: any[], scaleType: string, autoScale: boolean, minVal?: any, maxVal?: any): number[] {
   let domain: number[] = [];
   if (scaleType === 'linear') {
-    values = values.map(v => Number(v));
+    values = values.map((v: any) => Number(v));
     if (!autoScale) {
       values.push(0);
     }
@@ -21,7 +21,7 @@ export function getDomain(values, scaleType, autoScale, minVal?, maxVal?): numbe
   return domain;
 }
 
-export function getScale(domain, range: number[], scaleType, roundDomains): any {
+export function getScale(domain: any, range: number[], scaleType: string, roundDomains: boolean): any {
   let scale: any;
 
   if (scaleType === 'time') {

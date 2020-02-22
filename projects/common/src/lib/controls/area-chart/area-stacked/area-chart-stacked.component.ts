@@ -28,14 +28,14 @@ export class AreaChartStackedComponent extends BaseChartComponent {
   @Input() legend = false;
   @Input() legendTitle: string = 'Legend';
   @Input() legendPosition: string = 'right';
-  @Input() xAxis;
-  @Input() yAxis;
-  @Input() showXAxisLabel;
-  @Input() showYAxisLabel;
-  @Input() xAxisLabel;
-  @Input() yAxisLabel;
-  @Input() timeline;
-  @Input() gradient;
+  @Input() xAxis: any;
+  @Input() yAxis: any;
+  @Input() showXAxisLabel: any;
+  @Input() showYAxisLabel: any;
+  @Input() xAxisLabel: any;
+  @Input() yAxisLabel: any;
+  @Input() timeline: any;
+  @Input() gradient: any;
   @Input() showGridLines: boolean = true;
   @Input() curve: any = curveLinear;
   @Input() activeEntries: any[] = [];
@@ -126,7 +126,7 @@ export class AreaChartStackedComponent extends BaseChartComponent {
       const val = this.xSet[i];
       let d0 = 0;
       for (const group of this.results) {
-        let d = group.series.find(item => {
+        let d = group.series.find((item: any) => {
           let a = item.name;
           let b = val;
           if (this.scaleType === 'time') {
@@ -219,7 +219,7 @@ export class AreaChartStackedComponent extends BaseChartComponent {
       const val = this.xSet[i];
       let sum = 0;
       for (const group of this.results) {
-        const d = group.series.find(item => {
+        const d = group.series.find((item: any) => {
           let a = item.name;
           let b = val;
           if (this.scaleType === 'time') {
@@ -244,10 +244,10 @@ export class AreaChartStackedComponent extends BaseChartComponent {
   }
 
   getSeriesDomain(): any[] {
-    return this.results.map(d => d.name);
+    return this.results.map((d: any) => d.name);
   }
 
-  getXScale(domain, width): any {
+  getXScale(domain: any, width: any): any {
     let scale;
 
     if (this.scaleType === 'time') {
@@ -263,20 +263,20 @@ export class AreaChartStackedComponent extends BaseChartComponent {
     return this.roundDomains ? scale.nice() : scale;
   }
 
-  getYScale(domain, height): any {
+  getYScale(domain: any, height: any): any {
     const scale = scaleLinear()
       .range([height, 0])
       .domain(domain);
     return this.roundDomains ? scale.nice() : scale;
   }
 
-  updateDomain(domain): void {
+  updateDomain(domain: any): void {
     this.filteredDomain = domain;
     this.xDomain = this.filteredDomain;
     this.xScale = this.getXScale(this.xDomain, this.dims.width);
   }
 
-  updateHoveredVertical(item) {
+  updateHoveredVertical(item: any) {
     this.hoveredVertical = item.value;
     this.deactivateAll();
   }
@@ -287,7 +287,7 @@ export class AreaChartStackedComponent extends BaseChartComponent {
     this.deactivateAll();
   }
 
-  onClick(data, series?): void {
+  onClick(data: any, series?: any): void {
     if (series) {
       data.series = series.name;
     }
@@ -295,7 +295,7 @@ export class AreaChartStackedComponent extends BaseChartComponent {
     this.select.emit(data);
   }
 
-  trackBy(index, item): string {
+  trackBy(index: any, item: any): string {
     return item.name;
   }
 
@@ -311,7 +311,7 @@ export class AreaChartStackedComponent extends BaseChartComponent {
   }
 
   getLegendOptions() {
-    const opts = {
+    const opts: any = {
       scaleType: this.schemeType,
       colors: undefined,
       domain: [],
@@ -329,17 +329,17 @@ export class AreaChartStackedComponent extends BaseChartComponent {
     return opts;
   }
 
-  updateYAxisWidth({ width }): void {
+  updateYAxisWidth({ width }: any): void {
     this.yAxisWidth = width;
     this.update();
   }
 
-  updateXAxisHeight({ height }): void {
+  updateXAxisHeight({ height }: any): void {
     this.xAxisHeight = height;
     this.update();
   }
 
-  onActivate(item) {
+  onActivate(item: any) {
     const idx = this.activeEntries.findIndex(d => {
       return d.name === item.name && d.value === item.value;
     });
@@ -351,7 +351,7 @@ export class AreaChartStackedComponent extends BaseChartComponent {
     this.activate.emit({ value: item, entries: this.activeEntries });
   }
 
-  onDeactivate(item) {
+  onDeactivate(item: any) {
     const idx = this.activeEntries.findIndex(d => {
       return d.name === item.name && d.value === item.value;
     });

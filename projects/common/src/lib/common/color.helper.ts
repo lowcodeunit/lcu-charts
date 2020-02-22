@@ -10,7 +10,7 @@ export class ColorHelper {
   domain: any;
   customColors: any;
 
-  constructor(scheme, type, domain, customColors?) {
+  constructor(scheme: any, type: any, domain: any, customColors?: any) {
     if (typeof scheme === 'string') {
       scheme = colorSets.find(cs => {
         return cs.name === scheme;
@@ -24,7 +24,7 @@ export class ColorHelper {
     this.scale = this.generateColorScheme(scheme, type, this.domain);
   }
 
-  generateColorScheme(scheme, type, domain) {
+  generateColorScheme(scheme: any, type: any, domain: any) {
     if (typeof scheme === 'string') {
       scheme = colorSets.find(cs => {
         return cs.name === scheme;
@@ -56,7 +56,7 @@ export class ColorHelper {
     return colorScale;
   }
 
-  getColor(value) {
+  getColor(value: any) {
     if (value === undefined || value === null) {
       throw new Error('Value can not be null');
     }
@@ -74,7 +74,7 @@ export class ColorHelper {
       const formattedValue = value.toString();
       let found: any; // todo type customColors
       if (this.customColors && this.customColors.length > 0) {
-        found = this.customColors.find(mapping => {
+        found = this.customColors.find((mapping: any) => {
           return mapping.name.toLowerCase() === formattedValue.toLowerCase();
         });
       }
@@ -87,7 +87,7 @@ export class ColorHelper {
     }
   }
 
-  getLinearGradientStops(value, start) {
+  getLinearGradientStops(value: any, start: any) {
     if (start === undefined) {
       start = this.domain[0];
     }

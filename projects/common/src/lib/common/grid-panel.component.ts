@@ -8,9 +8,9 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GridPanelComponent {
-  @Input() path;
-  @Input() width;
-  @Input() height;
-  @Input() x;
-  @Input() y;
+  @Input() path: any;
+  @Input() width: any;
+  @Input() height: any;
+  @Input() x: any;
+  @Input() y: any;
 }

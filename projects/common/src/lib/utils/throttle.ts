@@ -4,10 +4,10 @@
  */
 export function throttle(func: any, wait: number, options?: any) {
   options = options || {};
-  let context;
-  let args;
-  let result;
-  let timeout = null;
+  let context: any;
+  let args: any;
+  let result: any;
+  let timeout: any = null;
   let previous = 0;
 
   function later() {
@@ -49,7 +49,7 @@ export function throttle(func: any, wait: number, options?: any) {
  *  }
  */
 export function throttleable(duration: number, options?: any) {
-  return function innerDecorator(target, key, descriptor) {
+  return function innerDecorator(target: any, key: any, descriptor: any) {
     return {
       configurable: true,
       enumerable: descriptor.enumerable,

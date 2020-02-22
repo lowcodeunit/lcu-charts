@@ -4,7 +4,7 @@
  * @export
  * @param x, y, w, h, r, tl, tr, bl, br
  */
-export function roundedRect(x, y, w, h, r, [tl, tr, bl, br]: boolean[]) {
+export function roundedRect(x: number, y: number, w: number, h: number, r: number, [tl, tr, bl, br]: boolean[]) {
   let retval = '';
 
   w = Math.floor(w);

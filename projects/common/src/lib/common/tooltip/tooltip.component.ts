@@ -44,7 +44,7 @@ export class TooltipContentComponent implements AfterViewInit {
   @Input() template: any;
   @Input() context: any;
 
-  @ViewChild('caretElm') caretElm;
+  @ViewChild('caretElm') caretElm: any;
 
   @HostBinding('class')
   get cssClasses(): string {
@@ -80,14 +80,14 @@ export class TooltipContentComponent implements AfterViewInit {
     setTimeout(() => this.renderer.addClass(nativeElm, 'animate'), 1);
   }
 
-  positionContent(nativeElm, hostDim, elmDim): void {
+  positionContent(nativeElm: any, hostDim: any, elmDim: any): void {
     const { top, left } = PositionHelper.positionContent(this.placement, elmDim, hostDim, this.spacing, this.alignment);
 
     this.renderer.setStyle(nativeElm, 'top', `${top}px`);
     this.renderer.setStyle(nativeElm, 'left', `${left}px`);
   }
 
-  positionCaret(hostDim, elmDim): void {
+  positionCaret(hostDim: any, elmDim: any): void {
     const caretElm = this.caretElm.nativeElement;
     const caretDimensions = caretElm.getBoundingClientRect();
     const { top, left } = PositionHelper.positionCaret(
@@ -102,7 +102,7 @@ export class TooltipContentComponent implements AfterViewInit {
     this.renderer.setStyle(caretElm, 'left', `${left}px`);
   }
 
-  checkFlip(hostDim, elmDim): void {
+  checkFlip(hostDim: any, elmDim: any): void {
     this.placement = PositionHelper.determinePlacement(this.placement, elmDim, hostDim, this.spacing);
   }
 

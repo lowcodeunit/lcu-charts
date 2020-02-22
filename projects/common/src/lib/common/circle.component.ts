@@ -26,15 +26,15 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CircleComponent implements OnChanges {
-  @Input() cx;
-  @Input() cy;
-  @Input() r;
-  @Input() fill;
-  @Input() stroke;
-  @Input() data;
-  @Input() classNames;
-  @Input() circleOpacity;
-  @Input() pointerEvents;
+  @Input() cx: any;
+  @Input() cy: any;
+  @Input() r: any;
+  @Input() fill: any;
+  @Input() stroke: any;
+  @Input() data: any;
+  @Input() classNames: any;
+  @Input() circleOpacity: any;
+  @Input() pointerEvents: any;
 
   @Output() select = new EventEmitter();
   @Output() activate = new EventEmitter();

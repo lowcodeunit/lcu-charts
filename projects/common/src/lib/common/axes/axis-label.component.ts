@@ -16,11 +16,11 @@ import { Component, Input, ElementRef, OnChanges, SimpleChanges, ChangeDetection
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AxisLabelComponent implements OnChanges {
-  @Input() orient;
-  @Input() label;
-  @Input() offset;
-  @Input() width;
-  @Input() height;
+  @Input() orient: any;
+  @Input() label: any;
+  @Input() offset: any;
+  @Input() width: any;
+  @Input() height: any;
 
   x: any;
   y: any;

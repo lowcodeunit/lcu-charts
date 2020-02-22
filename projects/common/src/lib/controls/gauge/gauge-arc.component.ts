@@ -57,7 +57,7 @@ export class GaugeArcComponent {
   @Output() activate = new EventEmitter();
   @Output() deactivate = new EventEmitter();
 
-  tooltipText(arc): string {
+  tooltipText(arc: any): string {
     const label = formatLabel(arc.data.name);
     let val;
 

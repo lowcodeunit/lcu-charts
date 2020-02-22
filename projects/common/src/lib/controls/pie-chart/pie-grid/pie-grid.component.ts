@@ -68,7 +68,7 @@ export class PieGridComponent extends BaseChartComponent {
     this.tooltipText = this.tooltipText || this.defaultTooltipText;
   }
 
-  defaultTooltipText({ data }): string {
+  defaultTooltipText({ data }: any): string {
     const label = trimLabel(formatLabel(data.name));
     const val = data.value.toLocaleString();
     return `
@@ -78,7 +78,7 @@ export class PieGridComponent extends BaseChartComponent {
   }
 
   getDomain(): any[] {
-    return this.results.map(d => d.label);
+    return this.results.map((d: any) => d.label);
   }
 
   getSeries(): any[] {
@@ -131,7 +131,7 @@ export class PieGridComponent extends BaseChartComponent {
   }
 
   getTotal(): any {
-    return this.results.map(d => d.value).reduce((sum, d) => sum + d, 0);
+    return this.results.map((d: any) => d.value).reduce((sum: any, d: any) => sum + d, 0);
   }
 
   onClick(data: DataItem): void {
@@ -142,8 +142,8 @@ export class PieGridComponent extends BaseChartComponent {
     this.colorScale = new ColorHelper(this.scheme, 'ordinal', this.domain, this.customColors);
   }
 
-  onActivate(item, fromLegend = false) {
-    item = this.results.find(d => {
+  onActivate(item: any, fromLegend = false) {
+    item = this.results.find((d: any) => {
       if (fromLegend) {
         return d.label === item.name;
       } else {
@@ -162,8 +162,8 @@ export class PieGridComponent extends BaseChartComponent {
     this.activate.emit({ value: item, entries: this.activeEntries });
   }
 
-  onDeactivate(item, fromLegend = false) {
-    item = this.results.find(d => {
+  onDeactivate(item: any, fromLegend = false) {
+    item = this.results.find((d: any) => {
       if (fromLegend) {
         return d.label === item.name;
       } else {

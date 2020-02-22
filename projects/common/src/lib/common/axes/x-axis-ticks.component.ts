@@ -39,17 +39,17 @@ import { reduceTicks } from './ticks.helper';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XAxisTicksComponent implements OnChanges, AfterViewInit {
-  @Input() scale;
-  @Input() orient;
+  @Input() scale: any;
+  @Input() orient: any;
   @Input() tickArguments = [5];
   @Input() tickValues: any[];
   @Input() tickStroke = '#ccc';
   @Input() trimTicks: boolean = true;
   @Input() maxTickLength: number = 16;
-  @Input() tickFormatting;
+  @Input() tickFormatting: any;
   @Input() showGridLines = false;
-  @Input() gridLineHeight;
-  @Input() width;
+  @Input() gridLineHeight: any;
+  @Input() width: any;
   @Input() rotateTicks: boolean = true;
 
   @Output() dimensionsChanged = new EventEmitter();
@@ -96,7 +96,7 @@ export class XAxisTicksComponent implements OnChanges, AfterViewInit {
     } else if (scale.tickFormat) {
       this.tickFormat = scale.tickFormat.apply(scale, this.tickArguments);
     } else {
-      this.tickFormat = function(d) {
+      this.tickFormat = function(d: any) {
         if (d.constructor.name === 'Date') {
           return d.toLocaleDateString();
         }
@@ -107,7 +107,7 @@ export class XAxisTicksComponent implements OnChanges, AfterViewInit {
     const angle = this.rotateTicks ? this.getRotationAngle(this.ticks) : null;
 
     this.adjustedScale = this.scale.bandwidth
-      ? function(d) {
+      ? function(d: any) {
           return this.scale(d) + this.scale.bandwidth() * 0.5;
         }
       : this.scale;
@@ -124,7 +124,7 @@ export class XAxisTicksComponent implements OnChanges, AfterViewInit {
     setTimeout(() => this.updateDims());
   }
 
-  getRotationAngle(ticks): number {
+  getRotationAngle(ticks: any): number {
     let angle = 0;
     this.maxTicksLength = 0;
     for (let i = 0; i < ticks.length; i++) {
@@ -176,7 +176,7 @@ export class XAxisTicksComponent implements OnChanges, AfterViewInit {
     return Math.floor(this.width / tickWidth);
   }
 
-  tickTransform(tick): string {
+  tickTransform(tick: any): string {
     return 'translate(' + this.adjustedScale(tick) + ',' + this.verticalSpacing + ')';
   }
 

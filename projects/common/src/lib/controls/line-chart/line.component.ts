@@ -42,9 +42,9 @@ import { select } from 'd3-selection';
   ]
 })
 export class LineComponent implements OnChanges {
-  @Input() path;
-  @Input() stroke;
-  @Input() data;
+  @Input() path: any;
+  @Input() stroke: any;
+  @Input() data: any;
   @Input() fill: string = 'none';
   @Input() animations: boolean = true;
 

@@ -36,12 +36,12 @@ export class BarHorizontalGroupedComponent extends BaseChartComponent {
   @Input() legend = false;
   @Input() legendTitle: string = 'Legend';
   @Input() legendPosition: string = 'right';
-  @Input() xAxis;
-  @Input() yAxis;
-  @Input() showXAxisLabel;
-  @Input() showYAxisLabel;
-  @Input() xAxisLabel;
-  @Input() yAxisLabel;
+  @Input() xAxis: any;
+  @Input() yAxis: any;
+  @Input() showXAxisLabel: any;
+  @Input() showYAxisLabel: any;
+  @Input() xAxisLabel: any;
+  @Input() yAxisLabel: any;
   @Input() tooltipDisabled: boolean = false;
   @Input() gradient: boolean;
   @Input() showGridLines: boolean = true;
@@ -154,7 +154,7 @@ export class BarHorizontalGroupedComponent extends BaseChartComponent {
   }
 
   getGroupDomain(): any[] {
-    const domain = [];
+    const domain: any[] = [];
 
     for (const group of this.results) {
       if (!domain.includes(group.label)) {
@@ -166,7 +166,7 @@ export class BarHorizontalGroupedComponent extends BaseChartComponent {
   }
 
   getInnerDomain(): any[] {
-    const domain = [];
+    const domain: any[] = [];
 
     for (const group of this.results) {
       for (const d of group.series) {
@@ -180,7 +180,7 @@ export class BarHorizontalGroupedComponent extends BaseChartComponent {
   }
 
   getValueDomain(): any[] {
-    const domain = [];
+    const domain: any[] = [];
 
     for (const group of this.results) {
       for (const d of group.series) {
@@ -195,11 +195,11 @@ export class BarHorizontalGroupedComponent extends BaseChartComponent {
     return [min, max];
   }
 
-  groupTransform(group) {
+  groupTransform(group: { label: any; }) {
     return `translate(0, ${this.groupScale(group.label)})`;
   }
 
-  onClick(data, group?): void {
+  onClick(data: { series: any; }, group?: { name: any; }): void {
     if (group) {
       data.series = group.name;
     }
@@ -207,7 +207,7 @@ export class BarHorizontalGroupedComponent extends BaseChartComponent {
     this.select.emit(data);
   }
 
-  trackBy(index, item): string {
+  trackBy(index: any, item: { name: string; }): string {
     return item.name;
   }
 
@@ -223,7 +223,7 @@ export class BarHorizontalGroupedComponent extends BaseChartComponent {
   }
 
   getLegendOptions() {
-    const opts = {
+    const opts: any = {
       scaleType: this.schemeType,
       colors: undefined,
       domain: [],
@@ -242,17 +242,17 @@ export class BarHorizontalGroupedComponent extends BaseChartComponent {
     return opts;
   }
 
-  updateYAxisWidth({ width }): void {
+  updateYAxisWidth({ width }: any): void {
     this.yAxisWidth = width;
     this.update();
   }
 
-  updateXAxisHeight({ height }): void {
+  updateXAxisHeight({ height }: any): void {
     this.xAxisHeight = height;
     this.update();
   }
 
-  onDataLabelMaxWidthChanged(event, groupIndex) {
+  onDataLabelMaxWidthChanged(event: { size: { negative: any; width: number; }; }, groupIndex: number) {
     if (event.size.negative) {
       this.dataLabelMaxWidth.negative = Math.max(this.dataLabelMaxWidth.negative, event.size.width);
     } else {
@@ -263,16 +263,16 @@ export class BarHorizontalGroupedComponent extends BaseChartComponent {
     }
   }
 
-  onActivate(event, group, fromLegend = false) {
+  onActivate(event: any, group: { name: any; }, fromLegend = false) {
     const item = Object.assign({}, event);
     if (group) {
       item.series = group.name;
     }
 
     const items = this.results
-      .map(g => g.series)
+      .map((g: { series: any; }) => g.series)
       .flat()
-      .filter(i => {
+      .filter((i: { label: any; name: any; series: any; }) => {
         if (fromLegend) {
           return i.label === item.name;
         } else {
@@ -284,7 +284,7 @@ export class BarHorizontalGroupedComponent extends BaseChartComponent {
     this.activate.emit({ value: item, entries: this.activeEntries });
   }
 
-  onDeactivate(event, group, fromLegend = false) {
+  onDeactivate(event: any, group: { name: any; }, fromLegend = false) {
     const item = Object.assign({}, event);
     if (group) {
       item.series = group.name;

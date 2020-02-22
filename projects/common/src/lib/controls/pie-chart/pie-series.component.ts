@@ -61,13 +61,13 @@ import { formatLabel, escapeLabel } from '../../common/label.helper';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PieSeriesComponent implements OnChanges {
-  @Input() colors;
+  @Input() colors: any;
   @Input() series: any = [];
-  @Input() dims;
+  @Input() dims: any;
   @Input() innerRadius = 60;
   @Input() outerRadius = 80;
-  @Input() explodeSlices;
-  @Input() showLabels;
+  @Input() explodeSlices: any;
+  @Input() showLabels: any;
   @Input() gradient: boolean;
   @Input() activeEntries: any[];
   @Input() labelFormatting: any;
@@ -92,12 +92,12 @@ export class PieSeriesComponent implements OnChanges {
 
   update(): void {
     const pieGenerator = pie<any, any>()
-      .value(d => d.value)
+      .value((d: any) => d.value)
       .sort(null);
 
     const arcData = pieGenerator(this.series);
 
-    this.max = max(arcData, d => {
+    this.max = max(arcData, (d: any) => {
       return d.value;
     });
 
@@ -105,7 +105,7 @@ export class PieSeriesComponent implements OnChanges {
     this.tooltipText = this.tooltipText || this.defaultTooltipText;
   }
 
-  midAngle(d): number {
+  midAngle(d: any): number {
     return d.startAngle + (d.endAngle - d.startAngle) / 2;
   }
 
@@ -117,12 +117,12 @@ export class PieSeriesComponent implements OnChanges {
       .outerRadius(this.outerRadius * factor);
   }
 
-  calculateLabelPositions(pieData): any {
+  calculateLabelPositions(pieData: any): any {
     const factor = 1.5;
     const minDistance = 10;
     const labelPositions = pieData;
 
-    labelPositions.forEach(d => {
+    labelPositions.forEach((d: any) => {
       d.pos = this.outerArc().centroid(d);
       d.pos[0] = factor * this.outerRadius * (this.midAngle(d) < Math.PI ? 1 : -1);
     });
@@ -153,26 +153,26 @@ export class PieSeriesComponent implements OnChanges {
     return labelPositions;
   }
 
-  labelVisible(myArc): boolean {
+  labelVisible(myArc: any): boolean {
     return this.showLabels && myArc.endAngle - myArc.startAngle > Math.PI / 30;
   }
 
-  getTooltipTitle(a) {
+  getTooltipTitle(a: any) {
     return this.tooltipTemplate ? undefined : this.tooltipText(a);
   }
 
-  labelText(myArc): string {
+  labelText(myArc: any): string {
     if (this.labelFormatting) {
       return this.labelFormatting(myArc.data.name);
     }
     return this.label(myArc);
   }
 
-  label(myArc): string {
+  label(myArc: any): string {
     return formatLabel(myArc.data.name);
   }
 
-  defaultTooltipText(myArc): string {
+  defaultTooltipText(myArc: any): string {
     const label = this.label(myArc);
     const val = formatLabel(myArc.data.value);
 
@@ -182,19 +182,19 @@ export class PieSeriesComponent implements OnChanges {
     `;
   }
 
-  color(myArc): any {
+  color(myArc: any): any {
     return this.colors.getColor(this.label(myArc));
   }
 
-  trackBy(index, item): string {
+  trackBy(index: any, item: any): string {
     return item.data.name;
   }
 
-  onClick(data): void {
+  onClick(data: any): void {
     this.select.emit(data);
   }
 
-  isActive(entry): boolean {
+  isActive(entry: any): boolean {
     if (!this.activeEntries) return false;
     const item = this.activeEntries.find(d => {
       return entry.name === d.name && entry.series === d.series;

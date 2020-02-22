@@ -26,12 +26,12 @@ export class BarVerticalSimpleComponent extends BaseChartComponent {
   @Input() legend = false;
   @Input() legendTitle: string = 'Legend';
   @Input() legendPosition: string = 'right';
-  @Input() xAxis;
-  @Input() yAxis;
-  @Input() showXAxisLabel;
-  @Input() showYAxisLabel;
-  @Input() xAxisLabel;
-  @Input() yAxisLabel;
+  @Input() xAxis: any;
+  @Input() yAxis: any;
+  @Input() showXAxisLabel: any;
+  @Input() showYAxisLabel: any;
+  @Input() xAxisLabel: any;
+  @Input() yAxisLabel: any;
   @Input() tooltipDisabled: boolean = false;
   @Input() gradient: boolean;
   @Input() showGridLines: boolean = true;
@@ -128,11 +128,11 @@ export class BarVerticalSimpleComponent extends BaseChartComponent {
   }
 
   getXDomain(): any[] {
-    return this.results.map(d => d.label);
+    return this.results.map((d: { label: any; }) => d.label);
   }
 
   getYDomain(): [number, number] {
-    const values = this.results.map(d => d.value);
+    const values = this.results.map((d: { value: any; }) => d.value);
 
     let min = this.yScaleMin ? Math.min(this.yScaleMin, ...values) : Math.min(0, ...values);
     if (this.yAxisTicks && !this.yAxisTicks.some(isNaN)) {
@@ -162,7 +162,7 @@ export class BarVerticalSimpleComponent extends BaseChartComponent {
   }
 
   getLegendOptions() {
-    const opts = {
+    const opts: any = {
       scaleType: this.schemeType,
       colors: undefined,
       domain: [],
@@ -180,17 +180,17 @@ export class BarVerticalSimpleComponent extends BaseChartComponent {
     return opts;
   }
 
-  updateYAxisWidth({ width }): void {
+  updateYAxisWidth({ width }: any): void {
     this.yAxisWidth = width;
     this.update();
   }
 
-  updateXAxisHeight({ height }): void {
+  updateXAxisHeight({ height }: any): void {
     this.xAxisHeight = height;
     this.update();
   }
 
-  onDataLabelMaxHeightChanged(event) {
+  onDataLabelMaxHeightChanged(event: { size: { negative: any; height: number; }; index: number; }) {
     if (event.size.negative) {
       this.dataLabelMaxHeight.negative = Math.max(this.dataLabelMaxHeight.negative, event.size.height);
     } else {
@@ -201,8 +201,8 @@ export class BarVerticalSimpleComponent extends BaseChartComponent {
     }
   }
 
-  onActivate(item, fromLegend = false) {
-    item = this.results.find(d => {
+  onActivate(item: { name: any; value: any; series: any; }, fromLegend = false) {
+    item = this.results.find((d: { label: any; name: any; }) => {
       if (fromLegend) {
         return d.label === item.name;
       } else {
@@ -221,8 +221,8 @@ export class BarVerticalSimpleComponent extends BaseChartComponent {
     this.activate.emit({ value: item, entries: this.activeEntries });
   }
 
-  onDeactivate(item, fromLegend = false) {
-    item = this.results.find(d => {
+  onDeactivate(item: { name: any; value: any; series: any; }, fromLegend = false) {
+    item = this.results.find((d: { label: any; name: any; }) => {
       if (fromLegend) {
         return d.label === item.name;
       } else {
