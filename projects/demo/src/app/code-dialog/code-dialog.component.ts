@@ -16,9 +16,9 @@ export class CodeDialogComponent implements AfterViewInit {
   public HTMLCode: any;
   public TypescriptCode: any;
 
-  @ViewChild('htmlBlock', { static: false }) public htmlBlock: ElementRef<any>;
-  @ViewChild('tsBlock', { static: false }) public tsBlock: ElementRef<any>;
-  @ViewChild('cssBlock', { static: false }) public cssBlock: ElementRef<any>;
+  @ViewChild('htmlBlock') public htmlBlock: ElementRef<any>;
+  @ViewChild('tsBlock') public tsBlock: ElementRef<any>;
+  @ViewChild('cssBlock') public cssBlock: ElementRef<any>;
 
   constructor(
     private dialogRef: MatDialogRef<CodeDialogComponent>,

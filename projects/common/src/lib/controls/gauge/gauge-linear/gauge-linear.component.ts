@@ -27,8 +27,8 @@ export class GaugeLinearComponent extends BaseChartComponent implements AfterVie
   @Input() previousValue;
   @Input() valueFormatting: any;
 
-  @ViewChild('valueTextEl', { static: false }) valueTextEl: ElementRef;
-  @ViewChild('unitsTextEl', { static: false }) unitsTextEl: ElementRef;
+  @ViewChild('valueTextEl') valueTextEl: ElementRef;
+  @ViewChild('unitsTextEl') unitsTextEl: ElementRef;
 
   dims: ViewDimensions;
   valueDomain: any;

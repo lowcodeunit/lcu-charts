@@ -64,7 +64,7 @@ export class BarVerticalNormalizedComponent extends BaseChartComponent {
   @Output() activate: EventEmitter<any> = new EventEmitter();
   @Output() deactivate: EventEmitter<any> = new EventEmitter();
 
-  @ContentChild('tooltipTemplate', { static: false }) tooltipTemplate: TemplateRef<any>;
+  @ContentChild('tooltipTemplate') tooltipTemplate: TemplateRef<any>;
 
   dims: ViewDimensions;
   groupDomain: any[];

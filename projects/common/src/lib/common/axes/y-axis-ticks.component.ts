@@ -121,7 +121,7 @@ export class YAxisTicksComponent implements OnChanges, AfterViewInit {
   referenceLineLength: number = 0;
   referenceAreaPath: string;
 
-  @ViewChild('ticksel', {static: false}) ticksElement: ElementRef;
+  @ViewChild('ticksel') ticksElement: ElementRef;
 
   ngOnChanges(changes: SimpleChanges): void {
     this.update();

@@ -68,7 +68,7 @@ export class XAxisTicksComponent implements OnChanges, AfterViewInit {
   tickFormat: (o: any) => any;
   height: number = 0;
 
-  @ViewChild('ticksel', {static: false}) ticksElement: ElementRef;
+  @ViewChild('ticksel') ticksElement: ElementRef;
 
   ngOnChanges(changes: SimpleChanges): void {
     this.update();

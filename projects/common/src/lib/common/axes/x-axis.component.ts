@@ -74,7 +74,7 @@ export class XAxisComponent implements OnChanges {
   strokeWidth: string = 'none';
   padding: number = 5;
 
-  @ViewChild(XAxisTicksComponent, {static: false}) ticksComponent: XAxisTicksComponent;
+  @ViewChild(XAxisTicksComponent) ticksComponent: XAxisTicksComponent;
 
   ngOnChanges(changes: SimpleChanges): void {
     this.update();

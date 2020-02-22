@@ -111,7 +111,7 @@ export class TooltipArea implements OnInit {
   @Output() hover = new EventEmitter();
   @Output() pixelValueX = new EventEmitter();
 
-  @ViewChild('tooltipAnchor', { static: false }) tooltipAnchor;
+  @ViewChild('tooltipAnchor') tooltipAnchor;
 
   tickFormat: (o: any) => string;
 

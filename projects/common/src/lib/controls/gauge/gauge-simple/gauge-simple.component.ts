@@ -49,9 +49,9 @@ export class GaugeSimpleComponent extends BaseChartComponent implements AfterVie
   @Output() activate: EventEmitter<any> = new EventEmitter();
   @Output() deactivate: EventEmitter<any> = new EventEmitter();
 
-  @ContentChild('tooltipTemplate', { static: false }) tooltipTemplate: TemplateRef<any>;
+  @ContentChild('tooltipTemplate') tooltipTemplate: TemplateRef<any>;
 
-  @ViewChild('textEl', { static: false }) textEl: ElementRef;
+  @ViewChild('textEl') textEl: ElementRef;
 
   dims: ViewDimensions;
   domain: any[];

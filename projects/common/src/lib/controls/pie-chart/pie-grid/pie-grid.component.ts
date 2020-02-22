@@ -44,7 +44,7 @@ export class PieGridComponent extends BaseChartComponent {
   colorScale: ColorHelper;
   margin = [20, 20, 20, 20];
 
-  @ContentChild('tooltipTemplate', { static: false }) tooltipTemplate: TemplateRef<any>;
+  @ContentChild('tooltipTemplate') tooltipTemplate: TemplateRef<any>;
 
   update(): void {
     super.update();
