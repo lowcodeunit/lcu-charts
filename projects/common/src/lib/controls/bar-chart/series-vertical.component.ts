@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnChanges, ChangeDetectionStrategy, TemplateRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, ChangeDetectionStrategy, TemplateRef, SimpleChanges } from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { formatLabel, escapeLabel } from '../../common/label.helper';
 import { DataItem } from '../../models/chart-data.model';
@@ -69,12 +69,12 @@ export enum D0Types {
   ]
 })
 export class SeriesVerticalComponent implements OnChanges {
-  @Input() dims;
+  @Input() dims: any;
   @Input() type = 'standard';
-  @Input() series;
-  @Input() xScale;
-  @Input() yScale;
-  @Input() colors;
+  @Input() series: any;
+  @Input() xScale: any;
+  @Input() yScale: any;
+  @Input() colors: any;
   @Input() gradient: boolean;
   @Input() activeEntries: any[];
   @Input() seriesName: string;
@@ -99,13 +99,13 @@ export class SeriesVerticalComponent implements OnChanges {
   y: any;
   barsForDataLabels: Array<{ x: number; y: number; width: number; height: number; total: number; series: string }> = [];
 
-  ngOnChanges(changes): void {
+  ngOnChanges(changes: SimpleChanges): void {
     this.update();
   }
 
   update(): void {
     this.updateTooltipSettings();
-    let width;
+    let width: any;
     if (this.series.length) {
       width = this.xScale.bandwidth();
     }
@@ -118,12 +118,12 @@ export class SeriesVerticalComponent implements OnChanges {
     };
     let d0Type = D0Types.positive;
 
-    let total;
+    let total: any;
     if (this.type === 'normalized') {
-      total = this.series.map(d => d.value).reduce((sum, d) => sum + d, 0);
+      total = this.series.map((d: any) => d.value).reduce((sum: any, d: any) => sum + d, 0);
     }
 
-    this.bars = this.series.map((d, index) => {
+    this.bars = this.series.map((d: any, index: any) => {
       let value = d.value;
       const label = this.getLabel(d);
       const formattedLabel = formatLabel(label);
@@ -220,8 +220,8 @@ export class SeriesVerticalComponent implements OnChanges {
       this.barsForDataLabels = [];
       const section: any = {};
       section.series = this.seriesName;
-      const totalPositive = this.series.map(d => d.value).reduce((sum, d) => (d > 0 ? sum + d : sum), 0);
-      const totalNegative = this.series.map(d => d.value).reduce((sum, d) => (d < 0 ? sum + d : sum), 0);
+      const totalPositive = this.series.map((d: any) => d.value).reduce((sum: any, d: any) => (d > 0 ? sum + d : sum), 0);
+      const totalNegative = this.series.map((d: any) => d.value).reduce((sum: any, d: any) => (d < 0 ? sum + d : sum), 0);
       section.total = totalPositive + totalNegative;
       section.x = 0;
       section.y = 0;
@@ -233,7 +233,7 @@ export class SeriesVerticalComponent implements OnChanges {
       section.width = this.xScale.bandwidth();
       this.barsForDataLabels.push(section);
     } else {
-      this.barsForDataLabels = this.series.map(d => {
+      this.barsForDataLabels = this.series.map((d: any) => {
         const section: any = {};
         section.series = this.seriesName ? this.seriesName : d.label;
         section.total = d.value;
@@ -251,7 +251,7 @@ export class SeriesVerticalComponent implements OnChanges {
     this.tooltipType = this.tooltipDisabled ? undefined : 'tooltip';
   }
 
-  isActive(entry): boolean {
+  isActive(entry: any): boolean {
     if (!this.activeEntries) return false;
     const item = this.activeEntries.find(d => {
       return entry.name === d.name && entry.series === d.series;
@@ -263,18 +263,18 @@ export class SeriesVerticalComponent implements OnChanges {
     this.select.emit(data);
   }
 
-  getLabel(dataItem): string {
+  getLabel(dataItem: any): string {
     if (dataItem.label) {
       return dataItem.label;
     }
     return dataItem.name;
   }
 
-  trackBy(index, bar): string {
+  trackBy(index: any, bar: any): string {
     return bar.label;
   }
 
-  trackDataLabelBy(index, barLabel) {
+  trackDataLabelBy(index: any, barLabel: any) {
     return index + '#' + barLabel.series + '#' + barLabel.total;
   }
 }

@@ -49,9 +49,9 @@ export class GaugeSimpleComponent extends BaseChartComponent implements AfterVie
   @Output() activate: EventEmitter<any> = new EventEmitter();
   @Output() deactivate: EventEmitter<any> = new EventEmitter();
 
-  @ContentChild('tooltipTemplate', { static: false }) tooltipTemplate: TemplateRef<any>;
+  @ContentChild('tooltipTemplate') tooltipTemplate: TemplateRef<any>;
 
-  @ViewChild('textEl', { static: false }) textEl: ElementRef;
+  @ViewChild('textEl') textEl: ElementRef;
 
   dims: ViewDimensions;
   domain: any[];
@@ -239,7 +239,7 @@ export class GaugeSimpleComponent extends BaseChartComponent implements AfterVie
     }
   }
 
-  onClick(data): void {
+  onClick(data: any): void {
     this.select.emit(data);
   }
 
@@ -257,7 +257,7 @@ export class GaugeSimpleComponent extends BaseChartComponent implements AfterVie
     this.colors = new ColorHelper(this.scheme, 'ordinal', this.domain, this.customColors);
   }
 
-  onActivate(item): void {
+  onActivate(item: any): void {
     const idx = this.activeEntries.findIndex(d => {
       return d.name === item.name && d.value === item.value;
     });
@@ -269,7 +269,7 @@ export class GaugeSimpleComponent extends BaseChartComponent implements AfterVie
     this.activate.emit({ value: item, entries: this.activeEntries });
   }
 
-  onDeactivate(item): void {
+  onDeactivate(item: any): void {
     const idx = this.activeEntries.findIndex(d => {
       return d.name === item.name && d.value === item.value;
     });
@@ -280,7 +280,7 @@ export class GaugeSimpleComponent extends BaseChartComponent implements AfterVie
     this.deactivate.emit({ value: item, entries: this.activeEntries });
   }
 
-  isActive(entry): boolean {
+  isActive(entry: any): boolean {
     if (!this.activeEntries) return false;
     const item = this.activeEntries.find(d => {
       return entry.name === d.name && entry.series === d.series;
@@ -288,7 +288,7 @@ export class GaugeSimpleComponent extends BaseChartComponent implements AfterVie
     return item !== undefined;
   }
 
-  trackBy(index, item): string {
+  trackBy(index: any, item: any): string {
     return item.valueArc.data.name;
   }
 }

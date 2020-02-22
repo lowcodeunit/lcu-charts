@@ -18,7 +18,7 @@ export function calculateViewDimensions({
   legendType = 'ordinal',
   legendPosition = 'right',
   columns = 12
-}): ViewDimensions {
+}: any): ViewDimensions {
   let xOffset = margins[3];
   let chartWidth = width;
   let chartHeight = height - margins[0] - margins[2];

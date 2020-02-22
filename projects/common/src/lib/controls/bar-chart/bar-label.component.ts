@@ -28,13 +28,13 @@ import { formatLabel } from '../../common/label.helper';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BarLabelComponent implements OnChanges {
-  @Input() value;
+  @Input() value: any;
   @Input() valueFormatting: any;
-  @Input() barX;
-  @Input() barY;
-  @Input() barWidth;
-  @Input() barHeight;
-  @Input() orientation;
+  @Input() barX: any;
+  @Input() barY: any;
+  @Input() barWidth: any;
+  @Input() barHeight: any;
+  @Input() orientation: any;
 
   @Output() dimensionsChanged: EventEmitter<any> = new EventEmitter();
 

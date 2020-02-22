@@ -159,7 +159,7 @@ export class BaseChartComponent implements OnChanges, AfterViewInit, OnDestroy {
    *
    * @memberOf BaseChart
    */
-  private cloneData(data): any {
+  private cloneData(data: any): any {
     const results = [];
 
     for (const item of data) {

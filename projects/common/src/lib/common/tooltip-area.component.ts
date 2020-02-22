@@ -1,7 +1,6 @@
 import { Component, Input, Output, EventEmitter, ViewChild, ChangeDetectionStrategy, TemplateRef, OnInit } from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { createMouseEvent } from '../events';
-import select from 'd3-selection';
 
 @Component({
   selector: 'g[lcu-charts-tooltip-area]',
@@ -85,12 +84,12 @@ export class TooltipArea implements OnInit {
   public xVal: any;
   public userForcesXHover: boolean = false;
 
-  @Input() dims;
-  @Input() xSet;
-  @Input() xScale;
-  @Input() yScale;
-  @Input() results;
-  @Input() colors;
+  @Input() dims: any;
+  @Input() xSet: any;
+  @Input() xScale: any;
+  @Input() yScale: any;
+  @Input() results: any;
+  @Input() colors: any;
   @Input() showPercentage: boolean = false;
   @Input() units: string;
   @Input() tooltipDisabled: boolean = false;
@@ -100,7 +99,7 @@ export class TooltipArea implements OnInit {
   @Input() formatTooltip: boolean;
 
   @Input('forced-anchor-position')
-  public set anchorPosition(val) {
+  public set anchorPosition(val: any) {
     if (val) {
       this.userForcesXHover = true;
       this.anchorPos = val.xValue;
@@ -111,15 +110,15 @@ export class TooltipArea implements OnInit {
   @Output() hover = new EventEmitter();
   @Output() pixelValueX = new EventEmitter();
 
-  @ViewChild('tooltipAnchor', { static: false }) tooltipAnchor;
+  @ViewChild('tooltipAnchor') tooltipAnchor: any;
 
   tickFormat: (o: any) => string;
 
-  getValues(xVal): any[] {
+  getValues(xVal: any): any[] {
     const results = [];
 
     for (const group of this.results) {
-      const item = group.series.find(d => d.name.toString() === xVal.toString());
+      const item = group.series.find((d: any) => d.name.toString() === xVal.toString());
       let groupName = group.name;
       if (groupName instanceof Date) {
         groupName = groupName.toLocaleDateString();
@@ -140,7 +139,7 @@ export class TooltipArea implements OnInit {
           // console.log("item = ", item)
           val = val + this.units;
         }
-        
+
 
         let color;
         if (this.colors.scaleType === 'linear') {
@@ -177,7 +176,7 @@ export class TooltipArea implements OnInit {
     this.generatedGradientUrl = `url(#${this.generatedGradientId})`;
   }
 
-  mouseMove(event) {
+  mouseMove(event: any) {
     const xPos = event.pageX - event.target.getBoundingClientRect().left;
 
     const closestIndex = this.findClosestPointIndex(xPos);
@@ -204,7 +203,7 @@ export class TooltipArea implements OnInit {
     }
   }
 
-  findClosestPointIndex(xPos) {
+  findClosestPointIndex(xPos: any) {
     let minIndex = 0;
     let maxIndex = this.xSet.length - 1;
     let minDiff = Number.MAX_VALUE;

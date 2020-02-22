@@ -28,13 +28,13 @@ import { trimLabel } from '../../common/trim-label.helper';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PieLabelComponent implements OnChanges {
-  @Input() data;
-  @Input() radius;
-  @Input() label;
-  @Input() color;
-  @Input() max;
-  @Input() value;
-  @Input() explodeSlices;
+  @Input() data: any;
+  @Input() radius: any;
+  @Input() label: any;
+  @Input() color: any;
+  @Input() max: any;
+  @Input() value: any;
+  @Input() explodeSlices: any;
   @Input() animations: boolean = true;
   @Input() labelTrim: boolean = true;
   @Input() labelTrimSize: number = 10;
@@ -98,7 +98,7 @@ export class PieLabelComponent implements OnChanges {
     return this.midAngle(this.data) < Math.PI ? 'start' : 'end';
   }
 
-  midAngle(d): number {
+  midAngle(d: any): number {
     return d.startAngle + (d.endAngle - d.startAngle) / 2;
   }
 }

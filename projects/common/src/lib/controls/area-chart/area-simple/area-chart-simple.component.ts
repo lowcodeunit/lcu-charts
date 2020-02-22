@@ -25,19 +25,19 @@ import { getUniqueXDomainValues, getScaleType } from '../../../common/domain.hel
   encapsulation: ViewEncapsulation.None
 })
 export class AreaChartSimpleComponent extends BaseChartComponent {
-  @Input() legend;
+  @Input() legend: any;
   @Input() legendTitle: string = 'Legend';
   @Input() legendPosition: string = 'right';
-  @Input() state;
-  @Input() xAxis;
-  @Input() yAxis;
+  @Input() state: any;
+  @Input() xAxis: any;
+  @Input() yAxis: any;
   @Input() baseValue: any = 'auto';
-  @Input() autoScale;
-  @Input() showXAxisLabel;
-  @Input() showYAxisLabel;
-  @Input() xAxisLabel;
-  @Input() yAxisLabel;
-  @Input() timeline;
+  @Input() autoScale: any;
+  @Input() showXAxisLabel: any;
+  @Input() showYAxisLabel: any;
+  @Input() xAxisLabel: any;
+  @Input() yAxisLabel: any;
+  @Input() timeline: any;
   @Input() gradient: boolean;
   @Input() showGridLines: boolean = true;
   @Input() curve: any = curveLinear;
@@ -62,8 +62,8 @@ export class AreaChartSimpleComponent extends BaseChartComponent {
   @Output() activate: EventEmitter<any> = new EventEmitter();
   @Output() deactivate: EventEmitter<any> = new EventEmitter();
 
-  @ContentChild('tooltipTemplate', { static: false }) tooltipTemplate: TemplateRef<any>;
-  @ContentChild('seriesTooltipTemplate', { static: false }) seriesTooltipTemplate: TemplateRef<any>;
+  @ContentChild('tooltipTemplate') tooltipTemplate: TemplateRef<any>;
+  @ContentChild('seriesTooltipTemplate') seriesTooltipTemplate: TemplateRef<any>;
 
   dims: ViewDimensions;
   xSet: any;
@@ -187,7 +187,7 @@ export class AreaChartSimpleComponent extends BaseChartComponent {
   }
 
   getYDomain(): any[] {
-    const domain = [];
+    const domain: any = [];
 
     for (const results of this.results) {
       for (const d of results.series) {
@@ -213,11 +213,11 @@ export class AreaChartSimpleComponent extends BaseChartComponent {
   }
 
   getSeriesDomain(): any[] {
-    return this.results.map(d => d.name);
+    return this.results.map((d: any) => d.name);
   }
 
-  getXScale(domain, width): any {
-    let scale;
+  getXScale(domain: any, width: any): any {
+    let scale: any;
 
     if (this.scaleType === 'time') {
       scale = scaleTime();
@@ -232,14 +232,14 @@ export class AreaChartSimpleComponent extends BaseChartComponent {
     return this.roundDomains ? scale.nice() : scale;
   }
 
-  getYScale(domain, height): any {
+  getYScale(domain: any, height: any): any {
     const scale = scaleLinear()
       .range([height, 0])
       .domain(domain);
     return this.roundDomains ? scale.nice() : scale;
   }
 
-  getScaleType(values): string {
+  getScaleType(values: any): string {
     let date = true;
     let num = true;
     for (const value of values) {
@@ -262,7 +262,7 @@ export class AreaChartSimpleComponent extends BaseChartComponent {
     return 'ordinal';
   }
 
-  isDate(value): boolean {
+  isDate(value: any): boolean {
     if (value instanceof Date) {
       return true;
     }
@@ -270,13 +270,13 @@ export class AreaChartSimpleComponent extends BaseChartComponent {
     return false;
   }
 
-  updateDomain(domain): void {
+  updateDomain(domain: any): void {
     this.filteredDomain = domain;
     this.xDomain = this.filteredDomain;
     this.xScale = this.getXScale(this.xDomain, this.dims.width);
   }
 
-  updateHoveredVertical(item): void {
+  updateHoveredVertical(item: any): void {
     this.hoveredVertical = item.value;
     this.deactivateAll();
   }
@@ -287,7 +287,7 @@ export class AreaChartSimpleComponent extends BaseChartComponent {
     this.deactivateAll();
   }
 
-  onClick(data, series?): void {
+  onClick(data: any, series?: any): void {
     if (series) {
       data.series = series.name;
     }
@@ -295,7 +295,7 @@ export class AreaChartSimpleComponent extends BaseChartComponent {
     this.select.emit(data);
   }
 
-  trackBy(index, item): string {
+  trackBy(index: any, item: any): string {
     return item.name;
   }
 
@@ -311,7 +311,7 @@ export class AreaChartSimpleComponent extends BaseChartComponent {
   }
 
   getLegendOptions() {
-    const opts = {
+    const opts: any = {
       scaleType: this.schemeType,
       colors: undefined,
       domain: [],
@@ -329,17 +329,17 @@ export class AreaChartSimpleComponent extends BaseChartComponent {
     return opts;
   }
 
-  updateYAxisWidth({ width }): void {
+  updateYAxisWidth({ width }: any): void {
     this.yAxisWidth = width;
     this.update();
   }
 
-  updateXAxisHeight({ height }): void {
+  updateXAxisHeight({ height }: any): void {
     this.xAxisHeight = height;
     this.update();
   }
 
-  onActivate(item) {
+  onActivate(item: any) {
     const idx = this.activeEntries.findIndex(d => {
       return d.name === item.name && d.value === item.value;
     });
@@ -351,7 +351,7 @@ export class AreaChartSimpleComponent extends BaseChartComponent {
     this.activate.emit({ value: item, entries: this.activeEntries });
   }
 
-  onDeactivate(item) {
+  onDeactivate(item: any) {
     const idx = this.activeEntries.findIndex(d => {
       return d.name === item.name && d.value === item.value;
     });

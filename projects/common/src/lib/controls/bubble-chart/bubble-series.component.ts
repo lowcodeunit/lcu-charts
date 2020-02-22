@@ -57,14 +57,14 @@ import { formatLabel, escapeLabel } from '../../common/label.helper';
   ]
 })
 export class BubbleSeriesComponent implements OnChanges {
-  @Input() data;
-  @Input() xScale;
-  @Input() yScale;
-  @Input() rScale;
-  @Input() xScaleType;
-  @Input() yScaleType;
-  @Input() colors;
-  @Input() visibleValue;
+  @Input() data: any;
+  @Input() xScale: any;
+  @Input() yScale: any;
+  @Input() rScale: any;
+  @Input() xScaleType: any;
+  @Input() yScaleType: any;
+  @Input() colors: any;
+  @Input() visibleValue: any;
   @Input() activeEntries: any[];
   @Input() xAxisLabel: string;
   @Input() yAxisLabel: string;
@@ -90,7 +90,7 @@ export class BubbleSeriesComponent implements OnChanges {
     const seriesName = this.data.name;
 
     return this.data.series
-      .map((d, i) => {
+      .map((d: any, i: any) => {
         if (typeof d.y !== 'undefined' && typeof d.x !== 'undefined') {
           const y = d.y;
           const x = d.x;
@@ -135,10 +135,10 @@ export class BubbleSeriesComponent implements OnChanges {
           };
         }
       })
-      .filter(circle => circle !== undefined);
+      .filter((circle: any) => circle !== undefined);
   }
 
-  getTooltipText(circle): string {
+  getTooltipText(circle: any): string {
     const hasRadius = typeof circle.r !== 'undefined';
     const hasTooltipLabel = circle.tooltipLabel && circle.tooltipLabel.length;
     const hasSeriesName = circle.seriesName && circle.seriesName.length;
@@ -167,11 +167,11 @@ export class BubbleSeriesComponent implements OnChanges {
     `;
   }
 
-  onClick(data): void {
+  onClick(data: any): void {
     this.select.emit(data);
   }
 
-  isActive(entry): boolean {
+  isActive(entry: any): boolean {
     if (!this.activeEntries) return false;
     const item = this.activeEntries.find(d => {
       return entry.name === d.name;
@@ -179,7 +179,7 @@ export class BubbleSeriesComponent implements OnChanges {
     return item !== undefined;
   }
 
-  isVisible(circle): boolean {
+  isVisible(circle: any): boolean {
     if (this.activeEntries.length > 0) {
       return this.isActive({ name: circle.seriesName });
     }
@@ -187,17 +187,17 @@ export class BubbleSeriesComponent implements OnChanges {
     return circle.opacity !== 0;
   }
 
-  activateCircle(circle): void {
+  activateCircle(circle: any): void {
     circle.barVisible = true;
     this.activate.emit({ name: this.data.name });
   }
 
-  deactivateCircle(circle): void {
+  deactivateCircle(circle: any): void {
     circle.barVisible = false;
     this.deactivate.emit({ name: this.data.name });
   }
 
-  trackBy(index, circle): string {
+  trackBy(index: any, circle: any): string {
     return `${circle.data.series} ${circle.data.name}`;
   }
 }

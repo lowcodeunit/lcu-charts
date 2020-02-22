@@ -2,7 +2,7 @@ import { PlacementTypes } from './placement.type';
 
 const caretOffset = 7;
 
-function verticalPosition(elDimensions, popoverDimensions, alignment) {
+function verticalPosition(elDimensions: any, popoverDimensions: any, alignment: any) {
   if (alignment === 'top') {
     return elDimensions.top - caretOffset;
   }
@@ -18,7 +18,7 @@ function verticalPosition(elDimensions, popoverDimensions, alignment) {
   return undefined;
 }
 
-function horizontalPosition(elDimensions, popoverDimensions, alignment) {
+function horizontalPosition(elDimensions: any, popoverDimensions: any, alignment: any) {
   if (alignment === 'left') {
     return elDimensions.left - caretOffset;
   }
@@ -45,7 +45,7 @@ export class PositionHelper {
    *
    * @memberOf PositionHelper
    */
-  static calculateVerticalAlignment(elDimensions, popoverDimensions, alignment): number {
+  static calculateVerticalAlignment(elDimensions: any, popoverDimensions: any, alignment: any): number {
     let result = verticalPosition(elDimensions, popoverDimensions, alignment);
 
     if (result + popoverDimensions.height > window.innerHeight) {
@@ -60,7 +60,7 @@ export class PositionHelper {
    *
    * @memberOf PositionHelper
    */
-  static calculateVerticalCaret(elDimensions, popoverDimensions, caretDimensions, alignment): number {
+  static calculateVerticalCaret(elDimensions: any, popoverDimensions: any, caretDimensions: any, alignment: any): number {
     let result;
 
     if (alignment === 'top') {
@@ -88,7 +88,7 @@ export class PositionHelper {
    *
    * @memberOf PositionHelper
    */
-  static calculateHorizontalAlignment(elDimensions, popoverDimensions, alignment): number {
+  static calculateHorizontalAlignment(elDimensions: any, popoverDimensions: any, alignment: any): number {
     let result = horizontalPosition(elDimensions, popoverDimensions, alignment);
 
     if (result + popoverDimensions.width > window.innerWidth) {
@@ -103,7 +103,7 @@ export class PositionHelper {
    *
    * @memberOf PositionHelper
    */
-  static calculateHorizontalCaret(elDimensions, popoverDimensions, caretDimensions, alignment): number {
+  static calculateHorizontalCaret(elDimensions: any, popoverDimensions: any, caretDimensions: any, alignment: any): number {
     let result;
 
     if (alignment === 'left') {
@@ -131,7 +131,7 @@ export class PositionHelper {
    *
    * @memberOf PositionHelper
    */
-  static shouldFlip(elDimensions, popoverDimensions, placement, spacing): boolean {
+  static shouldFlip(elDimensions: any, popoverDimensions: any, placement: any, spacing: any): boolean {
     let flip = false;
 
     if (placement === 'right') {
@@ -166,7 +166,7 @@ export class PositionHelper {
    *
    * @memberOf PositionHelper
    */
-  static positionCaret(placement, elmDim, hostDim, caretDimensions, alignment): any {
+  static positionCaret(placement: any, elmDim: any, hostDim: any, caretDimensions: any, alignment: any): any {
     let top = 0;
     let left = 0;
 
@@ -192,7 +192,7 @@ export class PositionHelper {
    *
    * @memberOf PositionHelper
    */
-  static positionContent(placement, elmDim, hostDim, spacing, alignment): any {
+  static positionContent(placement: any, elmDim: any, hostDim: any, spacing: any, alignment: any): any {
     let top = 0;
     let left = 0;
 
@@ -218,7 +218,7 @@ export class PositionHelper {
    *
    * @memberOf PositionHelper
    */
-  static determinePlacement(placement, elmDim, hostDim, spacing): any {
+  static determinePlacement(placement: any, elmDim: any, hostDim: any, spacing: any): any {
     const shouldFlip = PositionHelper.shouldFlip(hostDim, elmDim, placement, spacing);
 
     if (shouldFlip) {

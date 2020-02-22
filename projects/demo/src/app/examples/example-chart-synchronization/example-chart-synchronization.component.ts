@@ -75,7 +75,7 @@ export class ExampleChartSynchronizationComponent implements OnInit {
     this.setBackgroundGradientConfigs();
   }
 
-  public hoveredVerticalChange(e) {
+  public hoveredVerticalChange(e: any) {
     // console.log('message from tooltip - the x value hover has changed to: ', e)
 
     this.ManualHover = e;
@@ -84,7 +84,7 @@ export class ExampleChartSynchronizationComponent implements OnInit {
 
   public ManualHover: any;
 
-  public onHoverChange(e) {
+  public onHoverChange(e: any) {
     this.ManualHover = e;
     // console.log('on hover change...: ', e)
     this.ManualHover = e;
@@ -164,13 +164,13 @@ export class ExampleChartSynchronizationComponent implements OnInit {
   }
 
   private setColorScheme(name: string): void {
-    this.colorScheme = this.colorSets.find(s => s.name === name);
+    this.colorScheme = this.colorSets.find((s: any) => s.name === name);
   }
 
   protected setBackgroundGradientConfigs() {
     const backgroundMarker = this.weatherData[0].series;
 
-    backgroundMarker.forEach((ser, idx) => {
+    backgroundMarker.forEach((ser: any, idx: any) => {
       const idxPercentage = idx * 100 / backgroundMarker.length;
       if (ser.value > 38) {
         this.backgroundGradientConfigs.push({

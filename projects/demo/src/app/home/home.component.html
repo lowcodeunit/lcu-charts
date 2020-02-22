@@ -124,7 +124,7 @@
             colorSets,
             single
           {{ '}' }});
-          this.colorScheme = this.colorSets.find(s => s.name === 'fathym');
+          this.colorScheme = this.colorSets.find((s: any) => s.name === 'fathym');
         {{ '}' }}
 
         public ngOnInit(): void {{ '{' }}

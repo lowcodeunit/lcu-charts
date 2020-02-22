@@ -73,13 +73,13 @@ import { ColorHelper } from '../common/color.helper';
   ]
 })
 export class CircleSeriesComponent implements OnChanges, OnInit {
-  @Input() data;
+  @Input() data: any;
   @Input() type = 'standard';
-  @Input() xScale;
-  @Input() yScale;
+  @Input() xScale: any;
+  @Input() yScale: any;
   @Input() colors: ColorHelper;
-  @Input() scaleType;
-  @Input() visibleValue;
+  @Input() scaleType: any;
+  @Input() visibleValue: any;
   @Input() activeEntries: any[];
   @Input() tooltipDisabled: boolean = false;
   @Input() tooltipTemplate: TemplateRef<any>;
@@ -108,7 +108,7 @@ export class CircleSeriesComponent implements OnChanges, OnInit {
   }
 
   getActiveCircle(): {} {
-    const indexActiveDataPoint = this.data.series.findIndex(d => {
+    const indexActiveDataPoint = this.data.series.findIndex((d: any) => {
       const label = d.name;
       return label && this.visibleValue && label.toString() === this.visibleValue.toString() && d.value !== undefined;
     });
@@ -178,7 +178,7 @@ export class CircleSeriesComponent implements OnChanges, OnInit {
     };
   }
 
-  getTooltipText({ tooltipLabel, value, seriesName, min, max }): string {
+  getTooltipText({ tooltipLabel, value, seriesName, min, max }: any): string {
     return `
       <span class="tooltip-label">${escapeLabel(seriesName)} • ${escapeLabel(tooltipLabel)}</span>
       <span class="tooltip-val">${value.toLocaleString()}${this.getTooltipMinMaxText(min, max)}</span>
@@ -209,7 +209,7 @@ export class CircleSeriesComponent implements OnChanges, OnInit {
     }
   }
 
-  getGradientStops(color) {
+  getGradientStops(color: any) {
     return [
       {
         offset: 0,
@@ -224,11 +224,11 @@ export class CircleSeriesComponent implements OnChanges, OnInit {
     ];
   }
 
-  onClick(data): void {
+  onClick(data: any): void {
     this.select.emit(data);
   }
 
-  isActive(entry): boolean {
+  isActive(entry: any): boolean {
     if (!this.activeEntries) return false;
     const item = this.activeEntries.find(d => {
       return entry.name === d.name;
