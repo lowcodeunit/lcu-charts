@@ -3,7 +3,7 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ChartGlobalOptionsModel } from '@lowcodeunit/lcu-charts-common';
-import { ChartNavModel } from '../models/chart-nav.model';
+import { ChartNavModel } from '../../models/chart-nav.model';
 
 @Component({
   selector: 'lcu-code-dialog',

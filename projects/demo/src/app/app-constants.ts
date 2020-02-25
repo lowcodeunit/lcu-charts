@@ -1,5 +1,6 @@
 import { ChartNavModel, ChartNavType } from './models/chart-nav.model';
 import {
+  colorSets,
   ChartGlobalOptionsModel,
   ChartLineAreaOptionsModel,
   ChartBarOptionsModel,
@@ -8,7 +9,6 @@ import {
   ChartGaugeOptionsModel
 } from '@lowcodeunit/lcu-charts-common';
 import * as shape from 'd3-shape';
-import { colorSets } from '@lowcodeunit/lcu-charts-common';
 
 export class AppConstants {
   public static readonly FATHYM_THEMES: Array<any> = [

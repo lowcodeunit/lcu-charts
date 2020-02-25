@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './controls/home/home.component';
 import { DemoAreaChartSimpleComponent } from './charts/demo-area-chart-simple/demo-area-chart-simple.component';
 import { DemoLineChartComponent } from './charts/demo-line-chart/demo-line-chart.component';
 import { DemoBarChartVerticalSimpleComponent } from './charts/demo-bar-chart-vertical-simple/demo-bar-chart-vertical-simple.component';
@@ -13,6 +13,7 @@ import { DemoBubbleChartSimpleComponent } from './charts/demo-bubble-chart-simpl
 import { DemoGaugeSimpleComponent } from './charts/demo-gauge-simple/demo-gauge-simple.component';
 import { ExampleChartSynchronizationComponent } from './examples/example-chart-synchronization/example-chart-synchronization.component';
 import { ExampleRealTimeDataComponent } from './examples/example-real-time-data/example-real-time-data.component';
+import { DocumentationComponent } from './controls/documentation/documentation.component';
 
 const routes: Routes = [
   { path: 'charts/simple-area-chart', component: DemoAreaChartSimpleComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'examples/chart-synchronization', component: ExampleChartSynchronizationComponent },
   { path: 'examples/real-time-data', component: ExampleRealTimeDataComponent },
   { path: 'home', component: HomeComponent},
+  { path: 'documentation', component: DocumentationComponent },
   { path: '**', redirectTo: 'home' }
 ];
 
