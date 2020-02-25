@@ -12,7 +12,7 @@ import { HomeComponent } from './controls/home/home.component';
 import { ModifyChartComponent } from './controls/modify-chart/modify-chart.component';
 import { CodeDialogComponent } from './controls/code-dialog/code-dialog.component';
 import { DemoAreaChartSimpleComponent } from './charts/demo-area-chart-simple/demo-area-chart-simple.component';
-import { DemoLineChartComponent } from './charts/demo-line-chart/demo-line-chart.component';
+import { DemoLineChartSimpleComponent } from './charts/demo-line-chart-simple/demo-line-chart-simple.component';
 import { DemoBarChartVerticalSimpleComponent } from './charts/demo-bar-chart-vertical-simple/demo-bar-chart-vertical-simple.component';
 import { DemoBarChartVerticalGroupedComponent } from './charts/demo-bar-chart-vertical-grouped/demo-bar-chart-vertical-grouped.component';
 import { DemoBarChartHorizontalSimpleComponent } from './charts/demo-bar-chart-horizontal-simple/demo-bar-chart-horizontal-simple.component';
@@ -33,7 +33,7 @@ import { LcuDocumentationModule } from '@lowcodeunit/lcu-documentation-common';
     ModifyChartComponent,
     CodeDialogComponent,
     DemoAreaChartSimpleComponent,
-    DemoLineChartComponent,
+    DemoLineChartSimpleComponent,
     DemoBarChartVerticalSimpleComponent,
     DemoBarChartVerticalGroupedComponent,
     DemoBarChartHorizontalSimpleComponent,

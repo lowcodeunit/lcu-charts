@@ -137,7 +137,7 @@ export class LineChartSimpleComponent extends BaseChartComponent {
 
   update(): void {
     super.update();
-if(!this.dims){
+
     this.dims = calculateViewDimensions({
       width: this.width,
       height: this.height,
@@ -152,10 +152,10 @@ if(!this.dims){
       legendType: this.schemeType,
       legendPosition: this.legendPosition
     });
-  }
-/**\
- * if the X axis is a date and they passed in a format
- */
+
+    /**\
+     * if the X axis is a date and they passed in a format
+     */
     if(this.xAxisIsDate && this.xAxisDateFormat){
       this.xAxisTickFormatting = this.FormatXAxisDate.bind(this);
     }
