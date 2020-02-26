@@ -1,6 +1,6 @@
 @import '~@angular/material/theming';
-@import "./modify-chart/modify-chart.component.scss";
-@import "./code-dialog/code-dialog.component.scss";
+@import "./controls/modify-chart/modify-chart.component.scss";
+@import "./controls/code-dialog/code-dialog.component.scss";
 
 @mixin lcu-charts-component-theme($theme) {
   $primary: map-get($theme, primary);

@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { AppEventService } from '../app-event.service';
+import { AppEventService } from '../../app-event.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { AppConstants } from '../app-constants';
+import { AppConstants } from '../../app-constants';
 import { colorSets } from '@lowcodeunit/lcu-charts-common';
 import { Router } from '@angular/router';
-import { ChartNavModel, ChartNavType } from '../models/chart-nav.model';
+import { ChartNavModel, ChartNavType } from '../../models/chart-nav.model';
 import { ChartGlobalOptionsModel } from '@lowcodeunit/lcu-charts-common';
 import { MatDialog } from '@angular/material/dialog';
 import { CodeDialogComponent } from '../code-dialog/code-dialog.component';
