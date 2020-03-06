@@ -7,6 +7,7 @@ import { BarChartModule } from './controls/bar-chart/bar-chart.module';
 import { PieChartModule } from './controls/pie-chart/pie-chart.module';
 import { BubbleChartModule } from './controls/bubble-chart/bubble-chart.module';
 import { GaugeModule } from './controls/gauge/gauge.module';
+import { DataWrapperModule } from './controls/data-wrapper/data-wrapper.module';
 
 @NgModule({
   exports: [
@@ -16,7 +17,8 @@ import { GaugeModule } from './controls/gauge/gauge.module';
     LineChartModule,
     PieChartModule,
     BubbleChartModule,
-    GaugeModule
+    GaugeModule,
+    DataWrapperModule
   ]
 })
 export class LcuChartsModule {

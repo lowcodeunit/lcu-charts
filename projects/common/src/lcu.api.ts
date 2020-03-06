@@ -101,7 +101,7 @@ export * from './lib/models/chart-gauge-options.model';
 export * from './lib/models/chart-global-options.model';
 export * from './lib/models/chart-line-area-options.model';
 export * from './lib/models/chart-pie-options.model';
-;
+
 /** UTILS */
 export * from './lib/utils/id';
 export * from './lib/utils/color-sets';
@@ -109,3 +109,7 @@ export * from './lib/utils/sort';
 export * from './lib/utils/throttle';
 export * from './lib/utils/color-utils';
 export * from './lib/utils/visibility-observer';
+
+/** DATA WRAPPER */
+export * from './lib/controls/data-wrapper/data-wrapper.module';
+export * from './lib/controls/data-wrapper/data-wrapper.component';
