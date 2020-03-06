@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { colorSets, DateFormatModel } from '@lowcodeunit/lcu-charts-common';
 import * as shape from 'd3-shape';
-import { weatherData } from '../../data';
+import { weatherDataFormatted } from '../../data';
 import { ViewDimensions } from 'projects/common/src/lcu.api';
 @Component({
   selector: 'lcu-example-chart-synchronization',
@@ -33,7 +33,7 @@ export class ExampleChartSynchronizationComponent implements OnInit {
   public trimXAxisTicks: boolean = true;
   public trimYAxisTicks: boolean = true;
   public view: any[];
-  public weatherData: any[];
+  public weatherDataFormatted: any[];
   public xAxisLabel: string = 'Time';
   public xScaleMax: any;
   public xScaleMin: any;
@@ -69,7 +69,7 @@ export class ExampleChartSynchronizationComponent implements OnInit {
   constructor() {
     Object.assign(this, {
       colorSets,
-      weatherData
+      weatherDataFormatted
     });
     this.setColorScheme('cool');
     this.setBackgroundGradientConfigs();
@@ -168,7 +168,7 @@ export class ExampleChartSynchronizationComponent implements OnInit {
   }
 
   protected setBackgroundGradientConfigs() {
-    const backgroundMarker = this.weatherData[0].series;
+    const backgroundMarker = this.weatherDataFormatted[0].series;
 
     backgroundMarker.forEach((ser: any, idx: any) => {
       const idxPercentage = idx * 100 / backgroundMarker.length;

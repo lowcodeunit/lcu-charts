@@ -37,6 +37,17 @@
     background: rgba($color: mat-color(map-get($theme, primary), 500), $alpha: 0.8);
     color: rgba($color: mat-color(map-get($theme, primary), default-contrast), $alpha: 1);
   }
+
+  .mat-chip.mat-standard-chip {
+    background-color: mat-color(map-get($theme, primary), 500);
+    font-size: 0.8em;
+    min-height: 24px;
+    padding: 3px 8px;
+
+    .mat-icon {
+      line-height: 18px !important;
+    }
+  }
 }
 
 @mixin primary-logo($logo, $theme, $opacity) {

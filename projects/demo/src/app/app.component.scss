@@ -88,6 +88,14 @@
 
         @include lcu-charts-modify-form($theme);
 
+        router-outlet + * {
+          height: 100%;
+
+          .adjust-centering {
+            padding: 5% 0;
+          }
+        }
+
         lcu-home {
           height: 100%;
         }
