@@ -27,15 +27,17 @@ export class ModifyDataComponent implements OnInit {
 
   public ApplyChanges(): void {
     const value = this.DataForm.value;
-    value.dataWrapper.singleSeries = JSON.parse(value.dataWrapper.singleSeries);
-    value.dataWrapper.multiSeries = JSON.parse(value.dataWrapper.multiSeries);
-    value.dataWrapper.bubbleSeries = JSON.parse(value.dataWrapper.bubbleSeries);
+    value.dataWrapper.singleSeries = value.dataWrapper.singleSeries ? JSON.parse(value.dataWrapper.singleSeries) : null;
+    value.dataWrapper.multiSeries = value.dataWrapper.multiSeries ? JSON.parse(value.dataWrapper.multiSeries) : null;
+    value.dataWrapper.bubbleSeries = value.dataWrapper.bubbleSeries ? JSON.parse(value.dataWrapper.bubbleSeries) : null;
 
-    value.dataWrapper.multiSeries.forEach((val: any) => {
-      if (val && val.series) {
-        val.series.map((el: any) => el.name = (el && el.name && Date.parse(el.name)) ? new Date(el.name) : el.name );
-      }
-    });
+    if (value.dataWrapper.multiSeries) {
+      value.dataWrapper.multiSeries.forEach((val: any) => {
+        if (val && val.series) {
+          val.series.map((el: any) => el.name = (el && el.name && Date.parse(el.name)) ? new Date(el.name) : el.name );
+        }
+      });
+    }
 
     this.appEventService.emitDemoFormValueEvent(value);
     this.DataForm.markAsPristine();

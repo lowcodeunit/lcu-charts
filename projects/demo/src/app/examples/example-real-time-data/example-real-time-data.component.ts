@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { colorSets, formatLabel, escapeLabel } from '@lowcodeunit/lcu-charts-common';
 import * as shape from 'd3-shape';
 import { single, multi, generateData } from '../../data';
@@ -9,7 +9,7 @@ import { data as countries } from 'emoji-flags';
   templateUrl: './example-real-time-data.component.html',
   styleUrls: ['./example-real-time-data.component.scss']
 })
-export class ExampleRealTimeDataComponent implements OnInit {
+export class ExampleRealTimeDataComponent implements OnInit, OnDestroy {
 
   /** SHARED OPTIONS */
   public animations: boolean = true;
@@ -87,6 +87,7 @@ export class ExampleRealTimeDataComponent implements OnInit {
   private curves: any;
   private fitContainer: boolean = false;
   private height: number = 300;
+  private interval: any;
   private width: number = 600;
 
   get dateDataWithOrWithoutRange() {
@@ -115,7 +116,7 @@ export class ExampleRealTimeDataComponent implements OnInit {
       this.applyDimensions();
     }
 
-    setInterval(this.updateData.bind(this), 3000);
+    this.interval = setInterval(this.updateData.bind(this), 3000);
 
     this.curves = {
       'Basis': shape.curveBasis,
@@ -136,6 +137,10 @@ export class ExampleRealTimeDataComponent implements OnInit {
       'default': shape.curveLinear
     };
     this.curve = this.curves[this.curveType];
+  }
+
+  public ngOnDestroy(): void {
+    clearInterval(this.interval);
   }
 
   public updateData(): void {

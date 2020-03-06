@@ -82,7 +82,6 @@ export class DataWrapperComponent implements OnInit, OnChanges, AfterContentInit
   public ngOnInit(): void { }
 
   public ngOnChanges(): void {
-    console.log('DataWrapperComponent ngOnChanges()', this.dataWrapper);
     this.onChartChanges();
   }
 
