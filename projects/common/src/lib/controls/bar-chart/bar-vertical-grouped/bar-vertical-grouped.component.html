@@ -69,6 +69,13 @@
       (activate)="onActivate($event, group)"
       (deactivate)="onDeactivate($event, group)"
       (dataLabelHeightChanged)="onDataLabelMaxHeightChanged($event, index)"
-    />
+    ></svg:g>
+    <svg:g *ngIf="errorText" [attr.transform]="errorTextTransform">
+      <svg:g>
+        <svg:text class="chart-error-text">
+          ERROR: {{ errorText }}
+        </svg:text>
+      </svg:g>
+    </svg:g>
   </svg:g>
 </lcu-charts-chart>

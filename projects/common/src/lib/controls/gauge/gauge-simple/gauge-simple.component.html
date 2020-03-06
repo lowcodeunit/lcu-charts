@@ -51,5 +51,12 @@
       <tspan x="0" dy="0">{{ displayValue }}</tspan>
       <tspan x="0" dy="1.2em">{{ units }}</tspan>
     </svg:text>
+    <svg:g *ngIf="errorText" [attr.transform]="errorTextTransform">
+      <svg:g>
+        <svg:text class="chart-error-text">
+          ERROR: {{ errorText }}
+        </svg:text>
+      </svg:g>
+    </svg:g>
   </svg:g>
 </lcu-charts-chart>

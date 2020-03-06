@@ -18,6 +18,13 @@
           (deactivate)="onDeactivate($event)"
           [animations]="animations"
         ></svg:g>
+        <svg:g *ngIf="errorText" [attr.transform]="errorTextTransform">
+          <svg:g>
+            <svg:text class="chart-error-text">
+              ERROR: {{ errorText }}
+            </svg:text>
+          </svg:g>
+        </svg:g>
       </svg:g>
     </lcu-charts-chart>
   </div>

@@ -29,6 +29,7 @@ export class BaseChartComponent implements OnChanges, AfterViewInit, OnDestroy {
   @Input() schemeType: string = 'ordinal';
   @Input() customColors: any;
   @Input() animations: boolean = true;
+  @Input() errorText: string;
 
   @Output() select = new EventEmitter();
 
@@ -36,6 +37,7 @@ export class BaseChartComponent implements OnChanges, AfterViewInit, OnDestroy {
   height: number;
   resizeSubscription: any;
   visibilityObserver: VisibilityObserver;
+  errorTextTransform: string;
 
   constructor(protected chartElement: ElementRef, protected zone: NgZone, protected cd: ChangeDetectorRef) {}
 
@@ -76,6 +78,8 @@ export class BaseChartComponent implements OnChanges, AfterViewInit, OnDestroy {
         this.height = dims.height;
       }
     }
+
+    this.errorTextTransform = `translate(0, ${this.height / 2})`;
 
     // default values if width or height are 0 or undefined
     if (!this.width) {
