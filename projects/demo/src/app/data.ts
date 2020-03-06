@@ -309,49 +309,129 @@ export const bubble: BubbleChartMultiSeries = [
   }
 ];
 
-export const weatherData: any = [
+export const bubbleWeather: BubbleChartMultiSeries = [
+  {
+    name: 'Route 1',
+    series: [
+      {
+        name: 'Monday',
+        x: 'Monday',
+        y: 1.3,
+        r: 80.4
+      },
+      {
+        name: 'Tuesday',
+        x: 'Tuesday',
+        y: 2.4,
+        r: 128
+      },
+      {
+        name: 'Wednesday',
+        x: 'Wednesday',
+        y: 0.4,
+        r: 60
+      }
+    ]
+  },
+  {
+    name: 'Route 2',
+    series: [
+      {
+        name: 'Monday',
+        x: 'Monday',
+        y: 1.8,
+        r: 168
+      },
+      {
+        name: 'Tuesday',
+        x: 'Tuesday',
+        y: 3.0,
+        r: 190
+      },
+      {
+        name: 'Wednesday',
+        x: 'Wednesday',
+        y: 0.8,
+        r: 124
+      }
+    ]
+  },
+  {
+    name: 'Route 3',
+    series: [
+      {
+        name: 'Monday',
+        x: 'Monday',
+        y: 1.5,
+        r: 210
+      },
+      {
+        name: 'Tuesday',
+        x: 'Tuesday',
+        y: 1.9,
+        r: 233
+      },
+      {
+        name: 'Wednesday',
+        x: 'Wednesday',
+        y: 0,
+        r: 25
+      }
+    ]
+  }
+];
+
+export const weatherDataFormatted: any = [
   {
     name: 'Air Temp',
     series: [
       {
-        value: 33,
-        name: new Date('2020-01-13T12:05:00.000Z'),
-      },
-      {
-        value: 35,
-        name: new Date('2020-01-13T12:10:00.000Z')
-      },
-      {
-        value: 34,
-        name: new Date('2020-01-13T12:15:00.000Z')
+        value: 29,
+        name: new Date('2020-02-28T06:55:00.000Z'),
       },
       {
         value: 31,
-        name: new Date('2020-01-13T12:20:00.000Z')
+        name: new Date('2020-02-28T07:00:00.000Z'),
       },
       {
-        value: 28,
-        name: new Date('2020-01-13T12:25:00.000Z')
+        value: 33,
+        name: new Date('2020-02-28T07:05:00.000Z'),
       },
       {
-        value: 30,
-        name: new Date('2020-01-13T12:30:00.000Z')
-      },
-      {
-        value: 32,
-        name: new Date('2020-01-13T12:35:00.000Z')
+        value: 35,
+        name: new Date('2020-02-28T07:10:00.000Z')
       },
       {
         value: 34,
-        name: new Date('2020-01-13T12:40:00.000Z')
+        name: new Date('2020-02-28T07:15:00.000Z')
+      },
+      {
+        value: 31,
+        name: new Date('2020-02-28T07:20:00.000Z')
+      },
+      {
+        value: 28,
+        name: new Date('2020-02-28T07:25:00.000Z')
+      },
+      {
+        value: 30,
+        name: new Date('2020-02-28T07:30:00.000Z')
+      },
+      {
+        value: 32,
+        name: new Date('2020-02-28T07:35:00.000Z')
+      },
+      {
+        value: 34,
+        name: new Date('2020-02-28T07:40:00.000Z')
       },
       {
         value: 37,
-        name: new Date('2020-01-13T12:45:00.000Z')
+        name: new Date('2020-02-28T07:45:00.000Z')
       },
       {
         value: 40,
-        name: new Date('2020-01-13T12:50:00.000Z')
+        name: new Date('2020-02-28T07:50:00.000Z')
       }
     ]
   },
@@ -359,48 +439,137 @@ export const weatherData: any = [
     name: 'Road Surface Temp',
     series: [
       {
-        value: 24,
-        name: new Date('2020-01-13T12:05:00.000Z')
-      },
-      {
-        value: 25,
-        name: new Date('2020-01-13T12:10:00.000Z')
-      },
-      {
-        value: 24,
-        name: new Date('2020-01-13T12:15:00.000Z')
+        value: 21,
+        name: new Date('2020-02-28T06:55:00.000Z'),
       },
       {
         value: 22,
-        name: new Date('2020-01-13T12:20:00.000Z')
-      },
-      {
-        value: 20,
-        name: new Date('2020-01-13T12:25:00.000Z')
-      },
-      {
-        value: 23,
-        name: new Date('2020-01-13T12:30:00.000Z')
+        name: new Date('2020-02-28T07:00:00.000Z'),
       },
       {
         value: 24,
-        name: new Date('2020-01-13T12:35:00.000Z')
+        name: new Date('2020-02-28T07:05:00.000Z')
+      },
+      {
+        value: 25,
+        name: new Date('2020-02-28T07:10:00.000Z')
+      },
+      {
+        value: 24,
+        name: new Date('2020-02-28T07:15:00.000Z')
+      },
+      {
+        value: 22,
+        name: new Date('2020-02-28T07:20:00.000Z')
+      },
+      {
+        value: 20,
+        name: new Date('2020-02-28T07:25:00.000Z')
+      },
+      {
+        value: 23,
+        name: new Date('2020-02-28T07:30:00.000Z')
+      },
+      {
+        value: 24,
+        name: new Date('2020-02-28T07:35:00.000Z')
       },
       {
         value: 27,
-        name: new Date('2020-01-13T12:40:00.000Z')
+        name: new Date('2020-02-28T07:40:00.000Z')
       },
       {
         value: 29,
-        name: new Date('2020-01-13T12:45:00.000Z')
+        name: new Date('2020-02-28T07:45:00.000Z')
       },
       {
         value: 32,
-        name: new Date('2020-01-13T12:50:00.000Z')
+        name: new Date('2020-02-28T07:50:00.000Z')
       }
     ]
   }
 ];
+
+export class WeatherData {
+  readonly routes: any[];
+  readonly points: any[];
+  readonly forecast: any;
+}
+
+export const weatherData: WeatherData = {
+  routes: [],
+  points: [
+    { lat: 39.73845, lng: -104.98486, absoluteSeconds: 1582928953 },
+    { lat: 39.73687, lng: -104.99354, absoluteSeconds: 1582929015 },
+    { lat: 39.73688, lng: -104.99943, absoluteSeconds: 1582929075 },
+    { lat: 39.72646, lng: -105.00019, absoluteSeconds: 1582929134 },
+    { lat: 39.72576, lng: -105.0047, absoluteSeconds: 1582929193 },
+    { lat: 39.72576, lng: -105.01197, absoluteSeconds: 1582929255 },
+    { lat: 39.72558, lng: -105.01817, absoluteSeconds: 1582929315 },
+    { lat: 39.72568, lng: -105.03054, absoluteSeconds: 1582929374 },
+    { lat: 39.72579, lng: -105.04957, absoluteSeconds: 1582929433 },
+    { lat: 39.72562, lng: -105.07905, absoluteSeconds: 1582929496 },
+    { lat: 39.72553, lng: -105.10031, absoluteSeconds: 1582929555 },
+    { lat: 39.72547, lng: -105.11719, absoluteSeconds: 1582929614 },
+    { lat: 39.7254, lng: -105.14103, absoluteSeconds: 1582929673 },
+    { lat: 39.72538, lng: -105.17442, absoluteSeconds: 1582929736 },
+    { lat: 39.72567, lng: -105.18235, absoluteSeconds: 1582929795 },
+    { lat: 39.72144, lng: -105.18578, absoluteSeconds: 1582929854 },
+    { lat: 39.71325, lng: -105.19363, absoluteSeconds: 1582929913 },
+    { lat: 39.70204, lng: -105.20228, absoluteSeconds: 1582929976 },
+    { lat: 39.69589, lng: -105.2086, absoluteSeconds: 1582930035 },
+    { lat: 39.69621, lng: -105.21789, absoluteSeconds: 1582930094 },
+    { lat: 39.69858, lng: -105.23573, absoluteSeconds: 1582930153 }
+  ],
+  forecast: {
+    surfaceTemperature: [
+      294.05093,
+      293.98962,
+      293.93027,
+      293.66013,
+      293.69525,
+      293.63605,
+      293.5788,
+      293.52246,
+      293.3024,
+      293.09354,
+      293.0372,
+      292.4603,
+      292.405,
+      292.60583,
+      292.6743,
+      292.6405,
+      291.4038,
+      291.36887,
+      291.3361,
+      289.76535,
+      289.73053
+    ],
+    roadTemperature: [
+      300.6113756190697,
+      300.58576762519095,
+      300.56100490308916,
+      300.2980084944496,
+      299.37169343714174,
+      299.34218923346236,
+      299.3136335795203,
+      299.28556136476334,
+      299.02177407371255,
+      298.69852305313736,
+      298.67020041745974,
+      297.8943084424042,
+      297.85765338011055,
+      297.6481192071244,
+      297.49826336678103,
+      297.4727497381697,
+      296.266215067706,
+      296.2302159508855,
+      296.1964976878412,
+      295.2199846656247,
+      295.1823719584395
+    ]
+  }
+};
 
 export function generateGraph(nodeCount: number) {
   const nodes = [];

@@ -104,6 +104,12 @@ export class AppConstants {
       icon: 'device_hub',
       route: '/examples/real-time-data',
       type: ChartNavType.EXAMPLE
+    },
+    {
+      title: 'Data Wrapper',
+      icon: 'input',
+      route: '/examples/data-wrapper',
+      type: ChartNavType.EXAMPLE
     }
   ];
 

@@ -4,10 +4,12 @@ import { EventEmitter, Injectable } from '@angular/core';
 export class AppEventService {
   private DemoFormValue: EventEmitter<any>;
   private ExampleLinkClicked: EventEmitter<any>;
+  private RealTimeClicked: EventEmitter<boolean>;
 
   constructor() {
     this.DemoFormValue = new EventEmitter<any>();
     this.ExampleLinkClicked = new EventEmitter<any>();
+    this.RealTimeClicked = new EventEmitter<boolean>();
   }
 
   public emitDemoFormValueEvent(fg: any): void {
@@ -24,6 +26,14 @@ export class AppEventService {
 
   public getExampleLinkClickedEvent(): EventEmitter<any> {
     return this.ExampleLinkClicked;
+  }
+
+  public emitRealTimeCheckedEvent(value: boolean): void {
+    this.RealTimeClicked.emit(value);
+  }
+
+  public getRealTimeCheckedEvent(): EventEmitter<boolean> {
+    return this.RealTimeClicked;
   }
 
 }

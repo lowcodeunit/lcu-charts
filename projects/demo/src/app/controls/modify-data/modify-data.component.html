@@ -1,0 +1,44 @@
+<div fxFlex fxLayout="column" class="sidenav-content-form-container">
+  <div fxFlex fxLayout="row" fxLayoutAlign="space-between start" class="form-title-toggle">
+    <div fxFlex fxLayout="row" (click)="ToggleChartForm()">
+      <h3>Modify Data</h3>
+      <mat-icon color="primary" matTooltip="Click here to modify the properties of the current Chart">edit</mat-icon>
+    </div>
+
+    <button type="button" class="generate-button" mat-stroked-button color="primary" matTooltip="Click here to apply any data changes" (click)="ApplyChanges()" [disabled]="!DataForm.dirty">
+      Apply Changes
+    </button>
+  </div>
+  <div fxFlex fxLayout="row" *ngIf="IsChartFormDisplayed" class="form-content">
+    <form fxLayout="column" autocomplete="off" [formGroup]="DataForm">
+      <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+        <mat-checkbox formControlName="realTime" (click)="ToggleRealTime()">Real Time Data</mat-checkbox>
+      </div>
+      <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+        <div fxFlex="1 1 100%" fxLayout="column" fxLayoutAlign="start start" class="form-column-group">
+          <h4>Data</h4>
+          <div fxFlex formGroupName="dataWrapper" fxLayout="row" fxFlexAlign="stretch" fxLayoutAlign="space-between start" fxLayoutGap="10px">
+            <div fxFlex fxLayout="column">
+              <mat-form-field fxFlex>
+                <textarea matInput formControlName="singleSeries" placeholder="Single Series" rows="15"></textarea>
+                <mat-icon matSuffix matTooltip="singleSeries: The data">help_outline</mat-icon>
+              </mat-form-field>
+            </div>
+            <div fxFlex fxLayout="column">
+              <mat-form-field fxFlex>
+                <textarea matInput formControlName="multiSeries" placeholder="Multi Series" rows="15"></textarea>
+                <mat-icon matSuffix matTooltip="multiSeries: The data">help_outline</mat-icon>
+              </mat-form-field>
+            </div>
+            <div fxFlex fxLayout="column">
+              <mat-form-field fxFlex>
+                <textarea matInput formControlName="bubbleSeries" placeholder="Bubble Series" rows="15"></textarea>
+                <mat-icon matSuffix matTooltip="bubbleSeries: The data">help_outline</mat-icon>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

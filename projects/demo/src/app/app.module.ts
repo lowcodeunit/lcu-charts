@@ -10,7 +10,9 @@ import { AppEventService } from './app-event.service';
 import { LcuChartsModule } from '@lowcodeunit/lcu-charts-common';
 import { HomeComponent } from './controls/home/home.component';
 import { ModifyChartComponent } from './controls/modify-chart/modify-chart.component';
+import { ModifyDataComponent } from './controls/modify-data/modify-data.component';
 import { CodeDialogComponent } from './controls/code-dialog/code-dialog.component';
+import { DocumentationComponent } from './controls/documentation/documentation.component';
 import { DemoAreaChartSimpleComponent } from './charts/demo-area-chart-simple/demo-area-chart-simple.component';
 import { DemoLineChartSimpleComponent } from './charts/demo-line-chart-simple/demo-line-chart-simple.component';
 import { DemoBarChartVerticalSimpleComponent } from './charts/demo-bar-chart-vertical-simple/demo-bar-chart-vertical-simple.component';
@@ -22,16 +24,20 @@ import { DemoPieChartAdvancedComponent } from './charts/demo-pie-chart-advanced/
 import { DemoBubbleChartSimpleComponent } from './charts/demo-bubble-chart-simple/demo-bubble-chart-simple.component';
 import { DemoGaugeSimpleComponent } from './charts/demo-gauge-simple/demo-gauge-simple.component';
 import { ExampleChartSynchronizationComponent } from './examples/example-chart-synchronization/example-chart-synchronization.component';
+import { ExampleDataWrapperComponent } from './examples/example-data-wrapper/example-data-wrapper.component';
 import { ExampleRealTimeDataComponent } from './examples/example-real-time-data/example-real-time-data.component';
-import { DocumentationComponent } from './controls/documentation/documentation.component';
 import { LcuDocumentationModule } from '@lowcodeunit/lcu-documentation-common';
+import { SingleSeriesPipe } from './pipes/single-series.pipe';
+import { MultiSeriesPipe } from './pipes/multi-series.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ModifyChartComponent,
+    ModifyDataComponent,
     CodeDialogComponent,
+    DocumentationComponent,
     DemoAreaChartSimpleComponent,
     DemoLineChartSimpleComponent,
     DemoBarChartVerticalSimpleComponent,
@@ -43,8 +49,10 @@ import { LcuDocumentationModule } from '@lowcodeunit/lcu-documentation-common';
     DemoBubbleChartSimpleComponent,
     DemoGaugeSimpleComponent,
     ExampleChartSynchronizationComponent,
+    ExampleDataWrapperComponent,
     ExampleRealTimeDataComponent,
-    DocumentationComponent
+    SingleSeriesPipe,
+    MultiSeriesPipe
   ],
   imports: [
     AppRoutingModule,
@@ -57,7 +65,7 @@ import { LcuDocumentationModule } from '@lowcodeunit/lcu-documentation-common';
     LcuChartsModule,
     LcuDocumentationModule.forRoot()
   ],
-  providers: [AppEventService],
+  providers: [AppEventService, MultiSeriesPipe, SingleSeriesPipe],
   bootstrap: [AppComponent],
   exports: [LcuChartsModule],
   entryComponents: [CodeDialogComponent]
