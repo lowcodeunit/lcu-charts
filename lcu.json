@@ -1,14 +1,20 @@
 {
-  "templates": {
-    "repository": "lowcodeunit-devkit/lcu-cli-templates-core",
-    "scope": "@lowcodeunit",
-    "workspace": "lcu-charts"
-  },
-  "config": {
-    "wc": ["wc/lcu-charts.lcu.js"],
-    "solutions": {},
-    "elements": {},
-    "data-flow": {},
-    "dependencies": {}
-  }
+	"templates": {
+		"repository": "lowcodeunit-devkit/lcu-cli-templates-core",
+		"scope": "@lowcodeunit",
+		"workspace": "lcu-charts"
+	},
+	"config": {
+		"wc": [
+			"wc/lcu-charts.lcu.js"
+		],
+		"solutions": {
+			"charts-demo": {
+				"element": "lcu-charts-charts-demo-element"
+			}
+		},
+		"elements": {},
+		"data-flow": {},
+		"dependencies": {}
+	}
 }
