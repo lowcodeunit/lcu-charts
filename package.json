@@ -41,7 +41,7 @@
 		"@angular/platform-browser-dynamic": "~9.0.2",
 		"@angular/router": "~9.0.2",
 		"@aspnet/signalr": "^1.1.4",
-		"@lcu/common": "^1.1.31-angular-9",
+		"@lcu/common": "^1.25.101",
 		"@lowcodeunit-devkit/ng-lcu": "^1.4.23",
 		"@lowcodeunit/lcu-documentation-common": "^1.2.12",
 		"@types/d3": "^5.7.2",
