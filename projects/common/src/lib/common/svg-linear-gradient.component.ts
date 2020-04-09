@@ -16,7 +16,7 @@ import { Component, Input, OnChanges, SimpleChanges, ChangeDetectionStrategy } f
 })
 export class SvgLinearGradientComponent implements OnChanges {
   @Input() orientation = 'vertical';
-  @Input() name;
+  @Input() name: any;
   @Input() stops: any[];
 
   x1: any;

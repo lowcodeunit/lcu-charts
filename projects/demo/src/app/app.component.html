@@ -12,7 +12,10 @@
           </a>
         </div>
         <span fxFlex="nogrow">
-          <button mat-icon-button [matMenuTriggerFor]="menu">
+          <button matTooltip="Documentation" mat-icon-button routerLink="/documentation">
+            <mat-icon>description</mat-icon>
+          </button>
+          <button matTooltip="Select a Theme" mat-icon-button [matMenuTriggerFor]="menu">
             <mat-icon>format_color_fill</mat-icon>
           </button>
           <mat-menu #menu="matMenu">

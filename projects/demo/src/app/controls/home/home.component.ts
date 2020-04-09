@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import readme from "../../../../../README.md" // substitute this path with your README.md file path
-import { AppEventService } from '../app-event.service';
+import { AppEventService } from '../../app-event.service';
 
 
 @Component({

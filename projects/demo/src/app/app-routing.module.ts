@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './controls/home/home.component';
 import { DemoAreaChartSimpleComponent } from './charts/demo-area-chart-simple/demo-area-chart-simple.component';
-import { DemoLineChartComponent } from './charts/demo-line-chart/demo-line-chart.component';
+import { DemoLineChartSimpleComponent } from './charts/demo-line-chart-simple/demo-line-chart-simple.component';
 import { DemoBarChartVerticalSimpleComponent } from './charts/demo-bar-chart-vertical-simple/demo-bar-chart-vertical-simple.component';
 import { DemoBarChartVerticalGroupedComponent } from './charts/demo-bar-chart-vertical-grouped/demo-bar-chart-vertical-grouped.component';
 import { DemoBarChartHorizontalSimpleComponent } from './charts/demo-bar-chart-horizontal-simple/demo-bar-chart-horizontal-simple.component';
@@ -13,10 +13,11 @@ import { DemoBubbleChartSimpleComponent } from './charts/demo-bubble-chart-simpl
 import { DemoGaugeSimpleComponent } from './charts/demo-gauge-simple/demo-gauge-simple.component';
 import { ExampleChartSynchronizationComponent } from './examples/example-chart-synchronization/example-chart-synchronization.component';
 import { ExampleRealTimeDataComponent } from './examples/example-real-time-data/example-real-time-data.component';
+import { DocumentationComponent } from './controls/documentation/documentation.component';
 
 const routes: Routes = [
   { path: 'charts/simple-area-chart', component: DemoAreaChartSimpleComponent },
-  { path: 'charts/simple-line-chart', component: DemoLineChartComponent },
+  { path: 'charts/simple-line-chart', component: DemoLineChartSimpleComponent },
   { path: 'charts/simple-vertical-bar-chart', component: DemoBarChartVerticalSimpleComponent },
   { path: 'charts/simple-horizonal-bar-chart', component: DemoBarChartHorizontalSimpleComponent },
   { path: 'charts/grouped-vertical-bar-chart', component: DemoBarChartVerticalGroupedComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'examples/chart-synchronization', component: ExampleChartSynchronizationComponent },
   { path: 'examples/real-time-data', component: ExampleRealTimeDataComponent },
   { path: 'home', component: HomeComponent},
+  { path: 'documentation', component: DocumentationComponent },
   { path: '**', redirectTo: 'home' }
 ];
 

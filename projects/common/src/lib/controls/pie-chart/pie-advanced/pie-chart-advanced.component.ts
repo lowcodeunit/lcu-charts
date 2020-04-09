@@ -32,7 +32,7 @@ export class PieChartAdvancedComponent extends BaseChartComponent {
   @Output() activate: EventEmitter<any> = new EventEmitter();
   @Output() deactivate: EventEmitter<any> = new EventEmitter();
 
-  @ContentChild('tooltipTemplate', { static: false }) tooltipTemplate: TemplateRef<any>;
+  @ContentChild('tooltipTemplate') tooltipTemplate: TemplateRef<any>;
 
   data: any;
   dims: ViewDimensions;
@@ -77,7 +77,7 @@ export class PieChartAdvancedComponent extends BaseChartComponent {
   }
 
   getDomain(): any[] {
-    return this.results.map(d => d.label);
+    return this.results.map((d: any) => d.label);
   }
 
   onClick(data: DataItem) {
@@ -88,8 +88,8 @@ export class PieChartAdvancedComponent extends BaseChartComponent {
     this.colors = new ColorHelper(this.scheme, 'ordinal', this.domain, this.customColors);
   }
 
-  onActivate(item, fromLegend = false) {
-    item = this.results.find(d => {
+  onActivate(item: any, fromLegend = false) {
+    item = this.results.find((d: any) => {
       if (fromLegend) {
         return d.label === item.name;
       } else {
@@ -108,8 +108,8 @@ export class PieChartAdvancedComponent extends BaseChartComponent {
     this.activate.emit({ value: item, entries: this.activeEntries });
   }
 
-  onDeactivate(item, fromLegend = false) {
-    item = this.results.find(d => {
+  onDeactivate(item: any, fromLegend = false) {
+    item = this.results.find((d: any) => {
       if (fromLegend) {
         return d.label === item.name;
       } else {

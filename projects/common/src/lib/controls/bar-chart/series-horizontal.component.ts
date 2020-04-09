@@ -78,12 +78,12 @@ export class SeriesHorizontal implements OnChanges {
   y: any;
   barsForDataLabels: Array<{ x: number; y: number; width: number; height: number; total: number; series: string }> = [];
 
-  @Input() dims;
+  @Input() dims: any;
   @Input() type = 'standard';
-  @Input() series;
-  @Input() xScale;
-  @Input() yScale;
-  @Input() colors;
+  @Input() series: any;
+  @Input() xScale: any;
+  @Input() yScale: any;
+  @Input() colors: any;
   @Input() tooltipDisabled: boolean = false;
   @Input() gradient: boolean;
   @Input() activeEntries: any[];
@@ -115,13 +115,13 @@ export class SeriesHorizontal implements OnChanges {
     };
     let d0Type: D0Types;
     d0Type = D0Types.positive;
-    let total;
+    let total: any;
     if (this.type === 'normalized') {
-      total = this.series.map(d => d.value).reduce((sum, d) => sum + d, 0);
+      total = this.series.map((d: any) => d.value).reduce((sum: any, d: any) => sum + d, 0);
     }
     const xScaleMin = Math.max(this.xScale.domain()[0], 0);
 
-    this.bars = this.series.map((d, index) => {
+    this.bars = this.series.map((d: any, index: any) => {
       let value = d.value;
       const label = this.getLabel(d);
       const formattedLabel = formatLabel(label);
@@ -215,8 +215,8 @@ export class SeriesHorizontal implements OnChanges {
       this.barsForDataLabels = [];
       const section: any = {};
       section.series = this.seriesName;
-      const totalPositive = this.series.map(d => d.value).reduce((sum, d) => (d > 0 ? sum + d : sum), 0);
-      const totalNegative = this.series.map(d => d.value).reduce((sum, d) => (d < 0 ? sum + d : sum), 0);
+      const totalPositive = this.series.map((d: any) => d.value).reduce((sum: any, d: any) => (d > 0 ? sum + d : sum), 0);
+      const totalNegative = this.series.map((d: any) => d.value).reduce((sum: any, d: any) => (d < 0 ? sum + d : sum), 0);
       section.total = totalPositive + totalNegative;
       section.x = 0;
       section.y = 0;
@@ -229,7 +229,7 @@ export class SeriesHorizontal implements OnChanges {
       section.height = this.yScale.bandwidth();
       this.barsForDataLabels.push(section);
     } else {
-      this.barsForDataLabels = this.series.map(d => {
+      this.barsForDataLabels = this.series.map((d: any) => {
         const section: any = {};
         section.series = this.seriesName ? this.seriesName : d.label;
         section.total = d.value;
@@ -247,7 +247,7 @@ export class SeriesHorizontal implements OnChanges {
     this.tooltipType = this.tooltipDisabled ? undefined : 'tooltip';
   }
 
-  isActive(entry): boolean {
+  isActive(entry: any): boolean {
     if (!this.activeEntries) return false;
     const item = this.activeEntries.find(d => {
       return entry.name === d.name && entry.series === d.series;
@@ -255,18 +255,18 @@ export class SeriesHorizontal implements OnChanges {
     return item !== undefined;
   }
 
-  getLabel(dataItem): string {
+  getLabel(dataItem: any): string {
     if (dataItem.label) {
       return dataItem.label;
     }
     return dataItem.name;
   }
 
-  trackBy(index, bar) {
+  trackBy(index: any, bar: any) {
     return bar.label;
   }
 
-  trackDataLabelBy(index, barLabel) {
+  trackDataLabelBy(index: any, barLabel: any) {
     return index + '#' + barLabel.series + '#' + barLabel.total;
   }
 

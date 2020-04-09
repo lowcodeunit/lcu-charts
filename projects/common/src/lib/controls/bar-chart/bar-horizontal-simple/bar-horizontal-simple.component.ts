@@ -24,12 +24,12 @@ export class BarHorizontalSimpleComponent extends BaseChartComponent {
   @Input() legend = false;
   @Input() legendTitle: string = 'Legend';
   @Input() legendPosition: string = 'right';
-  @Input() xAxis;
-  @Input() yAxis;
-  @Input() showXAxisLabel;
-  @Input() showYAxisLabel;
-  @Input() xAxisLabel;
-  @Input() yAxisLabel;
+  @Input() xAxis: any;
+  @Input() yAxis: any;
+  @Input() showXAxisLabel: any;
+  @Input() showYAxisLabel: any;
+  @Input() xAxisLabel: any;
+  @Input() yAxisLabel: any;
   @Input() tooltipDisabled: boolean = false;
   @Input() gradient: boolean;
   @Input() showGridLines: boolean = true;
@@ -56,7 +56,7 @@ export class BarHorizontalSimpleComponent extends BaseChartComponent {
   @Output() activate: EventEmitter<any> = new EventEmitter();
   @Output() deactivate: EventEmitter<any> = new EventEmitter();
 
-  @ContentChild('tooltipTemplate', { static: false }) tooltipTemplate: TemplateRef<any>;
+  @ContentChild('tooltipTemplate') tooltipTemplate: TemplateRef<any>;
 
   dims: ViewDimensions;
   yScale: any;
@@ -127,7 +127,7 @@ export class BarHorizontalSimpleComponent extends BaseChartComponent {
   }
 
   getXDomain(): any[] {
-    const values = this.results.map(d => d.value);
+    const values = this.results.map((d: { value: any; }) => d.value);
     const min = this.xScaleMin ? Math.min(this.xScaleMin, ...values) : Math.min(0, ...values);
 
     const max = this.xScaleMax ? Math.max(this.xScaleMax, ...values) : Math.max(0, ...values);
@@ -135,10 +135,10 @@ export class BarHorizontalSimpleComponent extends BaseChartComponent {
   }
 
   getYDomain(): any[] {
-    return this.results.map(d => d.label);
+    return this.results.map((d: { label: any; }) => d.label);
   }
 
-  onClick(data): void {
+  onClick(data: any): void {
     this.select.emit(data);
   }
 
@@ -154,7 +154,7 @@ export class BarHorizontalSimpleComponent extends BaseChartComponent {
   }
 
   getLegendOptions() {
-    const opts = {
+    const opts: any = {
       scaleType: this.schemeType,
       colors: undefined,
       domain: [],
@@ -173,17 +173,17 @@ export class BarHorizontalSimpleComponent extends BaseChartComponent {
     return opts;
   }
 
-  updateYAxisWidth({ width }): void {
+  updateYAxisWidth({ width }: any): void {
     this.yAxisWidth = width;
     this.update();
   }
 
-  updateXAxisHeight({ height }): void {
+  updateXAxisHeight({ height }: any): void {
     this.xAxisHeight = height;
     this.update();
   }
 
-  onDataLabelMaxWidthChanged(event) {
+  onDataLabelMaxWidthChanged(event: { size: { negative: any; width: number; }; index: number; }) {
     if (event.size.negative) {
       this.dataLabelMaxWidth.negative = Math.max(this.dataLabelMaxWidth.negative, event.size.width);
     } else {
@@ -194,8 +194,8 @@ export class BarHorizontalSimpleComponent extends BaseChartComponent {
     }
   }
 
-  onActivate(item, fromLegend = false) {
-    item = this.results.find(d => {
+  onActivate(item: { name: any; value: any; series: any; }, fromLegend = false) {
+    item = this.results.find((d: { label: any; name: any; }) => {
       if (fromLegend) {
         return d.label === item.name;
       } else {
@@ -214,8 +214,8 @@ export class BarHorizontalSimpleComponent extends BaseChartComponent {
     this.activate.emit({ value: item, entries: this.activeEntries });
   }
 
-  onDeactivate(item, fromLegend = false) {
-    item = this.results.find(d => {
+  onDeactivate(item: { name: any; value: any; series: any; }, fromLegend = false) {
+    item = this.results.find((d: { label: any; name: any; }) => {
       if (fromLegend) {
         return d.label === item.name;
       } else {

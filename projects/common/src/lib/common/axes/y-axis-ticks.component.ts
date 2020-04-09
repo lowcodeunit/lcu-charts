@@ -82,18 +82,18 @@ import { roundedRect } from '../../common/shape.helper';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class YAxisTicksComponent implements OnChanges, AfterViewInit {
-  @Input() scale;
-  @Input() orient;
+  @Input() scale: any;
+  @Input() orient: any;
   @Input() tickArguments = [5];
   @Input() tickValues: any[];
   @Input() tickStroke = '#ccc';
   @Input() trimTicks: boolean = true;
   @Input() maxTickLength: number = 16;
-  @Input() tickFormatting;
+  @Input() tickFormatting: any;
   @Input() showGridLines = false;
-  @Input() gridLineWidth;
-  @Input() height;
-  @Input() referenceLines;
+  @Input() gridLineWidth: any;
+  @Input() height: any;
+  @Input() referenceLines: any;
   @Input() showRefLabels: boolean = false;
   @Input() showRefLines: boolean = false;
 
@@ -121,7 +121,7 @@ export class YAxisTicksComponent implements OnChanges, AfterViewInit {
   referenceLineLength: number = 0;
   referenceAreaPath: string;
 
-  @ViewChild('ticksel', {static: false}) ticksElement: ElementRef;
+  @ViewChild('ticksel') ticksElement: ElementRef;
 
   ngOnChanges(changes: SimpleChanges): void {
     this.update();
@@ -141,7 +141,7 @@ export class YAxisTicksComponent implements OnChanges, AfterViewInit {
   }
 
   update(): void {
-    let scale;
+    let scale: any;
     const sign = this.orient === 'top' || this.orient === 'right' ? -1 : 1;
     this.tickSpacing = Math.max(this.innerTickSize, 0) + this.tickPadding;
 
@@ -153,7 +153,7 @@ export class YAxisTicksComponent implements OnChanges, AfterViewInit {
     } else if (scale.tickFormat) {
       this.tickFormat = scale.tickFormat.apply(scale, this.tickArguments);
     } else {
-      this.tickFormat = function(d) {
+      this.tickFormat = function(d: any) {
         if (d.constructor.name === 'Date') {
           return d.toLocaleDateString();
         }
@@ -162,7 +162,7 @@ export class YAxisTicksComponent implements OnChanges, AfterViewInit {
     }
 
     this.adjustedScale = scale.bandwidth
-      ? function(d) {
+      ? function(d: any) {
           return scale(d) + scale.bandwidth() * 0.5;
         }
       : scale;
@@ -217,13 +217,13 @@ export class YAxisTicksComponent implements OnChanges, AfterViewInit {
     this.refMin = this.adjustedScale(
       Math.min.apply(
         null,
-        this.referenceLines.map(item => item.value)
+        this.referenceLines.map((item: any) => item.value)
       )
     );
     this.refMax = this.adjustedScale(
       Math.max.apply(
         null,
-        this.referenceLines.map(item => item.value)
+        this.referenceLines.map((item: any) => item.value)
       )
     );
     this.referenceLineLength = this.referenceLines.length;
@@ -257,7 +257,7 @@ export class YAxisTicksComponent implements OnChanges, AfterViewInit {
     return Math.floor(this.height / tickHeight);
   }
 
-  tickTransform(tick): string {
+  tickTransform(tick: any): string {
     return `translate(${this.adjustedScale(tick)},${this.verticalSpacing})`;
   }
 

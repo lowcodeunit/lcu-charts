@@ -48,21 +48,21 @@ import { YAxisTicksComponent } from './y-axis-ticks.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class YAxisComponent implements OnChanges {
-  @Input() yScale;
-  @Input() dims;
+  @Input() yScale: any;
+  @Input() dims: any;
   @Input() trimTicks: boolean;
   @Input() maxTickLength: number;
-  @Input() tickFormatting;
+  @Input() tickFormatting: any;
   @Input() ticks: any[];
   @Input() showGridLines = false;
-  @Input() showLabel;
-  @Input() labelText;
-  @Input() yAxisTickInterval;
+  @Input() showLabel: any;
+  @Input() labelText: any;
+  @Input() yAxisTickInterval: any;
   @Input() yAxisTickCount: any;
   @Input() yOrient: string = 'left';
-  @Input() referenceLines;
-  @Input() showRefLines;
-  @Input() showRefLabels;
+  @Input() referenceLines: any;
+  @Input() showRefLines: any;
+  @Input() showRefLabels: any;
   @Input() yAxisOffset: number = 0;
   @Output() dimensionsChanged = new EventEmitter();
 
@@ -77,7 +77,7 @@ export class YAxisComponent implements OnChanges {
   strokeWidth: number = 1;
   padding: number = 5;
 
-  @ViewChild(YAxisTicksComponent, {static: false}) ticksComponent: YAxisTicksComponent;
+  @ViewChild(YAxisTicksComponent) ticksComponent: YAxisTicksComponent;
 
   ngOnChanges(changes: SimpleChanges): void {
     this.update();
@@ -98,7 +98,7 @@ export class YAxisComponent implements OnChanges {
     }
   }
 
-  emitTicksWidth({ width }): void {
+  emitTicksWidth({ width }: any): void {
     if (width !== this.labelOffset && this.yOrient === 'right') {
       this.labelOffset = width + this.labelOffset;
       setTimeout(() => {

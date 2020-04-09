@@ -6,10 +6,10 @@ import { AppConstants } from '../../app-constants';
 
 @Component({
   selector: 'lcu-demo-line-chart',
-  templateUrl: './demo-line-chart.component.html',
-  styleUrls: ['./demo-line-chart.component.scss']
+  templateUrl: './demo-line-chart-simple.component.html',
+  styleUrls: ['./demo-line-chart-simple.component.scss']
 })
-export class DemoLineChartComponent implements OnInit {
+export class DemoLineChartSimpleComponent implements OnInit {
   public animations: boolean;
   public autoScale: boolean;
   public colorScheme: any;
@@ -63,13 +63,13 @@ export class DemoLineChartComponent implements OnInit {
   ) {
     this.lineChartOptions = {...AppConstants.DEFAULT_GLOBAL_CHART_OPTIONS, ...AppConstants.DEFAULT_LINE_AREA_CHART_OPTIONS};
     this.appEventService.getDemoFormValueEvent().subscribe(
-      (value) => {
+      (value: any) => {
         this.updateChartOptions(value);
       }
     );
     Object.assign(this, this.lineChartOptions);
     this.setColorScheme(this.colorScheme);
-    this.dateData = generateData(5, false);
+    this.dateData = generateData(6, false);
     this.dateDataWithRange = generateData(2, true);
   }
 
@@ -101,7 +101,7 @@ export class DemoLineChartComponent implements OnInit {
   }
 
   private setColorScheme(name: string): void {
-    this.colorScheme = this.colorSets.find(s => s.name === name);
+    this.colorScheme = this.colorSets.find((s: any) => s.name === name);
   }
 
   private updateChartOptions(value: any): void {

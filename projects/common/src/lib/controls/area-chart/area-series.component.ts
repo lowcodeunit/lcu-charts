@@ -32,16 +32,16 @@ import { sortLinear, sortByTime, sortByDomain } from '../../utils/sort';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AreaSeriesComponent implements OnChanges {
-  @Input() data;
-  @Input() xScale;
-  @Input() yScale;
+  @Input() data: any;
+  @Input() xScale: any;
+  @Input() yScale: any;
   @Input() baseValue: any = 'auto';
-  @Input() colors;
-  @Input() scaleType;
+  @Input() colors: any;
+  @Input() scaleType: any;
   @Input() stacked: boolean = false;
   @Input() normalized: boolean = false;
-  @Input() gradient;
-  @Input() curve;
+  @Input() gradient: any;
+  @Input() curve: any;
   @Input() activeEntries: any[];
   @Input() animations: boolean = true;
 
@@ -64,7 +64,7 @@ export class AreaSeriesComponent implements OnChanges {
     let currentArea;
     let startingArea;
 
-    const xProperty = d => {
+    const xProperty = (d: any) => {
       const label = d.name;
       return this.xScale(label);
     };
@@ -72,23 +72,23 @@ export class AreaSeriesComponent implements OnChanges {
     if (this.stacked || this.normalized) {
       currentArea = area<any>()
         .x(xProperty)
-        .y0((d, i) => this.yScale(d.d0))
-        .y1((d, i) => this.yScale(d.d1));
+        .y0((d: any, i: any) => this.yScale(d.d0))
+        .y1((d: any, i: any) => this.yScale(d.d1));
 
       startingArea = area<any>()
         .x(xProperty)
-        .y0(d => this.yScale.range()[0])
-        .y1(d => this.yScale.range()[0]);
+        .y0((d: any) => this.yScale.range()[0])
+        .y1((d: any) => this.yScale.range()[0]);
     } else {
       currentArea = area<any>()
         .x(xProperty)
         .y0(() => (this.baseValue === 'auto' ? this.yScale.range()[0] : this.yScale(this.baseValue)))
-        .y1(d => this.yScale(d.value));
+        .y1((d: any) => this.yScale(d.value));
 
       startingArea = area<any>()
         .x(xProperty)
-        .y0(d => (this.baseValue === 'auto' ? this.yScale.range()[0] : this.yScale(this.baseValue)))
-        .y1(d => (this.baseValue === 'auto' ? this.yScale.range()[0] : this.yScale(this.baseValue)));
+        .y0((d: any) => (this.baseValue === 'auto' ? this.yScale.range()[0] : this.yScale(this.baseValue)))
+        .y1((d: any) => (this.baseValue === 'auto' ? this.yScale.range()[0] : this.yScale(this.baseValue)));
     }
 
     currentArea.curve(this.curve);
@@ -113,13 +113,13 @@ export class AreaSeriesComponent implements OnChanges {
     if (this.colors.scaleType === 'linear') {
       this.hasGradient = true;
       if (this.stacked || this.normalized) {
-        const d0values = this.data.series.map(d => d.d0);
-        const d1values = this.data.series.map(d => d.d1);
+        const d0values = this.data.series.map((d: any) => d.d0);
+        const d1values = this.data.series.map((d: any) => d.d1);
         const max = Math.max(...d1values);
         const min = Math.min(...d0values);
         this.gradientStops = this.colors.getLinearGradientStops(max, min);
       } else {
-        const values = this.data.series.map(d => d.value);
+        const values = this.data.series.map((d: any) => d.value);
         const max = Math.max(...values);
         this.gradientStops = this.colors.getLinearGradientStops(max);
       }
@@ -129,7 +129,7 @@ export class AreaSeriesComponent implements OnChanges {
     }
   }
 
-  isActive(entry): boolean {
+  isActive(entry: any): boolean {
     if (!this.activeEntries) return false;
     const item = this.activeEntries.find(d => {
       return entry.name === d.name;
@@ -137,7 +137,7 @@ export class AreaSeriesComponent implements OnChanges {
     return item !== undefined;
   }
 
-  isInactive(entry): boolean {
+  isInactive(entry: any): boolean {
     if (!this.activeEntries || this.activeEntries.length === 0) return false;
     const item = this.activeEntries.find(d => {
       return entry.name === d.name;

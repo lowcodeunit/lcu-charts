@@ -53,7 +53,7 @@ export class GaugeAxisComponent implements OnChanges {
     const bigTickSegment = this.angleSpan / this.bigSegments;
     const smallTickSegment = bigTickSegment / this.smallSegments;
     const tickLength = 20;
-    const ticks = {
+    const ticks: any = {
       big: [],
       small: []
     };
@@ -104,7 +104,7 @@ export class GaugeAxisComponent implements OnChanges {
     return ticks;
   }
 
-  getTextAnchor(angle) {
+  getTextAnchor(angle: any) {
     // [0, 45] = 'middle';
     // [46, 135] = 'start';
     // [136, 225] = 'middle';
@@ -120,7 +120,7 @@ export class GaugeAxisComponent implements OnChanges {
     return textAnchor;
   }
 
-  getTickPath(startDistance, tickLength, angle): any {
+  getTickPath(startDistance: any, tickLength: any, angle: any): any {
     const y1 = startDistance * Math.sin(angle);
     const y2 = (startDistance + tickLength) * Math.sin(angle);
     const x1 = startDistance * Math.cos(angle);
@@ -131,8 +131,8 @@ export class GaugeAxisComponent implements OnChanges {
       { x: x2, y: y2 }
     ];
     const lineGenerator = line<any>()
-      .x(d => d.x)
-      .y(d => d.y);
+      .x((d: any) => d.x)
+      .y((d: any) => d.y);
     return lineGenerator(points);
   }
 }

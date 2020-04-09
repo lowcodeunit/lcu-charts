@@ -38,13 +38,13 @@ import { transition } from 'd3-transition';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BarComponent implements OnChanges {
-  @Input() fill;
+  @Input() fill: any;
   @Input() data: any;
   @Input() width: number;
   @Input() height: number;
   @Input() x: number;
   @Input() y: number;
-  @Input() orientation;
+  @Input() orientation: any;
   @Input() roundEdges: boolean = true;
   @Input() gradient: boolean = false;
   @Input() offset = 0;

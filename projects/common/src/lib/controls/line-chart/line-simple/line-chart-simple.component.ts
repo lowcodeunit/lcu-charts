@@ -42,17 +42,17 @@ import { DateFormatModel } from '../../../models/date-format.model';
   ]
 })
 export class LineChartSimpleComponent extends BaseChartComponent {
-  @Input() legend;
+  @Input() legend: any;
   @Input() legendTitle: string = 'Legend';
   @Input() legendPosition: string = 'right';
-  @Input() xAxis;
-  @Input() yAxis;
-  @Input() showXAxisLabel;
-  @Input() showYAxisLabel;
-  @Input() xAxisLabel;
-  @Input() yAxisLabel;
-  @Input() autoScale;
-  @Input() timeline;
+  @Input() xAxis: any;
+  @Input() yAxis: any;
+  @Input() showXAxisLabel: any;
+  @Input() showYAxisLabel: any;
+  @Input() xAxisLabel: any;
+  @Input() yAxisLabel: any;
+  @Input() autoScale: any;
+  @Input() timeline: any;
   @Input() gradient: boolean;
   @Input() showGridLines: boolean = true;
   @Input() curve: any = curveLinear;
@@ -79,7 +79,7 @@ export class LineChartSimpleComponent extends BaseChartComponent {
   @Input() yScaleMax: number;
   @Input() backgroundGradientConfigs: any[];
   @Input('forceManualXHover')
-  public set forceManualXHover(val) {
+  public set forceManualXHover(val: any) {
     this.ForceManualHover = val;
   }
   @Input() showPercentage: boolean;
@@ -102,8 +102,8 @@ export class LineChartSimpleComponent extends BaseChartComponent {
   @Output() activate: EventEmitter<any> = new EventEmitter();
   @Output() deactivate: EventEmitter<any> = new EventEmitter();
 
-  @ContentChild('tooltipTemplate', {static: false}) tooltipTemplate: TemplateRef<any>;
-  @ContentChild('seriesTooltipTemplate', {static: false}) seriesTooltipTemplate: TemplateRef<any>;
+  @ContentChild('tooltipTemplate') tooltipTemplate: TemplateRef<any>;
+  @ContentChild('seriesTooltipTemplate') seriesTooltipTemplate: TemplateRef<any>;
 
   // dims: ViewDimensions;
   xSet: any;
@@ -137,7 +137,7 @@ export class LineChartSimpleComponent extends BaseChartComponent {
 
   update(): void {
     super.update();
-if(!this.dims){
+
     this.dims = calculateViewDimensions({
       width: this.width,
       height: this.height,
@@ -152,10 +152,10 @@ if(!this.dims){
       legendType: this.schemeType,
       legendPosition: this.legendPosition
     });
-  }
-/**\
- * if the X axis is a date and they passed in a format
- */
+
+    /**\
+     * if the X axis is a date and they passed in a format
+     */
     if(this.xAxisIsDate && this.xAxisDateFormat){
       this.xAxisTickFormatting = this.FormatXAxisDate.bind(this);
     }
@@ -204,7 +204,7 @@ if(!this.dims){
       }
       if(this.xAxisDateFormat.Time){
         let time = dateArr[4];
-  
+
        dateTime+=time.substr(0, time.length-3)+" ";
       }
       if(this.xAxisDateFormat.TimeZone){
@@ -215,7 +215,7 @@ if(!this.dims){
 
       return dateTime;
     }
-  
+
 
   updateTimeline(): void {
     if (this.timeline) {
@@ -301,10 +301,10 @@ if(!this.dims){
   }
 
   getSeriesDomain(): any[] {
-    return this.results.map(d => d.name);
+    return this.results.map((d: any) => d.name);
   }
 
-  getXScale(domain, width): any {
+  getXScale(domain: any, width: any): any {
     let scale;
 
     if (this.scaleType === 'time') {
@@ -329,7 +329,7 @@ if(!this.dims){
     return scale;
   }
 
-  getYScale(domain, height): any {
+  getYScale(domain: any, height: any): any {
     const scale = scaleLinear()
       .range([height, 0])
       .domain(domain);
@@ -337,7 +337,7 @@ if(!this.dims){
     return this.roundDomains ? scale.nice() : scale;
   }
 
-  updateDomain(domain): void {
+  updateDomain(domain: any): void {
     this.filteredDomain = domain;
     this.xDomain = this.filteredDomain;
     this.xScale = this.getXScale(this.xDomain, this.dims.width);
@@ -345,12 +345,12 @@ if(!this.dims){
 
   @Output() HoveredVerticalChange = new EventEmitter<any>();
 
-  updateHoveredVertical(item): void {
+  updateHoveredVertical(item: any): void {
     this.hoveredVertical = item.value;
     this.deactivateAll();
   }
 
-  public sendBackPixelValueX(event) {
+  public sendBackPixelValueX(event: any) {
     this.HoveredVerticalChange.emit(event);
   }
 
@@ -360,11 +360,11 @@ if(!this.dims){
     this.deactivateAll();
   }
 
-  onClick(data): void {
+  onClick(data: any): void {
     this.select.emit(data);
   }
 
-  trackBy(index, item): string {
+  trackBy(index: any, item: any): string {
     return item.name;
   }
 
@@ -380,7 +380,7 @@ if(!this.dims){
   }
 
   getLegendOptions() {
-    const opts = {
+    const opts: any = {
       scaleType: this.schemeType,
       colors: undefined,
       domain: [],
@@ -398,17 +398,17 @@ if(!this.dims){
     return opts;
   }
 
-  updateYAxisWidth({ width }): void {
+  updateYAxisWidth({ width }: any): void {
     this.yAxisWidth = width;
     this.update();
   }
 
-  updateXAxisHeight({ height }): void {
+  updateXAxisHeight({ height }: any): void {
     this.xAxisHeight = height;
     this.update();
   }
 
-  onActivate(item) {
+  onActivate(item: any) {
     this.deactivateAll();
 
     const idx = this.activeEntries.findIndex(d => {
@@ -422,7 +422,7 @@ if(!this.dims){
     this.activate.emit({ value: item, entries: this.activeEntries });
   }
 
-  onDeactivate(item) {
+  onDeactivate(item: any) {
     const idx = this.activeEntries.findIndex(d => {
       return d.name === item.name && d.value === item.value;
     });

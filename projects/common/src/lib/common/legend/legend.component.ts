@@ -41,12 +41,12 @@ import { formatLabel } from '../label.helper';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LegendComponent implements OnChanges {
-  @Input() data;
-  @Input() title;
-  @Input() colors;
-  @Input() height;
-  @Input() width;
-  @Input() activeEntries;
+  @Input() data: any;
+  @Input() title: any;
+  @Input() colors: any;
+  @Input() height: any;
+  @Input() width: any;
+  @Input() activeEntries: any;
   @Input() horizontal = false;
 
   @Output() labelClick: EventEmitter<any> = new EventEmitter();
@@ -88,23 +88,23 @@ export class LegendComponent implements OnChanges {
     return items;
   }
 
-  isActive(entry): boolean {
+  isActive(entry: any): boolean {
     if (!this.activeEntries) return false;
-    const item = this.activeEntries.find(d => {
+    const item = this.activeEntries.find((d: any) => {
       return entry.label === d.name;
     });
     return item !== undefined;
   }
 
-  activate(item) {
+  activate(item: any) {
     this.labelActivate.emit(item);
   }
 
-  deactivate(item) {
+  deactivate(item: any) {
     this.labelDeactivate.emit(item);
   }
 
-  trackBy(index, item): string {
+  trackBy(index: any, item: any): string {
     return item.label;
   }
 }

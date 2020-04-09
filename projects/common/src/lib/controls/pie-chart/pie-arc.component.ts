@@ -44,15 +44,15 @@ import { MouseEvent } from '../../events';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PieArcComponent implements OnChanges {
-  @Input() fill;
+  @Input() fill: any;
   @Input() startAngle: number = 0;
   @Input() endAngle: number = Math.PI * 2;
-  @Input() innerRadius;
-  @Input() outerRadius;
+  @Input() innerRadius: any;
+  @Input() outerRadius: any;
   @Input() cornerRadius: number = 0;
-  @Input() value;
-  @Input() max;
-  @Input() data;
+  @Input() value: any;
+  @Input() max: any;
+  @Input() data: any;
   @Input() explodeSlices: boolean = false;
   @Input() gradient: boolean = false;
   @Input() animate: boolean = true;
@@ -71,7 +71,7 @@ export class PieArcComponent implements OnChanges {
   linearGradientId: string;
   gradientFill: string;
   initialized: boolean = false;
-  private _timeout;
+  private _timeout: any;
 
   constructor(element: ElementRef) {
     this.element = element.nativeElement;
@@ -128,23 +128,23 @@ export class PieArcComponent implements OnChanges {
 
     node
       .transition()
-      .attrTween('d', function(d) {
+      .attrTween('d', function(d: any) {
         (<any>this)._current = (<any>this)._current || d;
         const copyOfD = Object.assign({}, d);
         copyOfD.endAngle = copyOfD.startAngle;
         const interpolater = interpolate(copyOfD, copyOfD);
         (<any>this)._current = interpolater(0);
-        return function(t) {
+        return function(t: any) {
           return calc(interpolater(t));
         };
       })
       .transition()
       .duration(750)
-      .attrTween('d', function(d) {
+      .attrTween('d', function(d: any) {
         (<any>this)._current = (<any>this)._current || d;
         const interpolater = interpolate((<any>this)._current, d);
         (<any>this)._current = interpolater(0);
-        return function(t) {
+        return function(t: any) {
           return calc(interpolater(t));
         };
       });
@@ -160,11 +160,11 @@ export class PieArcComponent implements OnChanges {
     node
       .transition()
       .duration(750)
-      .attrTween('d', function(d) {
+      .attrTween('d', function(d: any) {
         (<any>this)._current = (<any>this)._current || d;
         const interpolater = interpolate((<any>this)._current, d);
         (<any>this)._current = interpolater(0);
-        return function(t) {
+        return function(t: any) {
           return calc(interpolater(t));
         };
       });

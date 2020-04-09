@@ -69,8 +69,8 @@ import { formatLabel } from '../label.helper';
 })
 export class AdvancedLegendComponent implements OnChanges {
   @Input() width: number;
-  @Input() data;
-  @Input() colors;
+  @Input() data: any;
+  @Input() colors: any;
   @Input() label: string = 'Total';
   @Input() animations: boolean = true;
 
@@ -93,7 +93,7 @@ export class AdvancedLegendComponent implements OnChanges {
   }
 
   getTotal(): number {
-    return this.data.map(d => d.value).reduce((sum, d) => sum + d, 0);
+    return this.data.map((d: any) => d.value).reduce((sum: any, d: any) => sum + d, 0);
   }
 
   update(): void {
@@ -104,7 +104,7 @@ export class AdvancedLegendComponent implements OnChanges {
   }
 
   getLegendItems(): any {
-    return this.data.map(d => {
+    return this.data.map((d: any) => {
       const label = formatLabel(d.name);
       const value = d.value;
       const color = this.colors.getColor(label);
@@ -124,7 +124,7 @@ export class AdvancedLegendComponent implements OnChanges {
     });
   }
 
-  trackBy(item) {
+  trackBy(item: any) {
     return item.formattedLabel;
   }
 }

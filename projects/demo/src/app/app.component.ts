@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
 
   private chartNavItems: any[];
 
-  @ViewChild('sidenav', { static: false }) sidenav: ElementRef<any>;
+  @ViewChild('sidenav') sidenav: ElementRef<any>;
 
   constructor(
     private appEventService: AppEventService,
