@@ -1,16 +1,22 @@
-<lcu-charts-pie-chart-advanced
-  class="chart-container"
-  [animations]="animations"
-  [gradient]="gradient"
-  [results]="single"
-  [scheme]="colorScheme"
-  [tooltipDisabled]="tooltipDisabled"
-  [tooltipText]="pieTooltipText"
-  [valueFormatting]="valueFormatting"
-  [view]="view"
-  (activate)="activate($event)"
-  (dblclick)="dblclick($event)"
-  (deactivate)="deactivate($event)"
-  (legendLabelClick)="onLegendLabelClick($event)"
-  (select)="select($event)">
-</lcu-charts-pie-chart-advanced>
+<lcu-modify-chart [options]="pieChartOptions"></lcu-modify-chart>
+
+<div fxFlex fxLayout="column" class="lcu-chart-container">
+  <lcu-charts-pie-chart-advanced
+    class="chart-container"
+    [animations]="animations"
+    [arcWidth]="arcWidth"
+    [doughnut]="doughnut"
+    [gradient]="gradient"
+    [results]="single"
+    [scheme]="colorScheme"
+    [tooltipDisabled]="tooltipDisabled"
+    [tooltipText]="pieTooltipText"
+    [valueFormatting]="valueFormatting"
+    [view]="view"
+    (activate)="activate($event)"
+    (dblclick)="dblclick($event)"
+    (deactivate)="deactivate($event)"
+    (legendLabelClick)="onLegendLabelClick($event)"
+    (select)="select($event)">
+  </lcu-charts-pie-chart-advanced>
+</div>

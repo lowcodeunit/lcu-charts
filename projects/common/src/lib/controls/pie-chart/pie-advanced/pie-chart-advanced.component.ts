@@ -21,6 +21,8 @@ import { DataItem } from '../../../models/chart-data.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PieChartAdvancedComponent extends BaseChartComponent {
+  @Input() arcWidth = 0.25;
+  @Input() doughnut = false;
   @Input() gradient: boolean;
   @Input() activeEntries: any[] = [];
   @Input() tooltipDisabled: boolean = false;
@@ -65,7 +67,11 @@ export class PieChartAdvancedComponent extends BaseChartComponent {
     this.legendWidth = this.width - this.dims.width - this.margin[1];
 
     this.outerRadius = Math.min(this.dims.width, this.dims.height) / 2.5;
-    this.innerRadius = this.outerRadius * 0.75;
+
+    this.innerRadius = 0;
+    if (this.doughnut) {
+      this.innerRadius = this.outerRadius * (1 - this.arcWidth);
+    }
 
     this.transform = `translate(${xOffset} , ${yOffset})`;
   }

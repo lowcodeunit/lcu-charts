@@ -84,6 +84,9 @@ export class LineChartSimpleComponent extends BaseChartComponent {
   }
   @Input() showPercentage: boolean;
   @Input() units: string;
+  @Input() dims: ViewDimensions;
+  @Input() valueFormat: any;
+  @Input() formatTooltip: boolean;
 
   @Input() xAxisIsDate: boolean;
   /**
@@ -102,7 +105,7 @@ export class LineChartSimpleComponent extends BaseChartComponent {
   @ContentChild('tooltipTemplate', {static: false}) tooltipTemplate: TemplateRef<any>;
   @ContentChild('seriesTooltipTemplate', {static: false}) seriesTooltipTemplate: TemplateRef<any>;
 
-  dims: ViewDimensions;
+  // dims: ViewDimensions;
   xSet: any;
   xDomain: any;
   yDomain: any;
@@ -134,7 +137,7 @@ export class LineChartSimpleComponent extends BaseChartComponent {
 
   update(): void {
     super.update();
-
+if(!this.dims){
     this.dims = calculateViewDimensions({
       width: this.width,
       height: this.height,
@@ -149,6 +152,7 @@ export class LineChartSimpleComponent extends BaseChartComponent {
       legendType: this.schemeType,
       legendPosition: this.legendPosition
     });
+  }
 /**\
  * if the X axis is a date and they passed in a format
  */

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { colorSets } from '@lowcodeunit/lcu-charts-common';
 import { multi } from '../../data';
+import { AppEventService } from '../../app-event.service';
+import { AppConstants } from '../../app-constants';
+import { ChartBarOptionsModel } from '@lowcodeunit/lcu-charts-common';
 
 @Component({
   selector: 'lcu-demo-bar-chart-vertical-grouped',
@@ -8,50 +10,57 @@ import { multi } from '../../data';
   styleUrls: ['./demo-bar-chart-vertical-grouped.component.scss']
 })
 export class DemoBarChartVerticalGroupedComponent implements OnInit {
-  public animations: boolean = true;
-  public barPadding: number = 8;
+  public animations: boolean;
+  public barChartOptions: ChartBarOptionsModel;
+  public barPadding: number;
   public colorScheme: any;
-  public gradient: boolean = false;
-  public groupPadding: number = 16;
-  public legendPosition: string = 'right';
-  public legendTitle: string = '';
-  public maxXAxisTickLength: number = 16;
-  public maxYAxisTickLength: number = 16;
+  public gradient: boolean;
+  public groupPadding: number;
+  public legendPosition: string;
+  public legendTitle: string;
+  public maxXAxisTickLength: number;
+  public maxYAxisTickLength: number;
   public multi: any[];
-  public noBarWhenZero: boolean = true;
-  public rotateXAxisTicks: boolean = true;
-  public roundDomains: boolean = false;
-  public roundEdges: boolean = true;
-  public schemeType: string = 'ordinal';
-  public showDataLabel: boolean = false;
-  public showGridLines: boolean = true;
-  public showLegend: boolean = true;
-  public showXAxis: boolean = true;
-  public showXAxisLabel: boolean = true;
-  public showYAxis: boolean = true;
-  public showYAxisLabel: boolean = true;
-  public tooltipDisabled: boolean = false;
-  public trimXAxisTicks: boolean = true;
-  public trimYAxisTicks: boolean = true;
+  public noBarWhenZero: boolean;
+  public rotateXAxisTicks: boolean;
+  public roundDomains: boolean;
+  public roundEdges: boolean;
+  public schemeType: string;
+  public showDataLabel: boolean;
+  public showGridLines: boolean;
+  public showLegend: boolean;
+  public showXAxis: boolean;
+  public showXAxisLabel: boolean;
+  public showYAxis: boolean;
+  public showYAxisLabel: boolean;
+  public tooltipDisabled: boolean;
+  public trimXAxisTicks: boolean;
+  public trimYAxisTicks: boolean;
   public view: any[];
-  public xAxisLabel: string = 'Country';
+  public xAxisLabel: string;
   public xScaleMax: any;
   public xScaleMin: any;
-  public yAxisLabel: string = 'GDP Per Capita';
+  public yAxisLabel: string;
   public yScaleMax: number;
   public yScaleMin: number;
 
   private colorSets: any;
   private fitContainer: boolean = false;
-  private height: number = 400;
-  private width: number = 1000;
+  private height: number;
+  private width: number;
 
-  constructor() {
-    Object.assign(this, {
-      colorSets,
-      multi
-    });
-    this.setColorScheme('cool');
+  constructor(
+    private appEventService: AppEventService
+  ) {
+    this.barChartOptions = {...AppConstants.DEFAULT_GLOBAL_CHART_OPTIONS, ...AppConstants.DEFAULT_BAR_CHART_OPTIONS};
+    this.appEventService.getDemoFormValueEvent().subscribe(
+      (value) => {
+        this.updateChartOptions(value);
+      }
+    );
+    Object.assign(this, this.barChartOptions);
+    this.setColorScheme(this.colorScheme);
+    this.multi = [...multi];
   }
 
   public ngOnInit(): void {
@@ -82,6 +91,16 @@ export class DemoBarChartVerticalGroupedComponent implements OnInit {
 
   private setColorScheme(name: string): void {
     this.colorScheme = this.colorSets.find(s => s.name === name);
+  }
+
+  private updateChartOptions(value: any): void {
+    Object.assign(this, value);
+
+    if (!this.fitContainer) {
+      this.applyDimensions();
+    } else {
+      this.view = undefined;
+    }
   }
 
 }
