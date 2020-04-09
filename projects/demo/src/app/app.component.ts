@@ -3,6 +3,8 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { ThemeColorPickerService } from '@lcu/common';
 import { version, description } from '@lowcodeunit/lcu-charts-common/package.json';
 import { AppEventService } from './app-event.service';
+import { AppConstants } from './app-constants';
+import { ChartNavType } from './models/chart-nav.model';
 
 @Component({
   selector: 'lcu-root',
@@ -52,39 +54,21 @@ export class AppComponent implements OnInit {
   }
 
   protected setNavItems(): void {
-    this.chartNavItems = [
-      { title: 'Simple Line Chart', icon: 'show_chart', route: 'charts/simple-line-chart', type: 'Line_Area' },
-      { title: 'Simple Vertical Bar Chart', icon: 'bar_chart', route: 'charts/simple-vertical-bar-chart', type: 'Bar' },
-      { title: 'Simple Horizontal Bar Chart', icon: 'notes', route: 'charts/simple-horizonal-bar-chart', type: 'Bar' },
-      { title: 'Grouped Vertical Bar Chart', icon: 'bar_chart', route: 'charts/grouped-vertical-bar-chart', type: 'Bar' },
-      { title: 'Grouped Horizontal Bar Chart', icon: 'notes', route: 'charts/grouped-horizonal-bar-chart', type: 'Bar' },
-      { title: 'Simple Area Chart', icon: 'insert_photo', route: 'charts/simple-area-chart', type: 'Line_Area' },
-      // { title: 'Combo Chart', icon: 'multiline_chart', route: 'examples/combo-chart', type: 'Example' },
-      { title: 'Simple Pie Chart', icon: 'pie_chart', route: 'charts/simple-pie-chart', type: 'Pie' },
-      { title: 'Advanced Pie Chart', icon: 'pie_chart', route: 'charts/advanced-pie-chart', type: 'Pie' },
-      { title: 'Bubble Chart', icon: 'bubble_chart', route: 'charts/simple-bubble-chart', type: 'Other' },
-      { title: 'Gauge', icon: 'wifi_tethering', route: 'charts/simple-gauge', type: 'Other' },
-      { title: 'Chart Synchronization', icon: 'compare_arrows', route: 'examples/chart-synchronization', type: 'Example' },
-      { title: 'Real Time Data', icon: 'device_hub', route: 'examples/real-time-data', type: 'Example' }
-    ];
-    this.BarChartNavItems = this.chartNavItems.filter(item => item.type === 'Bar');
-    this.ExampleChartNavItems = this.chartNavItems.filter(item => item.type === 'Example');
-    this.LineChartNavItems = this.chartNavItems.filter(item => item.type === 'Line_Area');
-    this.OtherChartNavItems = this.chartNavItems.filter(item => item.type === 'Other');
-    this.PieChartNavItems = this.chartNavItems.filter(item => item.type === 'Pie');
+    this.chartNavItems = AppConstants.CHART_NAV_ITEMS;
+    this.BarChartNavItems = this.chartNavItems.filter(item => item.type === ChartNavType.BAR);
+    this.ExampleChartNavItems = this.chartNavItems.filter(item => item.type === ChartNavType.EXAMPLE);
+    this.LineChartNavItems = this.chartNavItems.filter(item => item.type === ChartNavType.LINE_AREA);
+    this.PieChartNavItems = this.chartNavItems.filter(item => item.type === ChartNavType.PIE);
+    this.OtherChartNavItems = this.chartNavItems.filter((item) => {
+      return item.type !== ChartNavType.BAR
+          && item.type !== ChartNavType.EXAMPLE
+          && item.type !== ChartNavType.LINE_AREA
+          && item.type !== ChartNavType.PIE;
+    });
   }
 
   protected setThemes(): void {
-    this.Themes = [
-      { ColorSwatch: 'color-swatch-arctic', Icon: 'brightness_1', Label: 'Arctic Theme', Value: 'arctic-theme', Color: 'arctic' },
-      { ColorSwatch: 'color-swatch-contrast', Icon: 'brightness_1', Label: 'Contrast Theme', Value: 'contrast-theme', Color: 'contrast' },
-      { ColorSwatch: 'color-swatch-cool-candy', Icon: 'brightness_1', Label: 'Cool Candy Theme', Value: 'cool-candy-theme', Color: 'cool-candy' },
-      { ColorSwatch: 'color-swatch-flipper', Icon: 'brightness_1', Label: 'Flipper Theme', Value: 'flipper-theme', Color: 'flipper' },
-      { ColorSwatch: 'color-swatch-ice', Icon: 'brightness_1', Label: 'Ice Theme', Value: 'ice-theme', Color: 'ice' },
-      { ColorSwatch: 'color-swatch-sea-green', Icon: 'brightness_1', Label: 'Sea Green Theme', Value: 'sea-green-theme', Color: 'sea-green' },
-      { ColorSwatch: 'color-swatch-white-mint', Icon: 'brightness_1', Label: 'White Mint Theme', Value: 'white-mint-theme', Color: 'white-mint' },
-      { ColorSwatch: 'color-swatch-ivy', Icon: 'brightness_1', Label: 'Ivy Theme', Value: 'ivy-theme', Color: 'ivy' }
-    ];
+    this.Themes = AppConstants.FATHYM_THEMES;
   }
 
 }

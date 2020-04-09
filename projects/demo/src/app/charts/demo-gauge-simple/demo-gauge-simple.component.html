@@ -1,26 +1,30 @@
-<lcu-charts-gauge-simple
-  class="chart-container"
-  [angleSpan]="gaugeAngleSpan"
-  [animations]="animations"
-  [bigSegments]="gaugeLargeSegments"
-  [legendPosition]="legendPosition"
-  [legendTitle]="legendTitle"
-  [legend]="showLegend"
-  [margin]="margin ? [marginTop, marginRight, marginBottom, marginLeft] : null"
-  [max]="gaugeMax"
-  [min]="gaugeMin"
-  [results]="single"
-  [scheme]="colorScheme"
-  [showAxis]="gaugeShowAxis"
-  [showText]="showText"
-  [smallSegments]="gaugeSmallSegments"
-  [startAngle]="gaugeStartAngle"
-  [textValue]="gaugeTextValue"
-  [tooltipDisabled]="tooltipDisabled"
-  [units]="gaugeUnits"
-  [view]="view"
-  (activate)="activate($event)"
-  (deactivate)="deactivate($event)"
-  (legendLabelClick)="onLegendLabelClick($event)"
-  (select)="select($event)">
-</lcu-charts-gauge-simple>
+<lcu-modify-chart [options]="gaugeChartOptions"></lcu-modify-chart>
+
+<div fxFlex fxLayout="column" class="lcu-chart-container">
+  <lcu-charts-gauge-simple
+    class="chart-container"
+    [angleSpan]="gaugeAngleSpan"
+    [animations]="animations"
+    [bigSegments]="gaugeLargeSegments"
+    [legendPosition]="legendPosition"
+    [legendTitle]="legendTitle"
+    [legend]="showLegend"
+    [margin]="margin ? [marginTop, marginRight, marginBottom, marginLeft] : null"
+    [max]="gaugeMax"
+    [min]="gaugeMin"
+    [results]="single"
+    [scheme]="colorScheme"
+    [showAxis]="gaugeShowAxis"
+    [showText]="showText"
+    [smallSegments]="gaugeSmallSegments"
+    [startAngle]="gaugeStartAngle"
+    [textValue]="gaugeTextValue"
+    [tooltipDisabled]="tooltipDisabled"
+    [units]="gaugeUnits"
+    [view]="view"
+    (activate)="activate($event)"
+    (deactivate)="deactivate($event)"
+    (legendLabelClick)="onLegendLabelClick($event)"
+    (select)="select($event)">
+  </lcu-charts-gauge-simple>
+</div>

@@ -23,7 +23,7 @@
       In your Angular project directory, run the following command to install the latest version of LCU-charts:
     </div>
     <div fxLayout="row" class="home-row">
-      <code class="cli-code">npm install @lowcodeunit/lcu-charts --save</code>
+      <code class="cli-code">npm install @lowcodeunit/lcu-charts-common --save</code>
     </div>
   </div>
 
@@ -180,5 +180,12 @@
     <div fxLayout="row" class="home-row">
       <span class="code-name">units</span> - a string value that defines the unit of measurement to use.
     </div>
+    <div fxLayout="row" class="home-row">
+        <span class="code-name">dims</span> - an object with width, height and xOffset values (all numbers) to manipulate the size of the chart.
+         (You may need to adjust the height and width of the chart to avoid conflicts)
+    </div>
+    <div fxLayout="row" class="home-row">
+        <span class="code-name">formatTooltip</span> - a boolean value that tells the tooltip to use the <span class="code-name">yAxisTickFormatting</span> values instead of the numerical value.
+      </div>
   </div>
 </div>

@@ -95,7 +95,13 @@ export * from './lib/controls/gauge/gauge-linear/gauge-linear.component';
 /** MODELS */
 export * from './lib/models/chart-data.model';
 export * from './lib/models/date-format.model';
-
+export * from './lib/models/chart-bar-options.model';
+export * from './lib/models/chart-bubble-options.model';
+export * from './lib/models/chart-gauge-options.model';
+export * from './lib/models/chart-global-options.model';
+export * from './lib/models/chart-line-area-options.model';
+export * from './lib/models/chart-pie-options.model';
+;
 /** UTILS */
 export * from './lib/utils/id';
 export * from './lib/utils/color-sets';
@@ -103,3 +109,4 @@ export * from './lib/utils/sort';
 export * from './lib/utils/throttle';
 export * from './lib/utils/color-utils';
 export * from './lib/utils/visibility-observer';
+export * from './lib/elements/charts-demo/charts-demo.component';

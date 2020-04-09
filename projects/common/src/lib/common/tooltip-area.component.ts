@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ViewChild, ChangeDetectionStrategy, TemplateRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, ChangeDetectionStrategy, TemplateRef, OnInit } from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { createMouseEvent } from '../events';
 import select from 'd3-selection';
@@ -13,7 +13,7 @@ import select from 'd3-selection';
         y="0"
         [attr.width]="dims.width"
         [attr.height]="dims.height"
-        [attr.fill]="'url(#lin-grad)'"
+        [attr.fill]="generatedGradientUrl"
         [attr.opacity]="'0.5'"
         (mousemove)="mouseMove($event)"
         (mouseleave)="hideTooltip()"
@@ -21,7 +21,7 @@ import select from 'd3-selection';
 
       <svg:linearGradient
         [attr.width]="dims.width"
-        [attr.height]="dims.height" [id]="'lin-grad'" [attr.x1]="'0%'" [attr.y1]="'0%'" [attr.x2]="'100%'" [attr.y2]="'0%'">
+        [attr.height]="dims.height" [id]="generatedGradientId" [attr.x1]="'0%'" [attr.y1]="'0%'" [attr.x2]="'100%'" [attr.y2]="'0%'">
           <svg:stop
             *ngFor="let stop of backgroundGradientConfigs"
             [attr.offset]="stop.offset + '%'"
@@ -77,7 +77,7 @@ import select from 'd3-selection';
     ])
   ]
 })
-export class TooltipArea {
+export class TooltipArea implements OnInit {
   anchorOpacity: number = 0;
   anchorPos: number = -1;
   anchorValues: any[] = [];
@@ -96,6 +96,9 @@ export class TooltipArea {
   @Input() tooltipDisabled: boolean = false;
   @Input() tooltipTemplate: TemplateRef<any>;
   @Input() backgroundGradientConfigs: any[];
+  @Input() tooltipFormatting: any;
+  @Input() formatTooltip: boolean;
+
   @Input('forced-anchor-position')
   public set anchorPosition(val) {
     if (val) {
@@ -110,6 +113,8 @@ export class TooltipArea {
 
   @ViewChild('tooltipAnchor', { static: false }) tooltipAnchor;
 
+  tickFormat: (o: any) => string;
+
   getValues(xVal): any[] {
     const results = [];
 
@@ -123,13 +128,19 @@ export class TooltipArea {
       if (item) {
         const label = item.name;
         let val = item.value;
+        if(this.formatTooltip && this.tooltipFormatting){
+          this.tickFormat = this.tooltipFormatting;
+          val = this.tickFormat(val);
+          // console.log("val =", val)
+        }
         if (this.showPercentage) {
           val = (item.d1 - item.d0).toFixed(2) + '%';
         }
         if(this.units){
           // console.log("item = ", item)
-          val = item.value + this.units;
+          val = val + this.units;
         }
+        
 
         let color;
         if (this.colors.scaleType === 'linear') {
@@ -156,6 +167,14 @@ export class TooltipArea {
     }
 
     return results;
+  }
+
+  public generatedGradientId: string;
+  public generatedGradientUrl: string;
+  ngOnInit() {
+    const id = Math.ceil(Math.random() * 10000);
+    this.generatedGradientId = `lin-grad${id}`;
+    this.generatedGradientUrl = `url(#${this.generatedGradientId})`;
   }
 
   mouseMove(event) {
