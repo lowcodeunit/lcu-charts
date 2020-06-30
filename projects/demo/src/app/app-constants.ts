@@ -80,14 +80,14 @@ export class AppConstants {
       selector: 'lcu-charts-pie-chart-advanced'
     },
     {
-      title: 'Bubble Chart',
+      title: 'Simple Bubble Chart',
       icon: 'bubble_chart',
       route: '/charts/simple-bubble-chart',
       type: ChartNavType.BUBBLE,
       selector: 'lcu-charts-bubble-chart-simple'
     },
     {
-      title: 'Gauge',
+      title: 'Simple Gauge',
       icon: 'wifi_tethering',
       route: '/charts/simple-gauge',
       type: ChartNavType.GAUGE,

@@ -1,27 +1,9 @@
-# Introduction to LCUs
+# Introduction to LCU-Charts
+LCU-Charts is a Angular Charting and Graphing Library based on and influenced by [Ngx-charts](https://github.com/swimlane/ngx-charts).
 
-Low Code Units (LCUs) are the building blocks that make up our Application. 
+This library began as a 'Fork' of Ngx-charts in order to extend features in the library to use in Fathym's Low Code Framework. LCU-Charts was then built into a Low Code Unit (LCU), following the best practices and architecture of Fathym. This LCU is open source, and can be installed as a dependency in any Angular project.
 
-## Development server
+Start by checking out our [Simple Line Chart](charts/simple-line-chart), as well as browsing the rest of the LCU-Charts library.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Setup & Installation
+Click [here](getting-started/initial-setup.md) to get started with the Setup documentation.

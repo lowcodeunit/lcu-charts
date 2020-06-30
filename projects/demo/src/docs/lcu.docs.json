@@ -4,7 +4,7 @@
     {
       "Children": [],
       "Path": "introduction.md",
-      "Title": "Introduction to Low Code Architecture"
+      "Title": "Introduction"
     },
     {
       "Children": [
@@ -20,6 +20,76 @@
         }
       ],
       "Title": "Getting Started"
+    },
+    {
+      "Children": [
+        {
+          "Children": [],
+          "Path": "charts/simple-line-chart.md",
+          "Title": "Simple Line Chart"
+        },
+        {
+          "Children": [],
+          "Path": "charts/simple-area-chart.md",
+          "Title": "Simple Area Chart"
+        },
+        {
+          "Children": [],
+          "Path": "charts/simple-vertical-bar-chart.md",
+          "Title": "Simple Vertical Bar Chart"
+        },
+        {
+          "Children": [],
+          "Path": "charts/simple-horizontal-bar-chart.md",
+          "Title": "Simple Horizontal Bar Chart"
+        },
+        {
+          "Children": [],
+          "Path": "charts/grouped-vertical-bar-chart.md",
+          "Title": "Grouped Vertical Bar Chart"
+        },
+        {
+          "Children": [],
+          "Path": "charts/grouped-horizontal-bar-chart.md",
+          "Title": "Grouped Horizontal Bar Chart"
+        },
+        {
+          "Children": [],
+          "Path": "charts/simple-pie-chart.md",
+          "Title": "Simple Pie Chart"
+        },
+        {
+          "Children": [],
+          "Path": "charts/advanced-pie-chart.md",
+          "Title": "Advanced Pie Chart"
+        },
+        {
+          "Children": [],
+          "Path": "charts/simple-bubble-chart.md",
+          "Title": "Simple Bubble Chart"
+        },
+        {
+          "Children": [],
+          "Path": "charts/simple-gauge.md",
+          "Title": "Simple Gauge"
+        }
+      ],
+      "Title": "Charts"
+    },
+    {
+      "Children": [
+        {
+          "Children": [],
+          "Path": "data-wrapper/data-wrapper-overview.md",
+          "Title": "Overview"
+        },
+        {
+          "Children": [],
+          "Path": "data-wrapper/data-wrapper-implementation.md",
+          "Title": "Implementation"
+        }
+      ],
+      "Title": "Data Wrapper"
     }
   ],
   "LocationRoot": "/docs/"
