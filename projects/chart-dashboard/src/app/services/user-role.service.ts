@@ -28,7 +28,7 @@ export class UserRolesService {
       .subscribe(this.roles$);
   }
 
-  public UpdateRoles(roles: string[]): void {
+  public UpdateRoles(roles: any): void {
     this.roleUpdates$.next(roles);
   }
 }
