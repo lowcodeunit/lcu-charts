@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { scan } from 'rxjs/operators';
 import { ReplaySubject } from 'rxjs/internal/ReplaySubject';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { UserModel } from '../models/user.model';
 
 export interface Role {
   name: string;
@@ -27,7 +28,7 @@ export class UserRolesService {
       .subscribe(this.roles$);
   }
 
-  public UpdateRoles(roles): void {
+  public UpdateRoles(roles: Array<string>): void {
     this.roleUpdates$.next(roles);
   }
 }
