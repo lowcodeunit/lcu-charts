@@ -187,31 +187,31 @@ export class LineChartSimpleComponent extends BaseChartComponent {
   }
 
     public FormatXAxisDate(value: Date){
-      let datestr: string = value.toString();
-      let dateArr = datestr.split(" ");
-      let dateTime: string = ""
-      if(this.xAxisDateFormat.DayOfWeek){
-        dateTime+=dateArr[0] +" ";
+      const datestr: string = value.toString();
+      const dateArr = datestr.split(' ');
+      let dateTime: string = '';
+      if (this.xAxisDateFormat.DayOfWeek) {
+        dateTime += dateArr[0] + ' ';
       }
-      if(this.xAxisDateFormat.Month){
-       dateTime+=dateArr[1]+" ";
+      if (this.xAxisDateFormat.Month) {
+       dateTime += dateArr[1] + ' ';
       }
-      if(this.xAxisDateFormat.DayOfMonth){
-        dateTime+=dateArr[2]+" ";
+      if (this.xAxisDateFormat.DayOfMonth) {
+        dateTime += dateArr[2] + ' ';
       }
-      if(this.xAxisDateFormat.Year){
-       dateTime+=dateArr[3]+" ";
+      if (this.xAxisDateFormat.Year) {
+       dateTime += dateArr[3] + ' ';
       }
-      if(this.xAxisDateFormat.Time){
-        let time = dateArr[4];
+      if (this.xAxisDateFormat.Time) {
+        const time = dateArr[4];
 
-       dateTime+=time.substr(0, time.length-3)+" ";
+        dateTime += time.substr(0, time.length - 3) + ' ';
       }
-      if(this.xAxisDateFormat.TimeZone){
-       dateTime+=dateArr[5]+" ";
+      if (this.xAxisDateFormat.TimeZone) {
+       dateTime += dateArr[5] + ' ';
       }
 
-      dateTime = dateTime.substr(0,dateTime.length-1);
+      dateTime = dateTime.substr(0, dateTime.length - 1);
 
       return dateTime;
     }
