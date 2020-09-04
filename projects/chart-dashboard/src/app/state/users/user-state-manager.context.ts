@@ -1,6 +1,6 @@
+import { StateContext } from '@lcu/common';
 import { UserModel } from './../../models/user.model';
 import { Injectable, Injector } from '@angular/core';
-import { StateManagerContext } from '@lcu/common';
 import { UserStateModel } from '../../models/user-state.model';
 
 @Injectable({
@@ -9,13 +9,13 @@ import { UserStateModel } from '../../models/user-state.model';
 
 /**
  * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
- * Currentyly the state isn't being used, but stubbing pieces of it out in this project
+ * Currently the state isn't being used, but stubbing pieces of it out in this project
  * When the state is used it shoule eliminate the need for user.service.ts
  * 8/15/2019 - Shannon
  * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
  */
 
-  export class UsersStateManagerContext extends StateManagerContext<UserStateModel> {
+  export class UsersStateManagerContext extends StateContext<UserStateModel> {
     //  Fields
   protected state: UserStateModel;
 
@@ -66,11 +66,11 @@ import { UserStateModel } from '../../models/user-state.model';
     return <UserStateModel>{ Loading: true };
   }
 
-  protected async loadStateKey() {
+  protected loadStateKey(): string {
     return 'main';
   }
 
-  protected async loadStateName() {
+  protected loadStateName(): string {
     return 'users';
   }
 }
