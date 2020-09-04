@@ -2,7 +2,7 @@
 	"name": "@lowcodeunit/lcu-charts-lcu",
 	"version": "0.0.17",
 	"peerDependencies": {
-		"@angular/common": "~8.1.2",
-		"@angular/core": "~8.1.2"
+		"@angular/common": "^10.0.8",
+		"@angular/core": "^10.0.8"
 	}
 }
