@@ -1,6 +1,6 @@
 {
   "name": "@lowcodeunit/lcu-charts-common",
-  "version": "1.5.15",
+  "version": "0.0.17",
   "description": "A Charting and Graphing Library based on and influenced by Ngx-charts",
   "repository": {
     "type": "git",
@@ -27,9 +27,8 @@
   ],
   "author": "Fathym",
   "maintainers": [
-    "George Hatch",
-    "Bill Horst",
-    "Bobby Wise"
+    "Shannon Bruns",
+    "George Hatch"
   ],
   "license": "Apache",
   "bugs": {
@@ -37,13 +36,13 @@
   },
   "homepage": "https://github.com/lowcodeunit/lcu-charts#readme",
   "peerDependencies": {
-    "@angular/animations": "7.x || 8.x || 9.x",
-    "@angular/cdk": "7.x || 8.x || 9.x",
-    "@angular/core": "7.x || 8.x || 9.x",
-    "@angular/common": "7.x || 8.x || 9.x",
-    "@angular/forms": "7.x || 8.x || 9.x",
-    "@angular/platform-browser": "7.x || 8.x || 9.x",
-    "@angular/platform-browser-dynamic": "7.x || 8.x || 9.x",
+    "@angular/animations": "7.x || 8.x || 9.x || 10.x",
+    "@angular/cdk": "7.x || 8.x || 9.x || 10.x",
+    "@angular/core": "7.x || 8.x || 9.x || 10.x",
+    "@angular/common": "7.x || 8.x || 9.x || 10.x",
+    "@angular/forms": "7.x || 8.x || 9.x || 10.x",
+    "@angular/platform-browser": "7.x || 8.x || 9.x || 10.x",
+    "@angular/platform-browser-dynamic": "7.x || 8.x || 9.x || 10.x",
     "rxjs": "6.x"
   },
   "dependencies": {
