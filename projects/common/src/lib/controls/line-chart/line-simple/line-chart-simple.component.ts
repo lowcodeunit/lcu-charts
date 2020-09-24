@@ -101,6 +101,7 @@ export class LineChartSimpleComponent extends BaseChartComponent {
 
   @Output() activate: EventEmitter<any> = new EventEmitter();
   @Output() deactivate: EventEmitter<any> = new EventEmitter();
+  @Output() pixelValueXChanged: EventEmitter<any> = new EventEmitter();
 
   @ContentChild('tooltipTemplate') tooltipTemplate: TemplateRef<any>;
   @ContentChild('seriesTooltipTemplate') seriesTooltipTemplate: TemplateRef<any>;
@@ -345,13 +346,16 @@ export class LineChartSimpleComponent extends BaseChartComponent {
 
   @Output() HoveredVerticalChange = new EventEmitter<any>();
 
-  updateHoveredVertical(item: any): void {
+  public updateHoveredVertical(item: any): void {
+    // console.log("HOVERed HERE: ", item.value)
     this.hoveredVertical = item.value;
+    this.HoveredVerticalChange.emit(item);
     this.deactivateAll();
   }
 
   public sendBackPixelValueX(event: any) {
-    this.HoveredVerticalChange.emit(event);
+    // console.log("pix val = ", event)
+    this.pixelValueXChanged.emit(event);
   }
 
   @HostListener('mouseleave')
