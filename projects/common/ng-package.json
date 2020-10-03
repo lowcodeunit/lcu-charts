@@ -4,5 +4,8 @@
   "lib": {
     "entryFile": "src/lcu.api.ts"
   },
-  "whitelistedNonPeerDependencies": ["d3"]
+  "whitelistedNonPeerDependencies": ["d3"],
+  "assets": [
+    "assets"
+  ]
 }
