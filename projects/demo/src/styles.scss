@@ -1,7 +1,5 @@
+@import '../../common/src/assets/styles/common';
 @import "../../../node_modules/@lcu/common/assets/styles/fathym-global.styles";
-@import "../../../node_modules/@lcu/common/assets/styles/branding/fathym-branding";
-@import "../../../node_modules/@lcu/common/assets/theming/fathym_themes";
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap");
 @import "./app/app.component.scss";
 
 @mixin opacity($opacity) {
@@ -30,7 +28,7 @@
 }
 
 @mixin component-themes($theme) {
-  @include lcu-charts-component-theme($theme);
+  // @include lcu-charts-component-theme($theme);
 
   .mat-tooltip,
   .mat-snack-bar-container {

@@ -1,7 +1,9 @@
-@mixin lcu-charts-modify-form($theme) {
-  $primary: map-get($theme, primary);
-  $accent: map-get($theme, accent);
-  $warn: map-get($theme, warn);
+@import '../../../../../common/src/assets/styles/common';
+
+// @mixin lcu-charts-modify-form($theme) {
+//   $primary: map-get($theme, primary);
+//   $accent: map-get($theme, accent);
+//   $warn: map-get($theme, warn);
 
   .sidenav-content-form-container {
     background-color: map-get($accent, 500);
@@ -71,4 +73,4 @@
       }
     }
   }
-}
+// }

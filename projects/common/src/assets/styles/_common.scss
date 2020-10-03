@@ -1,0 +1,15 @@
+@import "../../../../../node_modules/@lcu/common/assets/theming/common-theme";
+
+$global-theme: fathym-ivy-theme(true);
+$primary: map-get($global-theme, primary);
+$accent: map-get($global-theme, accent);
+$warn: map-get($global-theme, warn);
+
+$background: map-get(map-get($global-theme, 'background'), 'background');
+
+html, body {
+    box-sizing: border-box;
+    height: 100%;
+    margin: 0 !important;
+    background-color: $background;
+}

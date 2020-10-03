@@ -1,7 +1,9 @@
-@mixin lcu-charts-code-dialog($theme) {
-  $primary: map-get($theme, primary);
-  $accent: map-get($theme, accent);
-  $warn: map-get($theme, warn);
+@import '../../../../../common/src/assets/styles/common';
+
+// @mixin lcu-charts-code-dialog($theme) {
+  // $primary: map-get($theme, primary);
+  // $accent: map-get($theme, accent);
+  // $warn: map-get($theme, warn);
 
   .mat-dialog-container {
     background-color: #1b1e27;
@@ -27,4 +29,4 @@
       }
     }
   }
-}
+// }
