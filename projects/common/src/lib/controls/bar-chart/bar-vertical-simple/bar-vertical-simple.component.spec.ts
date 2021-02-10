@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -32,7 +32,7 @@ describe('<lcu-charts-bar-vertical-simple>', () => {
   });
 
   describe('basic setup', () => {
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `
@@ -45,7 +45,7 @@ describe('<lcu-charts-bar-vertical-simple>', () => {
       });
     }));
 
-    it('should set the svg width and height', async(() => {
+    it('should set the svg width and height', waitForAsync(() => {
       const fixture = TestBed.createComponent(TestComponent);
       fixture.detectChanges();
 
@@ -55,7 +55,7 @@ describe('<lcu-charts-bar-vertical-simple>', () => {
       expect(svg.getAttribute('height')).toBe('800');
     }));
 
-    it('should render 12 cell elements', async(() => {
+    it('should render 12 cell elements', waitForAsync(() => {
       const fixture = TestBed.createComponent(TestComponent);
       fixture.detectChanges();
 
@@ -64,7 +64,7 @@ describe('<lcu-charts-bar-vertical-simple>', () => {
       expect(compiled.querySelectorAll('path.bar').length).toEqual(6);
     }));
 
-    it('should render correct cell size', async(() => {
+    it('should render correct cell size', waitForAsync(() => {
       const fixture = TestBed.createComponent(TestComponent);
       fixture.detectChanges();
 
@@ -75,7 +75,7 @@ describe('<lcu-charts-bar-vertical-simple>', () => {
   });
 
   describe('padding', () => {
-    it('should render correct cell size, with zero padding', async(() => {
+    it('should render correct cell size, with zero padding', waitForAsync(() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `
@@ -98,7 +98,7 @@ describe('<lcu-charts-bar-vertical-simple>', () => {
       });
     }));
 
-    it('should render correct cell size, with padding', async(() => {
+    it('should render correct cell size, with padding', waitForAsync(() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `

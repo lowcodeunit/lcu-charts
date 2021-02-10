@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -21,7 +21,7 @@ describe('<lcu-charts-chart>', () => {
   });
 
   describe('basic setup', () => {
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       // set up a  basic chart
       TestBed.overrideComponent(TestComponent, {
         set: {
@@ -36,7 +36,7 @@ describe('<lcu-charts-chart>', () => {
       }).compileComponents();
     }));
 
-    it('should set the svg width and height', async(() => {
+    it('should set the svg width and height', waitForAsync(() => {
       const fixture = TestBed.createComponent(TestComponent);
       fixture.detectChanges();
 
@@ -46,7 +46,7 @@ describe('<lcu-charts-chart>', () => {
       expect(svg.getAttribute('height')).toBe('800');
     }));
 
-    it('should correctly project the inner content', async(() => {
+    it('should correctly project the inner content', waitForAsync(() => {
       const fixture = TestBed.createComponent(TestComponent);
       fixture.detectChanges();
 

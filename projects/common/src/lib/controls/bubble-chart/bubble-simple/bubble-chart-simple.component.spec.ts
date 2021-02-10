@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { bubble } from '../../../../../../../projects/demo/src/app/data';
@@ -28,7 +28,7 @@ describe('<lcu-charts-bubble-chart-simple>', () => {
   });
 
   describe('basic setup', () => {
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `
@@ -41,7 +41,7 @@ describe('<lcu-charts-bubble-chart-simple>', () => {
       }).compileComponents();
     }));
 
-    it('should set the svg width and height', async(() => {
+    it('should set the svg width and height', waitForAsync(() => {
       const fixture = TestBed.createComponent(TestComponent);
       fixture.detectChanges();
 
@@ -51,7 +51,7 @@ describe('<lcu-charts-bubble-chart-simple>', () => {
       expect(svg.getAttribute('height')).toBe('800');
     }));
 
-    it('should render 12 circle elements', async(() => {
+    it('should render 12 circle elements', waitForAsync(() => {
       const fixture = TestBed.createComponent(TestComponent);
       fixture.detectChanges();
 

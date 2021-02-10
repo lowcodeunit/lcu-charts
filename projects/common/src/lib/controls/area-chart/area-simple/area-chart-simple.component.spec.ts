@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -32,7 +32,7 @@ describe('<lcu-charts-area-chart-simple>', () => {
   });
 
   describe('basic setup', () => {
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `
@@ -45,7 +45,7 @@ describe('<lcu-charts-area-chart-simple>', () => {
       }).compileComponents();
     }));
 
-    it('should set the svg width and height', async(() => {
+    it('should set the svg width and height', waitForAsync(() => {
       const fixture = TestBed.createComponent(TestComponent);
       fixture.detectChanges();
 
@@ -55,7 +55,7 @@ describe('<lcu-charts-area-chart-simple>', () => {
       expect(svg.getAttribute('height')).toBe('800');
     }));
 
-    it('should render 4 area elements', async(() => {
+    it('should render 4 area elements', waitForAsync(() => {
       const fixture = TestBed.createComponent(TestComponent);
       fixture.detectChanges();
 
@@ -64,7 +64,7 @@ describe('<lcu-charts-area-chart-simple>', () => {
       expect(compiled.querySelectorAll('path.area').length).toEqual(4);
     }));
 
-    it('should match specified colors for area elements', async(() => {
+    it('should match specified colors for area elements', waitForAsync(() => {
       const fixture = TestBed.createComponent(TestComponent);
       fixture.detectChanges();
 
