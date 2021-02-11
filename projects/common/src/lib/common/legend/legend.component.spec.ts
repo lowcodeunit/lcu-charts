@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { Component } from '@angular/core';
 
 import { ChartCommonModule } from '../chart-common.module';
@@ -44,7 +44,7 @@ describe('<lcu-charts-legend>', () => {
     });
   });
 
-  it('should set the legend labels', async(() => {
+  it('should set the legend labels', waitForAsync(() => {
     TestBed.compileComponents().then(() => {
       const fixture = TestBed.createComponent(TestComponent);
       fixture.detectChanges();

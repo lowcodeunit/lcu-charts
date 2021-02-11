@@ -1,4 +1,4 @@
-import { async, TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { Component } from '@angular/core';
 
 import { ChartCommonModule } from '../chart-common.module';
@@ -57,7 +57,7 @@ describe('<lcu-charts-advanced-legend>', () => {
     });
   });
 
-  it('should render label and legend with values for each item', async(() => {
+  it('should render label and legend with values for each item', waitForAsync(() => {
     TestBed.compileComponents().then(() => {
       const fixture = TestBed.createComponent(TestComponent);
       fixture.detectChanges();
@@ -104,7 +104,7 @@ describe('<lcu-charts-advanced-legend>', () => {
     });
   }));
 
-  it('should apply formatting functions', async(() => {
+  it('should apply formatting functions', waitForAsync(() => {
     TestBed.compileComponents().then(() => {
       const fixture = TestBed.createComponent(TestComponent);
       const component = fixture.componentInstance;
