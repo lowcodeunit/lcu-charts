@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { arc } from 'd3-shape';
@@ -31,7 +31,7 @@ xdescribe('<lcu-charts-pie>', () => {
   });
 
   describe('basic setup', () => {
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `
@@ -45,7 +45,7 @@ xdescribe('<lcu-charts-pie>', () => {
       }).compileComponents();
     }));
 
-    it('should set the svg width and height', async(() => {
+    it('should set the svg width and height', waitForAsync(() => {
       const fixture = TestBed.createComponent(TestComponent);
       fixture.detectChanges();
 
@@ -55,7 +55,7 @@ xdescribe('<lcu-charts-pie>', () => {
       expect(svg.getAttribute('height')).toBe('800');
     }));
 
-    it('should render 6 arc elements', async(() => {
+    it('should render 6 arc elements', waitForAsync(() => {
       const fixture = TestBed.createComponent(TestComponent);
       fixture.detectChanges();
 
@@ -64,7 +64,7 @@ xdescribe('<lcu-charts-pie>', () => {
       expect(compiled.querySelectorAll('path.arc').length).toEqual(6);
     }));
 
-    it('should render an arc', async(() => {
+    it('should render an arc', waitForAsync(() => {
       const fixture = TestBed.createComponent(TestComponent);
       fixture.detectChanges();
 
@@ -81,7 +81,7 @@ xdescribe('<lcu-charts-pie>', () => {
   });
 
   describe('doughnut', () => {
-    it('should render an arc, default width', async(() => {
+    it('should render an arc, default width', waitForAsync(() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `
@@ -111,7 +111,7 @@ xdescribe('<lcu-charts-pie>', () => {
       });
     }));
 
-    it('should render an arc, set width', async(() => {
+    it('should render an arc, set width', waitForAsync(() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `

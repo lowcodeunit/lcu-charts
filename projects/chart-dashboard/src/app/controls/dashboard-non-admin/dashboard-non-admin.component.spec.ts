@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { DashboardNonAdminComponent } from './dashboard-non-admin.component';
 
@@ -6,7 +6,7 @@ describe('DashboardNonAdminComponent', () => {
   let component: DashboardNonAdminComponent;
   let fixture: ComponentFixture<DashboardNonAdminComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ DashboardNonAdminComponent ]
     })
