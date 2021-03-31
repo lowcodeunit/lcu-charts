@@ -95,7 +95,6 @@ export class ChartComponent implements OnChanges {
     const chartColumns = 12 - legendColumns;
 
     this.chartWidth = Math.floor((this.view[0] * chartColumns) / 12.0);
-    console.log("Legend Width", this.legendWidth)
     if(!this.legendWidth){
     this.legendWidth =
       !this.legendOptions || this.legendOptions.position === 'right'
