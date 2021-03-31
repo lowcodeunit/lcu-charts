@@ -44,6 +44,7 @@ import { DateFormatModel } from '../../../models/date-format.model';
 export class LineChartSimpleComponent extends BaseChartComponent {
   @Input() legend: any;
   @Input() legendTitle: string = 'Legend';
+  @Input() legendWidth: any;
   @Input() legendPosition: string = 'right';
   @Input() xAxis: any;
   @Input() yAxis: any;

@@ -61,6 +61,7 @@ export class ChartComponent implements OnChanges {
   @Input() data: any;
   @Input() legendData: any;
   @Input() legendType: any;
+  @Input() legendWidth: any;
   @Input() colors: any;
   @Input() activeEntries: any[];
   @Input() animations: boolean = true;
@@ -71,7 +72,7 @@ export class ChartComponent implements OnChanges {
 
   chartWidth: any;
   title: any;
-  legendWidth: any;
+ 
 
   ngOnChanges(changes: SimpleChanges): void {
     this.update();
@@ -94,10 +95,13 @@ export class ChartComponent implements OnChanges {
     const chartColumns = 12 - legendColumns;
 
     this.chartWidth = Math.floor((this.view[0] * chartColumns) / 12.0);
+    console.log("Legend Width", this.legendWidth)
+    if(!this.legendWidth){
     this.legendWidth =
       !this.legendOptions || this.legendOptions.position === 'right'
         ? Math.floor((this.view[0] * legendColumns) / 12.0)
         : this.chartWidth;
+    }
   }
 
   getLegendType(): string {
